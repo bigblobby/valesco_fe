@@ -1,20 +1,11 @@
 'use client'
 
-import { createClient } from '@/utils/supabase/client';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
+import { useFormState } from 'react-dom';
+import { resetPasswordAction } from '@/app/(auth)/password-reset/actions';
 
 export default function PasswordResetPage(){
-    const [email, setEmail] = useState<string>();
-    const supabase = createClient();
-
-    async function handleSubmit(){
-        if (email) {
-            await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo: 'http://localhost:3000/change-password'
-            });
-        }
-    }
+    const [state, formAction] = useFormState(resetPasswordAction, null)
 
     return (
         <div>
@@ -26,12 +17,12 @@ export default function PasswordResetPage(){
                                 Reset your password
                             </h1>
                             <p>Enter your email address so we can send you a link to reset your password</p>
-                            <form className="space-y-4 md:space-y-6">
+                            <form action={formAction} className="space-y-4 md:space-y-6">
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                    <input onChange={(e) => setEmail(e.target.value)} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
+                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
                                 </div>
-                                <button onClick={handleSubmit} className="w-full text-white bg-orange-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send link</button>
+                                <SubmitWithStatus text="Send link" />
                             </form>
                         </div>
                     </div>
