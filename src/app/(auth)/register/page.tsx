@@ -1,32 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/utils/supabase/client';
 import Link from 'next/link'
+import { useFormState } from 'react-dom';
+import { registerAction } from '@/app/(auth)/register/actions';
+import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
 
 export default function RegisterPage() {
-    const router = useRouter();
-    const supabase = createClient();
-
-    const handleSignUp = async (e: any) => {
-        e.preventDefault();
-
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-
-        console.log(email);
-
-        await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-                emailRedirectTo: `${location.origin}/auth/callback`,
-            },
-        });
-        console.log('runs')
-        router.refresh();
-    };
+    const [state, formAction] = useFormState(registerAction, null);
 
     return (
         <>
@@ -40,7 +20,7 @@ export default function RegisterPage() {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Sign up for an account
                             </h1>
-                            <form onSubmit={handleSignUp} className="space-y-4 md:space-y-6">
+                            <form action={formAction} className="space-y-4 md:space-y-6">
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                                     <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
@@ -49,7 +29,7 @@ export default function RegisterPage() {
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                     <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                                 </div>
-                                <button type="submit" className="w-full text-white bg-orange-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign up</button>
+                                <SubmitWithStatus text={"Sign up"} />
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Already have an account? <Link href="/login" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</Link>
                                 </p>
