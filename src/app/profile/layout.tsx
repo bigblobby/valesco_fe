@@ -18,9 +18,10 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
     }
 
     return (
-        <>
-            <h1>PROFILE LAYOUT</h1>
-            {children}
-        </>
+        <section className="bg-gray-50 dark:bg-gray-900">
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+                {children}
+            </div>
+        </section>
     );
 }

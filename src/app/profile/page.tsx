@@ -12,8 +12,6 @@ export default async function Page(){
     console.log(await supabase.auth.getSession());
 
     return (
-        <div className="bg-gray-50 dark:bg-gray-900">
-            <ProfileForm user={user} profile={profile?.[0]} />
-        </div>
+        <ProfileForm user={user} profile={profile?.[0]} />
     )
 }
