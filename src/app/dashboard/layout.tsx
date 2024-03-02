@@ -19,7 +19,7 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
-            <div className="px-6 py-8 min-h-screen lg:py-0">
+            <div className="min-h-screen">
                 {children}
             </div>
         </section>
