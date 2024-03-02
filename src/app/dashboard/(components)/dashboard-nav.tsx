@@ -1,15 +1,18 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useOutsideClick } from '@/app/hooks/useOutsideClick';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
+import { UserContext } from '@/app/providers/user-provider';
+import Link from 'next/link';
 
-export default function DashboardNav({user, userProfile}: any) {
+export default function DashboardNav() {
     const supabase = createClient();
     const router = useRouter();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const profileRef = useRef(null);
+    const { user, userProfile } = useContext(UserContext);
 
     useOutsideClick(profileRef, () => {
         setMenuOpen(false);
@@ -41,7 +44,7 @@ export default function DashboardNav({user, userProfile}: any) {
                         </div>
                         <ul className="py-2" aria-labelledby="user-menu-button">
                             <li>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 transition-all hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+                                <Link href="/dashboard/profile" className="block px-4 py-2 text-sm text-gray-700 transition-all hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</Link>
                             </li>
                             <li>
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 transition-all hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>

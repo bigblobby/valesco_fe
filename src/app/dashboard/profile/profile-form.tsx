@@ -1,6 +1,6 @@
 'use client'
 
-import { upsertProfile } from '@/app/profile/actions';
+import { upsertProfile } from '@/app/dashboard/profile/actions';
 import { useFormState } from 'react-dom';
 
 interface ProfileFormProps {

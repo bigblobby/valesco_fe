@@ -15,9 +15,7 @@ export default async function DashboardHomePage() {
     return (
         <>
             {session?.user ? (
-                <>
-                    <DashboardHome user={session.user} userProfile={profile?.[0]} />
-                </>
+                <DashboardHome user={session.user} userProfile={profile?.[0]} />
             ) : null}
         </>
     );
