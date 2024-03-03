@@ -4,6 +4,8 @@ import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import DashboardNav from '@/app/dashboard/(components)/dashboard-nav';
+import { HomeIcon, ListBulletIcon } from '@heroicons/react/24/outline';
+import { PlusIcon } from '@heroicons/react/24/solid';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -13,6 +15,19 @@ export const metadata: Metadata = {
 export default async function Layout({ children, }: Readonly<{ children: React.ReactNode; }>) {
     const cookieStore = cookies();
     const supabase = createClient(cookieStore);
+
+    const navItems = [
+        {
+            title: 'Dashboard',
+            link: '/dashboard',
+            icon: <HomeIcon width={24} height={24} />,
+        },
+        {
+            title: 'Workouts',
+            link: '/dashboard/workouts',
+            icon: <ListBulletIcon width={24} height={24} />,
+        },
+    ]
 
     const {
         data: { session },
@@ -37,9 +52,7 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
                             <div>
                                 <div className="flex justify-center border-b border-gray-200 dark:border-slate-50/[0.26] mx-4">
                                     <button className="inline-flex text-white bg-orange-400 hover:bg-orange-300 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 my-4 text-center transition-colors">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                                            <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
-                                        </svg>
+                                        <PlusIcon width={20} height={20} />
                                         <span className="ml-2">New Workout</span>
                                     </button>
                                 </div>
@@ -47,28 +60,22 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
 
                             <div>
                                 <ul className="mt-4">
-                                    <li className="mx-2 my-1">
-                                        <Link className="flex items-center px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="/dashboard">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                                            </svg>
-                                            <span className="ml-2">Dashboard</span>
-                                        </Link>
-                                    </li>
-                                    <li className="mx-2 my-1">
-                                        <Link className="flex items-center px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="/dashboard/workouts">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                                            </svg>
-                                            <span className="ml-2">Workouts</span>
-                                        </Link>
-                                    </li>
+                                    {navItems.map((navItem, index) => (
+                                        <li key={index} className="mx-2 my-1">
+                                            <Link className="flex items-center px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href={navItem.link}>
+                                                {navItem.icon}
+                                                <span className="ml-2">{navItem.title}</span>
+                                            </Link>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </aside>
                         <main className="pl-52">
                             <DashboardNav user={session.user} userProfile={profile?.[0]} />
-                            {children}
+                            <div className="h-[calc(100vh-65px)]">
+                                {children}
+                            </div>
                         </main>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ export default async function Page(){
     const { data: profile, error } = await supabase.from('profiles').select('*').eq('id', session?.user?.id);
 
     return (
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-full lg:py-0">
             <ProfileForm user={session?.user} profile={profile?.[0]} />
         </div>
     )
