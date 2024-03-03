@@ -7,12 +7,11 @@ import { useRouter } from 'next/navigation';
 import { UserContext } from '@/app/providers/user-provider';
 import Link from 'next/link';
 
-export default function DashboardNav() {
+export default function DashboardNav({userProfile, user}: any) {
     const supabase = createClient();
     const router = useRouter();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const profileRef = useRef(null);
-    const { user, userProfile } = useContext(UserContext);
 
     useOutsideClick(profileRef, () => {
         setMenuOpen(false);
@@ -24,12 +23,17 @@ export default function DashboardNav() {
     };
 
     return (
-        <nav className="p-8">
+        <nav className="p-4 border-b border-gray-200 dark:border-slate-50/[0.26]">
             <div className="flex flex-wrap items-center justify-end mx-auto">
                 <div ref={profileRef} className="relative flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <button onClick={() => setMenuOpen(!menuOpen)} type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                    <button onClick={() => setMenuOpen(!menuOpen)} type="button" className="flex text-sm rounded-full items-center md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <span className="sr-only">Open user menu</span>
-                        <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                            <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                            <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                        </svg>
                     </button>
                     <div className={"absolute top-6 right-0 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 " + (menuOpen ? "" : "hidden")} id="user-dropdown">
                         <div className="px-4 py-3">
