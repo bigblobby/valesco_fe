@@ -1,4 +1,5 @@
 import {createElement} from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface TextProps {
     children: any,
@@ -51,7 +52,7 @@ export default function Text({
            classes += 'text-gray-500 dark:text-gray-400';
         }
 
-        return `${classes} ${className}`;
+        return twMerge(classes, className);
     }
 
     return createElement(
