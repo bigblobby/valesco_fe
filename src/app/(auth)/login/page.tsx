@@ -6,6 +6,7 @@ import { useFormState } from 'react-dom';
 import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
 import Input from '@/app/components/forms/input';
 import Text from '@/app/components/ui/text';
+import Alert from '@/app/components/ui/alert';
 
 export default function LoginPage() {
     const [state, formAction] = useFormState(loginAction, null);
@@ -41,9 +42,9 @@ export default function LoginPage() {
                             />
                         </div>
                         {state?.error && (
-                            <Text className="text-red-500 text-sm">
+                            <Alert type="danger">
                                 {state.error}
-                            </Text>
+                            </Alert>
                         )}
                         <div>
                             <Link className="text-sm font-medium text-gray-500 hover:underline dark:text-gray-400" href="/password-reset">Forgot password?</Link>
