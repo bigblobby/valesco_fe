@@ -32,5 +32,5 @@ export async function upsertProfile(currentState: any, formData: FormData) {
 
     revalidatePath('/profile');
 
-    return { message: 'Updated profile' };
+    return { message: 'Profile updated' };
 }

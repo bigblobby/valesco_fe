@@ -51,10 +51,10 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
 
                             <div>
                                 <div className="flex justify-center border-b border-gray-200 dark:border-slate-50/[0.26] mx-4">
-                                    <button className="inline-flex text-white bg-orange-400 hover:bg-orange-300 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 my-4 text-center transition-colors">
+                                    <Link href="/dashboard/create-workout" className="inline-flex text-white bg-orange-400 hover:bg-orange-300 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 my-4 text-center transition-colors">
                                         <PlusIcon width={20} height={20} />
                                         <span className="ml-2">New Workout</span>
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
 
