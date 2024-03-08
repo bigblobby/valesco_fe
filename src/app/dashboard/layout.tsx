@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import Link from 'next/link';
+import Link from '@/app/components/ui/link';
+import { default as NavLink } from 'next/link';
 import DashboardNav from '@/app/dashboard/(components)/dashboard-nav';
 import { HomeIcon, ListBulletIcon } from '@heroicons/react/24/outline';
 import { PlusIcon } from '@heroicons/react/24/solid';
@@ -51,7 +52,7 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
 
                             <div>
                                 <div className="flex justify-center border-b border-gray-200 dark:border-slate-50/[0.26] mx-4">
-                                    <Link href="/dashboard/create-workout" className="inline-flex text-white bg-orange-400 hover:bg-orange-300 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 my-4 text-center transition-colors">
+                                    <Link className="my-4" href="/dashboard/create-workout" variant="button">
                                         <PlusIcon width={20} height={20} />
                                         <span className="ml-2">New Workout</span>
                                     </Link>
@@ -62,10 +63,10 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
                                 <ul className="mt-4">
                                     {navItems.map((navItem, index) => (
                                         <li key={index} className="mx-2 my-1">
-                                            <Link className="flex items-center px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href={navItem.link}>
+                                            <NavLink className="flex items-center px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href={navItem.link}>
                                                 {navItem.icon}
                                                 <span className="ml-2">{navItem.title}</span>
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                     ))}
                                 </ul>

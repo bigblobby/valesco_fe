@@ -11,6 +11,7 @@ interface InputProps {
     inputPlaceholder?: string;
     inputDefaultValue?: any;
     isRequired?: boolean;
+    onChange?: (e: any) => any;
 }
 
 export default function Input({
@@ -24,6 +25,7 @@ export default function Input({
     inputPlaceholder,
     inputDefaultValue,
     isRequired = false,
+    onChange = () => {}
 }: InputProps) {
 
     function generateInputClassNames(){
@@ -38,7 +40,7 @@ export default function Input({
 
     function generateLabelClassNames() {
         return twMerge(
-            "block mb-2 text-sm font-medium text-gray-900",
+            "block mb-2 text-sm font-medium text-gray-800",
             "dark:text-white",
             labelClassName
         );
@@ -63,6 +65,7 @@ export default function Input({
                 placeholder={inputPlaceholder}
                 required={isRequired}
                 defaultValue={inputDefaultValue}
+                onChange={onChange}
             />
         </>
     )

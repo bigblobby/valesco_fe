@@ -1,12 +1,12 @@
 'use client';
 
-import Link from 'next/link'
 import { loginAction } from '@/app/(auth)/login/actions';
 import { useFormState } from 'react-dom';
 import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
 import Input from '@/app/components/forms/input';
 import Text from '@/app/components/ui/text';
 import Alert from '@/app/components/ui/alert';
+import Link from '@/app/components/ui/link';
 
 export default function LoginPage() {
     const [state, formAction] = useFormState(loginAction, null);
@@ -47,11 +47,11 @@ export default function LoginPage() {
                             </Alert>
                         )}
                         <div>
-                            <Link className="text-sm font-medium text-gray-500 hover:underline dark:text-gray-400" href="/password-reset">Forgot password?</Link>
+                            <Link className="text-sm" href="/password-reset">Forgot password?</Link>
                         </div>
-                        <SubmitWithStatus>Sign in</SubmitWithStatus>
+                        <SubmitWithStatus fullWidth>Sign in</SubmitWithStatus>
                         <Text className="text-sm font-light">
-                            Don’t have an account yet? <Link className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500" href="/register">Sign up</Link>
+                            Don’t have an account yet? <Link className="text-sm" href="/register">Sign up</Link>
                         </Text>
                     </form>
                 </div>

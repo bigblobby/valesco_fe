@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link'
+import Link from '@/app/components/ui/link';
 import { useFormState } from 'react-dom';
 import { registerAction } from '@/app/(auth)/register/actions';
 import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
@@ -45,9 +45,9 @@ export default function RegisterPage() {
                                 {state.error}
                             </Text>
                         )}
-                        <SubmitWithStatus>Sign up</SubmitWithStatus>
+                        <SubmitWithStatus fullWidth>Sign up</SubmitWithStatus>
                         <Text className="text-sm font-light">
-                            Already have an account? <Link href="/login" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</Link>
+                            Already have an account? <Link href="/login" className="text-sm">Sign in</Link>
                         </Text>
                     </form>
                 </div>

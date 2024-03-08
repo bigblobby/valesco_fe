@@ -5,7 +5,8 @@ import useSWR from 'swr';
 import Text from '@/app/components/ui/text';
 import DumbbellIcon from '@/app/components/icons/dumbbell-icon';
 import { PlusIcon } from '@heroicons/react/24/solid';
-import Link from 'next/link';
+import Link from '@/app/components/ui/link';
+import Button from '@/app/components/ui/button';
 
 interface DashboardHomeProps {
     user: any;
@@ -40,8 +41,8 @@ export default function DashboardHome({user, userProfile}: DashboardHomeProps) {
                 <div className="flex flex-col items-center justify-center text-center">
                     <DumbbellIcon />
                     <Text component="h1" variant="h6">No workouts</Text>
-                    <Text>Get started by generating a new workout</Text>
-                    <Link href="/dashboard/create-workout" className="inline-flex text-white bg-orange-400 hover:bg-orange-300 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-6 text-center transition-colors">
+                    <Text className="mb-6">Get started by generating a new workout</Text>
+                    <Link href="/dashboard/create-workout" variant="button">
                         <PlusIcon width={20} height={20} />
                         <span className="ml-2">New Workout</span>
                     </Link>

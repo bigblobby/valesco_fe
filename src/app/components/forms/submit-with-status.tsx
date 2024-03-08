@@ -1,19 +1,23 @@
 import { useFormStatus } from 'react-dom';
+import SpinnerIcon from '@/app/components/icons/spinner-icon';
+import Button from '@/app/components/ui/button';
 
 interface SubmitWithStatusProps {
-    children: string;
+    fullWidth?: boolean;
+    className?: string;
+    children: any;
 }
 
-export function SubmitWithStatus({ children }: SubmitWithStatusProps) {
+export function SubmitWithStatus({
+    fullWidth,
+    className,
+    children
+}: SubmitWithStatusProps) {
     const { pending } = useFormStatus();
 
     return (
-        <button
-            disabled={pending}
-            type="submit"
-            className="w-full text-white bg-orange-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-        >
-            {pending ? 'SPINNER' : children}
-        </button>
+        <Button className={className} fullWidth={fullWidth} disabled={pending} type="submit">
+            {pending ? <SpinnerIcon /> : children}
+        </Button>
     );
 }
