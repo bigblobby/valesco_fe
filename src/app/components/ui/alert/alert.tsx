@@ -1,19 +1,12 @@
 import { twMerge } from 'tailwind-merge';
 import { CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon, InformationCircleIcon } from '@heroicons/react/24/solid';
-
-interface AlertProps {
-    type?: AlertType;
-    className?: string;
-    children: any;
-}
-
-type AlertType = 'success' | 'info' | 'warning' | 'danger';
+import { AlertProps, AlertType } from '@/app/components/ui/alert/alert.interfaces';
 
 export default function Alert({
     type = 'info',
     className,
     children,
-}: AlertProps){
+}: AlertProps) {
 
     function generateClasses() {
         let classes = '';

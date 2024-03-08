@@ -5,7 +5,7 @@ import { useFormState } from 'react-dom';
 import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
 import Input from '@/app/components/forms/input';
 import Text from '@/app/components/ui/text';
-import Alert from '@/app/components/ui/alert';
+import { Alert } from '@/app/components/ui/alert';
 import Link from '@/app/components/ui/link';
 
 export default function LoginPage() {

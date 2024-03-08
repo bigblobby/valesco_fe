@@ -5,7 +5,7 @@ import { useFormState } from 'react-dom';
 import Text from '@/app/components/ui/text';
 import Input from '@/app/components/forms/input';
 import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
-import Alert from '@/app/components/ui/alert';
+import { AlertWithDismiss } from '@/app/components/ui/alert';
 
 interface ProfileFormProps {
     user: any;
@@ -49,11 +49,11 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                 </div>
 
                 {state?.error && (
-                    <Alert type="danger">{state.error}</Alert>
+                    <AlertWithDismiss key={Date.now()} type="danger">{state.error}</AlertWithDismiss>
                 )}
 
                 {state?.message && (
-                    <Alert type="success">{state.message}</Alert>
+                    <AlertWithDismiss key={Date.now()} autoDismiss type="success">{state.message}</AlertWithDismiss>
                 )}
 
                 <SubmitWithStatus fullWidth>Save</SubmitWithStatus>
