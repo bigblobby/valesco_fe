@@ -5,6 +5,7 @@ import { useFormState } from 'react-dom';
 import Text from '@/app/components/ui/text';
 import Input from '@/app/components/forms/input';
 import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
+import Alert from '@/app/components/ui/alert';
 
 interface ProfileFormProps {
     user: any;
@@ -21,7 +22,7 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                 <Text className="text-xs">Edit your profile</Text>
                 <div>
                     <Input
-                        withLabel={true}
+                        withLabel
                         labelText="Username"
                         id="username"
                         inputName="username"
@@ -30,7 +31,7 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                 </div>
                 <div>
                     <Input
-                        withLabel={true}
+                        withLabel
                         labelText="First name"
                         id="first_name"
                         inputName="first_name"
@@ -39,7 +40,7 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                 </div>
                 <div>
                     <Input
-                        withLabel={true}
+                        withLabel
                         labelText="Last name"
                         id="last_name"
                         inputName="last_name"
@@ -47,11 +48,15 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                     />
                 </div>
 
-                {state?.message && (
-                    <Text className="text-sm">{state.message}</Text>
+                {state?.error && (
+                    <Alert type="danger">{state.error}</Alert>
                 )}
 
-                <SubmitWithStatus>Save</SubmitWithStatus>
+                {state?.message && (
+                    <Alert type="success">{state.message}</Alert>
+                )}
+
+                <SubmitWithStatus fullWidth>Save</SubmitWithStatus>
             </div>
         </form>
     )

@@ -21,22 +21,22 @@ export default function RegisterPage() {
                     <form action={formAction} className="space-y-4 md:space-y-6">
                         <div>
                             <Input
+                                withLabel
+                                isRequired
                                 id="email"
                                 inputName="email"
                                 inputPlaceholder="name@company.com"
-                                isRequired={true}
-                                withLabel={true}
                                 labelText="Your email"
                             />
                         </div>
                         <div>
                             <Input
+                                withLabel
+                                isRequired
                                 id="password"
                                 inputName="password"
                                 inputPlaceholder="••••••••"
                                 inputType="password"
-                                isRequired={true}
-                                withLabel={true}
                                 labelText="Password"
                             />
                         </div>
