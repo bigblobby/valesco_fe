@@ -30,7 +30,7 @@ export default function Input({
 
     function generateInputClassNames(){
         return twMerge(
-            'block w-full text-gray-900 bg-gray-50 border border-gray-300 rounded-lg p-2.5',
+            'block w-full text-gray-900 bg-gray-50 rounded-sm p-2.5',
             'sm:text-sm',
             'focus:ring-primary-600 focus:border-primary-600',
             'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
@@ -40,8 +40,8 @@ export default function Input({
 
     function generateLabelClassNames() {
         return twMerge(
-            "block mb-2 text-sm font-medium text-gray-800",
-            "dark:text-white",
+            'block mb-2 text-sm font-medium text-gray-800',
+            'dark:text-white',
             labelClassName
         );
     }

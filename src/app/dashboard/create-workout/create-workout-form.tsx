@@ -26,7 +26,7 @@ export default function CreateWorkoutForm() {
                 </div>
                 <SubmitWithStatus>Generate workout</SubmitWithStatus>
                 <Text>{state.message}</Text>
-                <Text className="text-red-500 text-sm">{state.error}</Text>
+                <Text className="text-red-500 text-sm dark:text-red-500">{state.error}</Text>
             </form>
         </div>
     )

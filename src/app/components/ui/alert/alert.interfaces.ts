@@ -5,6 +5,7 @@ export interface AlertProps {
 }
 
 export interface AlertWithDismissProps extends AlertProps {
+    key: any;
     autoDismiss?: boolean;
     autoDismissTime?: number;
 }

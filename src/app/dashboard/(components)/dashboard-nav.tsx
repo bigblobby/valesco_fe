@@ -35,7 +35,7 @@ export default function DashboardNav({userProfile, user}: any) {
                             <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
                         </svg>
                     </button>
-                    <div className={"absolute top-6 right-0 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 " + (menuOpen ? "" : "hidden")} id="user-dropdown">
+                    <div className={"absolute top-6 right-0 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow dark:bg-gray-700 dark:divide-gray-600 " + (menuOpen ? "" : "hidden")} id="user-dropdown">
                         <div className="px-4 py-3">
                             <span className="block text-sm text-gray-900 dark:text-white">
                                 {userProfile.first_name ? (
@@ -48,10 +48,10 @@ export default function DashboardNav({userProfile, user}: any) {
                         </div>
                         <ul className="py-2" aria-labelledby="user-menu-button">
                             <li>
-                                <Link href="/dashboard/profile" className="block px-4 py-2 text-sm text-gray-700 transition-all hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</Link>
+                                <Link href="/dashboard/profile" className="block px-4 py-2 text-sm text-gray-700 transition-all hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={() => setMenuOpen(false)}>Profile</Link>
                             </li>
                             <li>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 transition-all hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                                <Link href="/dashboard/settings" className="block px-4 py-2 text-sm text-gray-700 transition-all hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={() => setMenuOpen(false)}>Settings</Link>
                             </li>
                             <li>
                                 <button onClick={handleSignOut} className="block w-full text-left px-4 py-2 text-sm text-gray-700 transition-all hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</button>

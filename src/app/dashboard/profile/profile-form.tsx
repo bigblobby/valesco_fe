@@ -16,7 +16,7 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
     const [state, formAction] = useFormState(upsertProfile, null);
 
     return (
-        <form className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700" action={formAction}>
+        <form className="w-full bg-white rounded-sm shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800" action={formAction}>
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <Text component="h1" variant="h4">Profile</Text>
                 <Text className="text-xs">Edit your profile</Text>

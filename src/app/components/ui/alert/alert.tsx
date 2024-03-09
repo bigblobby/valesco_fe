@@ -12,23 +12,23 @@ export default function Alert({
         let classes = '';
 
         if (type === 'success') {
-            classes += 'text-green-600 bg-green-50 dark:text-green-900 dark:bg-green-300';
+            classes += 'text-green-600 bg-green-50 dark:text-green-900 dark:bg-green-400';
         }
 
         if (type === 'info') {
-            classes += 'text-blue-600 bg-blue-50 dark:text-blue-900 dark:bg-blue-300';
+            classes += 'text-blue-600 bg-blue-50 dark:text-blue-900 dark:bg-blue-400';
         }
 
         if (type === 'warning') {
-            classes += 'text-yellow-600 bg-yellow-50 dark:text-yellow-900 dark:bg-yellow-300';
+            classes += 'text-yellow-600 bg-yellow-50 dark:text-yellow-900 dark:bg-yellow-400';
         }
 
         if (type === 'danger') {
-            classes += 'text-red-600 bg-red-50 dark:text-red-900 dark:bg-red-300';
+            classes += 'text-red-600 bg-red-50 dark:text-red-900 dark:bg-red-400';
         }
 
         return twMerge(
-            'flex align-center w-full rounded-lg p-2.5',
+            'flex align-center w-full rounded-sm p-2.5',
             'sm:text-sm',
             classes,
             className
