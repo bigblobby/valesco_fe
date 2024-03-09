@@ -1,9 +1,8 @@
 'use client';
 
-import { getWorkout } from '@/app/dashboard/workout/[id]/actions';
 import Text from '@/app/components/ui/text';
 import TimeAgo from 'react-timeago';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 interface WorkoutPageProps {
     params: {
@@ -14,31 +13,29 @@ interface WorkoutPageProps {
 export default function WorkoutPage({
     params
 }: WorkoutPageProps){
-    const [workout, setWorkout] = useState<any>();
+    const { data, isLoading, isFetching } = useQuery({ queryKey: ['workout', params.id], queryFn: async () => {
+        const response = await fetch('/api/workouts/' + params.id);
+        return await response.json();
+    }})
 
-    useEffect(() => {
-        async function init(){
-            const workout = await getWorkout(params.id);
-
-            setWorkout(workout);
-        }
-
-        init();
-    }, []);
+    console.log('isFetching', isFetching);
+    console.log('isLoading', isLoading);
 
     return (
         <div>
-            {workout?.data ? (
-                <>
-                    <Text component="h1" variant="h4">{workout.data.name}</Text>
-                    <Text className="text-sm">
-                        <TimeAgo date={workout.data.created_at} title={(new Date(workout.data.created_at)).toUTCString()}/>
-                    </Text>
-                    <Text>{workout.data.content}</Text>
-                </>
-            ) : (
-                <div>Loading...</div>
+            {(isLoading || isFetching) && (
+                <span>Loading...</span>
             )}
+
+            {data?.data ? (
+                <>
+                    <Text component="h1" variant="h4">{data.data.name}</Text>
+                    <Text className="text-sm">
+                        <TimeAgo date={data.data.created_at} title={(new Date(data.data.created_at)).toUTCString()}/>
+                    </Text>
+                    <Text>{data.data.content}</Text>
+                </>
+            ) : null}
         </div>
     )
 }

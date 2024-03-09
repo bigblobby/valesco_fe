@@ -1,40 +1,18 @@
 'use client';
 
 import { UserContext } from '@/app/providers/user-provider';
-import useSWR from 'swr';
 import Text from '@/app/components/ui/text';
 import DumbbellIcon from '@/app/components/icons/dumbbell-icon';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import Link from '@/app/components/ui/link';
-import Button from '@/app/components/ui/button';
 
 interface DashboardHomeProps {
     user: any;
     userProfile: any;
 }
 
-const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 export default function DashboardHome({user, userProfile}: DashboardHomeProps) {
-    // const {data, error, isLoading, mutate} = useSWR('/api/workouts', fetcher);
-    //
-    // async function generateWorkout() {
-    //     async function generateNewWorkout() {
-    //         const res = await fetch('/api/workouts', {
-    //             method: 'POST'
-    //         });
-    //
-    //         return await res.json();
-    //     }
-    //
-    //     await mutate(generateNewWorkout, {
-    //         populateCache: (newWorkout: any, workouts: any) => {
-    //             return [...workouts, newWorkout];
-    //         },
-    //         revalidate: false,
-    //     });
-    // }
-
     return (
         <UserContext.Provider value={{user: user, userProfile: userProfile}}>
             <div className="flex justify-center items-center h-full">
