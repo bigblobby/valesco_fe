@@ -3,6 +3,8 @@
 import useSWR from 'swr';
 import Card from '@/app/components/ui/card';
 import Link from '@/app/components/ui/link';
+import TimeAgo from 'react-timeago';
+import Text from '@/app/components/ui/text';
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
@@ -20,7 +22,10 @@ export default function Workouts() {
                         <li key={i}>
                             <Link href={`/dashboard/workout/${workout.id}`} asWrapper>
                                 <Card>
-                                    {workout.name}
+                                    <Text>{workout.name}</Text>
+                                    <Text className="text-sm">
+                                        <TimeAgo date={workout.created_at} title={(new Date(workout.created_at)).toUTCString()}/>
+                                    </Text>
                                 </Card>
                             </Link>
                         </li>
