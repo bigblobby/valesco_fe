@@ -6,6 +6,7 @@ interface LinkProps {
     className?: string;
     href: string;
     variant?: LinkVariant,
+    asWrapper?: boolean;
     children: any;
 }
 
@@ -15,10 +16,17 @@ export default function Link({
     className,
     href,
     variant = 'link',
+    asWrapper = false,
     children,
 }: LinkProps) {
-
     function generateClassName() {
+
+        if (asWrapper) {
+            return twMerge(
+                className,
+            );
+        }
+
         if (variant === 'button') {
             return twMerge(
                 ButtonStyles,

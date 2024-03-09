@@ -11,7 +11,7 @@ export default function PasswordResetPage() {
     const [state, formAction] = useFormState(resetPasswordAction, null);
 
     return (
-        <Card>
+        <Card className="sm:max-w-md">
             <div className="space-y-4 md:space-y-6">
                 <Text component="h1" variant="h4">Reset your password</Text>
                 <Text className="text-sm">Enter your email address so we can send you a link to reset your password.</Text>

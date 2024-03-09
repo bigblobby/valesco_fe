@@ -12,7 +12,7 @@ export default function Card({
 
     function generateClassName(){
         return twMerge(
-            'w-full bg-white rounded-sm p-6 sm:p-8 shadow sm:max-w-md',
+            'w-full bg-white rounded-sm p-6 sm:p-8 shadow',
             'dark:bg-gray-800 dark:border-gray-700',
             className,
         );

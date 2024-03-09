@@ -17,7 +17,7 @@ export default function LoginPage() {
             <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                 Valesco
             </a>
-            <Card className="space-y-4 md:space-y-6">
+            <Card className="space-y-4 md:space-y-6 sm:max-w-md">
                 <Text component="h1" variant="h4">Sign in to your account</Text>
                 <form action={formAction} className="space-y-4 md:space-y-6">
                     <div>

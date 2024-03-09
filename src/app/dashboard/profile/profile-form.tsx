@@ -17,7 +17,7 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
     const [state, formAction] = useFormState(upsertProfile, null);
 
     return (
-        <Card>
+        <Card className="sm:max-w-md">
             <form action={formAction}>
                 <div className="space-y-4 md:space-y-6">
                     <Text component="h1" variant="h4">Profile</Text>

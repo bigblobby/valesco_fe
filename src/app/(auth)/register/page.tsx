@@ -16,42 +16,40 @@ export default function RegisterPage() {
             <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                 Valesco
             </a>
-            <Card>
-                <div className="space-y-4 md:space-y-6">
-                    <Text component="h1" variant="h4">Sign up for an account</Text>
-                    <form action={formAction} className="space-y-4 md:space-y-6">
-                        <div>
-                            <Input
-                                withLabel
-                                isRequired
-                                id="email"
-                                inputName="email"
-                                inputPlaceholder="name@company.com"
-                                labelText="Your email"
-                            />
-                        </div>
-                        <div>
-                            <Input
-                                withLabel
-                                isRequired
-                                id="password"
-                                inputName="password"
-                                inputPlaceholder="••••••••"
-                                inputType="password"
-                                labelText="Password"
-                            />
-                        </div>
-                        {state?.error && (
-                            <Text className="text-red-500 text-sm">
-                                {state.error}
-                            </Text>
-                        )}
-                        <SubmitWithStatus fullWidth>Sign up</SubmitWithStatus>
-                        <Text className="text-sm font-light">
-                            Already have an account? <Link href="/login" className="text-sm">Sign in</Link>
+            <Card className="space-y-4 md:space-y-6 sm:max-w-md">
+                <Text component="h1" variant="h4">Sign up for an account</Text>
+                <form action={formAction} className="space-y-4 md:space-y-6">
+                    <div>
+                        <Input
+                            withLabel
+                            isRequired
+                            id="email"
+                            inputName="email"
+                            inputPlaceholder="name@company.com"
+                            labelText="Your email"
+                        />
+                    </div>
+                    <div>
+                        <Input
+                            withLabel
+                            isRequired
+                            id="password"
+                            inputName="password"
+                            inputPlaceholder="••••••••"
+                            inputType="password"
+                            labelText="Password"
+                        />
+                    </div>
+                    {state?.error && (
+                        <Text className="text-red-500 text-sm">
+                            {state.error}
                         </Text>
-                    </form>
-                </div>
+                    )}
+                    <SubmitWithStatus fullWidth>Sign up</SubmitWithStatus>
+                    <Text className="text-sm font-light">
+                        Already have an account? <Link href="/login" className="text-sm">Sign in</Link>
+                    </Text>
+                </form>
             </Card>
         </>
     );

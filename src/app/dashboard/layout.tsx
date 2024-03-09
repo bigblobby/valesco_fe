@@ -74,7 +74,7 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
                         </aside>
                         <main className="pl-52">
                             <DashboardNav user={session.user} userProfile={profile?.[0]} />
-                            <div className="h-[calc(100vh-65px)]">
+                            <div className="p-4 h-[calc(100vh-65px)]">
                                 {children}
                             </div>
                         </main>

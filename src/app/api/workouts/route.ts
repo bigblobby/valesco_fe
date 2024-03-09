@@ -29,10 +29,12 @@ export async function GET(request: Request) {
     const { data: userData, error } = await supabase.auth.getUser();
 
     if (userData.user) {
-        const {data, error} = await supabase.from('workouts').select('*').eq('user_id', userData.user?.id);
+        const {data, error} = await supabase
+            .from('workouts')
+            .select('*')
+            .eq('user_id', userData.user?.id)
+            .order('created_at', {ascending: false});
 
-        console.log(data);
-        console.log(error)
         return Response.json(data);
     }
 

@@ -24,7 +24,7 @@ export default function ChangePassword({ session }: any) {
     }
 
     return (
-        <Card>
+        <Card className="sm:max-w-md">
             <div className="space-y-4 md:space-y-6">
                 <Text component="h1" variant="h4">Change your password</Text>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
