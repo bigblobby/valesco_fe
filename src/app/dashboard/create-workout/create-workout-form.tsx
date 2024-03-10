@@ -2,7 +2,7 @@
 
 import Text from '@/lib/components/ui/text';
 import Input from '@/lib/components/forms/input';
-import Button from '@/lib/components/ui/button';
+import { Button } from '@/lib/components/ui/button';
 import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 
 export default function CreateWorkoutForm() {
@@ -30,7 +30,7 @@ export default function CreateWorkoutForm() {
                         inputName="name"
                     />
                 </div>
-                <Button type="submit" disabled={isPending} spinnerOnDisabled>
+                <Button type="submit" disabled={isPending} showSpinnerOnDisabled>
                     Generate workout
                 </Button>
                 <Text>{data?.message}</Text>

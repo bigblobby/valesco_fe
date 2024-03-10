@@ -1,7 +1,7 @@
 'use client';
 
 import Text from '@/lib/components/ui/text';
-import Button from '@/lib/components/ui/button';
+import { Button } from '@/lib/components/ui/button';
 import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 import { useRouter } from 'next/navigation';
 import Timestamp from '@/lib/components/ui/timestamp';

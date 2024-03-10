@@ -4,7 +4,7 @@ import { createClient } from '@/lib/utils/supabase/client';
 import { useState } from 'react';
 import Text from '@/lib/components/ui/text';
 import Input from '@/lib/components/forms/input';
-import Button from '@/lib/components/ui/button';
+import { Button } from '@/lib/components/ui/button';
 import Card from '@/lib/components/ui/card';
 
 export default function ChangePassword({ session }: any) {
