@@ -1,7 +1,7 @@
 import TimeAgo from 'react-timeago';
 
 interface TimestampProps {
-    date: Date;
+    date: Date | string;
 }
 
 export default function Timestamp({

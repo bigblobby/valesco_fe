@@ -12,25 +12,29 @@ export async function GET(request: Request, { params }: GETProps) {
     const { data: { user }, error: userError } = await supabase.auth.getUser();
 
     if (userError) {
-        return NextResponse.json({ error: userError.message });
+        return NextResponse.json({ message: '', error: userError.message, data: null });
     }
 
-    const { data, error } = await supabase
-        .from('workouts')
-        .select('*')
-        .eq('user_id', user?.id)
-        .eq('id', params.id);
+    if (user) {
+        const { data, error } = await supabase
+            .from('workouts')
+            .select('*')
+            .eq('user_id', user.id)
+            .eq('id', params.id);
 
-    if (!data || !data.length) {
-        return NextResponse.json({ error: 'No workout found' });
+        if (!data || !data.length) {
+            return NextResponse.json({ message: '', error: 'No workout found', data: null });
+        }
+
+        if (error) {
+            //@ts-ignore
+            return NextResponse.json({ message: '', error: error.message, data: null });
+        }
+
+        return NextResponse.json({ message: '', error: '', data: data[0] });
     }
 
-    if (error) {
-        //@ts-ignore
-        return NextResponse.json({ error: error.message });
-    }
-
-    return NextResponse.json({ message: '', error: '', data: data[0] });
+    return NextResponse.json({ message: '', error: 'Something went wrong', data: null });
 }
 
 export async function DELETE(request: Request, { params }: GETProps) {
@@ -38,25 +42,29 @@ export async function DELETE(request: Request, { params }: GETProps) {
     const { data: { user }, error: userError } = await supabase.auth.getUser();
 
     if (userError) {
-        return NextResponse.json({ error: userError.message });
+        return NextResponse.json({ message: '', error: userError.message, data: null });
     }
 
-    const { error } = await supabase
-        .from('workouts')
-        .delete()
-        .eq('user_id', user?.id)
-        .eq('id', params.id)
-        .single();
+    if (user) {
+        const { error } = await supabase
+            .from('workouts')
+            .delete()
+            .eq('user_id', user.id)
+            .eq('id', params.id)
+            .single();
 
-    // TODO handle errors properly
-    console.log(error);
+        // TODO handle errors properly
+        console.log(error);
 
-    if (error) {
-        //@ts-ignore
-        return NextResponse.json({ error: error.message }, {status: 400});
+        if (error) {
+            //@ts-ignore
+            return NextResponse.json({ message: '', error: error.message, data: null }, {status: 400});
+        }
+
+        return NextResponse.json({ message: 'Successfully deleted workout', error: '', data: null });
     }
 
-    return NextResponse.json({ message: 'Successfully deleted workout', error: '', data: null });
+    return NextResponse.json({ message: '', error: 'Something went wrong', data: null });
 }
 
 export async function PUT(request: Request, { params }: GETProps) {

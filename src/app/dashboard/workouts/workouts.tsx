@@ -16,9 +16,9 @@ export default function Workouts() {
                 <span>Loading...</span>
             )}
 
-            {!isLoading && !isFetching && data?.length > 0 ? (
+            {!isLoading && !isFetching && data && data.data.length > 0 ? (
                 <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {data.map((workout: any, i: number) => (
+                    {data.data.map((workout: any, i: number) => (
                         <li key={i}>
                             <Link href={`/dashboard/workout/${workout.id}`} asWrapper>
                                 <Card>

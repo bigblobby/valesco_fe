@@ -5,20 +5,20 @@ export default function useAPI(passedInstance?: AxiosInstance) {
     const { axiosInstance } = useAxios();
     const instance = passedInstance ?? axiosInstance;
 
-    function GET(url: string, config?: AxiosRequestConfig) {
-        return instance.get(url, config);
+    function GET<TData>(url: string, config?: AxiosRequestConfig) {
+        return instance.get<TData>(url, config);
     }
 
-    function POST(url: string, data?: any, config?: AxiosRequestConfig) {
-        return instance.post(url, data, config);
+    function POST<TData>(url: string, data?: any, config?: AxiosRequestConfig) {
+        return instance.post<TData>(url, data, config);
     }
 
-    function PUT(url: string, data?: any, config?: AxiosRequestConfig) {
-        return instance.put(url, data, config);
+    function PUT<TData>(url: string, data?: any, config?: AxiosRequestConfig) {
+        return instance.put<TData>(url, data, config);
     }
 
-    function DELETE(url: string, config?: AxiosRequestConfig) {
-        return instance.delete(url, config);
+    function DELETE<TData>(url: string, config?: AxiosRequestConfig) {
+        return instance.delete<TData>(url, config);
     }
 
     return {

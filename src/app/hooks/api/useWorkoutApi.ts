@@ -1,17 +1,21 @@
 import useAPI from '@/app/hooks/api/useApi';
-import { useQuery } from '@tanstack/react-query';
+import { UseMutationResult, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Tables } from '../../../../types/supabase';
+import { ApiResponse } from '@/app/api/api.interfaces';
 
 export const WORKOUT_QUERY_KEY = 'workouts';
+export type TWorkout = Tables<'workouts'>;
 
 export function useWorkoutAPI() {
     const { GET, POST, PUT, DELETE } = useAPI();
     const queryClient = useQueryClient();
 
-    function createWorkout() {
+    function createWorkout(): UseMutationResult<ApiResponse<TWorkout>> {
         return useMutation({
             mutationFn: async (formData: any) => {
-                const response = await POST('/workouts', formData);
+                const response = await POST<ApiResponse<TWorkout>>('/workouts', formData);
+                response.data
                 return response.data;
             },
 
@@ -21,21 +25,21 @@ export function useWorkoutAPI() {
         });
     }
 
-    function getAllWorkouts() {
+    function getAllWorkouts(): UseQueryResult<ApiResponse<TWorkout[]>> {
         return useQuery({
             queryKey: [WORKOUT_QUERY_KEY],
             queryFn: async () => {
-                const res = await GET('/workouts');
+                const res = await GET<ApiResponse<TWorkout[]>>('/workouts');
                 return res.data;
             }
         });
     }
 
-    function getWorkoutById(id: string) {
+    function getWorkoutById(id: string): UseQueryResult<ApiResponse<TWorkout>> {
         return useQuery({
             queryKey: [WORKOUT_QUERY_KEY, id],
             queryFn: async () => {
-                const response = await GET(`/workouts/${id}`);
+                const response = await GET<ApiResponse<TWorkout>>(`/workouts/${id}`);
                 return response.data;
             }
         })

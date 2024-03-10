@@ -56,7 +56,7 @@ export async function GET(request: Request) {
             .eq('user_id', userData.user?.id)
             .order('created_at', {ascending: false});
 
-        return NextResponse.json(data);
+        return NextResponse.json({ message: '', error: '', data: data });
     }
 
     revalidatePath('/dashboard');
