@@ -18,7 +18,7 @@ export default function WorkoutPage({
     const router = useRouter();
     const { getWorkoutById, deleteWorkoutById } = useWorkoutAPI();
     const { data, isLoading, isFetching } = getWorkoutById(params.id);
-    const { mutate } = deleteWorkoutById(params.id);
+    const { mutate, error, isError } = deleteWorkoutById(params.id);
 
     async function deleteWorkout() {
         mutate(void 0, {

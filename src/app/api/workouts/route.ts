@@ -1,6 +1,6 @@
-import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { NextResponse } from 'next/server';
 
 import { z } from "zod";
 
@@ -9,9 +9,8 @@ const createWorkoutSchema = z.object({
 });
 
 export async function POST(request: Request) {
+    const supabase = createClient();
     const data = await request.json();
-    const cookiesStore = cookies();
-    const supabase = createClient(cookiesStore);
     const name = data.name;
 
     const parsedData = createWorkoutSchema.safeParse({
@@ -19,13 +18,13 @@ export async function POST(request: Request) {
     })
 
     if (!parsedData.success) {
-        return Response.json({ error: parsedData.error.message, message: '', data: null });
+        return NextResponse.json({ error: parsedData.error.message, message: '', data: null });
     }
 
     const { data: { user }, error: userError } = await supabase.auth.getUser();
 
     if (userError) {
-        return Response.json({ error: userError.message, message: '', data: null });
+        return NextResponse.json({ error: userError.message, message: '', data: null });
     }
 
     if (user) {
@@ -36,19 +35,17 @@ export async function POST(request: Request) {
         }).select();
 
         if (error) {
-            return Response.json({ error: error.message, message: '', data: null });
+            return NextResponse.json({ error: error.message, message: '', data: null });
         }
 
-        return Response.json({ message: 'Workout created', error: '', data: data?.[0] });
+        return NextResponse.json({ message: 'Workout created', error: '', data: data?.[0] });
     }
 
-
-    return Response.json({ message: '', error: 'Something went wrong', data: null });
+    return NextResponse.json({ message: '', error: 'Something went wrong', data: null });
 }
 
 export async function GET(request: Request) {
-    const cookiesStore = cookies();
-    const supabase = createClient(cookiesStore);
+    const supabase = createClient();
 
     const { data: userData, error } = await supabase.auth.getUser();
 
@@ -59,10 +56,10 @@ export async function GET(request: Request) {
             .eq('user_id', userData.user?.id)
             .order('created_at', {ascending: false});
 
-        return Response.json(data);
+        return NextResponse.json(data);
     }
 
     revalidatePath('/dashboard');
 
-    return Response.json({message: 'Couldnt find user'});
+    return NextResponse.json({message: 'Couldnt find user'});
 }

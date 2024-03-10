@@ -35,7 +35,7 @@ export function useWorkoutAPI() {
         return useQuery({
             queryKey: [WORKOUT_QUERY_KEY, id],
             queryFn: async () => {
-                const response = await GET('/workouts/' + id);
+                const response = await GET(`/workouts/${id}`);
                 return response.data;
             }
         })
@@ -44,7 +44,7 @@ export function useWorkoutAPI() {
     function deleteWorkoutById(id: string) {
         return useMutation({
             mutationFn: async (workoutId?: string) => {
-                const response = await DELETE('/workouts/' + workoutId ?? id);
+                const response = await DELETE(`/workouts/${workoutId ?? id}`);
                 return response.data;
             },
 
