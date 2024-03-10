@@ -2,9 +2,9 @@
 
 import Text from '@/app/components/ui/text';
 import Button from '@/app/components/ui/button';
-import TimeAgo from 'react-timeago';
 import { useWorkoutAPI } from '@/app/hooks/api/useWorkoutApi';
 import { useRouter } from 'next/navigation';
+import Timestamp from '@/app/components/ui/timestamp';
 
 interface WorkoutPageProps {
     params: {
@@ -38,7 +38,7 @@ export default function WorkoutPage({
                 <>
                     <Text component="h1" variant="h4">{data.data.name}</Text>
                     <Text className="text-sm">
-                        <TimeAgo date={data.data.created_at} title={(new Date(data.data.created_at)).toUTCString()}/>
+                        <Timestamp date={data.data.created_at} />
                     </Text>
                     <Text>{data.data.content}</Text>
                     <div>

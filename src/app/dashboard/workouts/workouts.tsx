@@ -2,9 +2,9 @@
 
 import Card from '@/app/components/ui/card';
 import Link from '@/app/components/ui/link';
-import TimeAgo from 'react-timeago';
 import Text from '@/app/components/ui/text';
 import { useWorkoutAPI } from '@/app/hooks/api/useWorkoutApi';
+import Timestamp from '@/app/components/ui/timestamp';
 
 export default function Workouts() {
     const { getAllWorkouts } = useWorkoutAPI();
@@ -24,7 +24,7 @@ export default function Workouts() {
                                 <Card>
                                     <Text>{workout.name}</Text>
                                     <Text className="text-sm">
-                                        <TimeAgo date={workout.created_at} title={(new Date(workout.created_at)).toUTCString()}/>
+                                        <Timestamp date={workout.created_at} />
                                     </Text>
                                 </Card>
                             </Link>
