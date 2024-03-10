@@ -4,19 +4,18 @@ import Card from '@/app/components/ui/card';
 import Link from '@/app/components/ui/link';
 import TimeAgo from 'react-timeago';
 import Text from '@/app/components/ui/text';
-import { useQuery } from '@tanstack/react-query';
+import { useWorkoutAPI } from '@/app/hooks/api/useWorkoutApi';
 
 export default function Workouts() {
-    const { data, isLoading, isFetching } = useQuery({ queryKey: ['workouts'], queryFn: async () => {
-        const response = await fetch('/api/workouts');
-        return await response.json();
-    }})
+    const { getAllWorkouts } = useWorkoutAPI();
+    const { data, isLoading, isFetching,  } = getAllWorkouts();
 
     return (
         <div>
             {(isLoading || isFetching) && (
                 <span>Loading...</span>
             )}
+
             {!isLoading && !isFetching && data?.length > 0 ? (
                 <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {data.map((workout: any, i: number) => (

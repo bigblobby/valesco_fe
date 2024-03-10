@@ -1,8 +1,10 @@
 'use client';
 
 import Text from '@/app/components/ui/text';
+import Button from '@/app/components/ui/button';
 import TimeAgo from 'react-timeago';
-import { useQuery } from '@tanstack/react-query';
+import { useWorkoutAPI } from '@/app/hooks/api/useWorkoutApi';
+import { useRouter } from 'next/navigation';
 
 interface WorkoutPageProps {
     params: {
@@ -13,13 +15,18 @@ interface WorkoutPageProps {
 export default function WorkoutPage({
     params
 }: WorkoutPageProps){
-    const { data, isLoading, isFetching } = useQuery({ queryKey: ['workout', params.id], queryFn: async () => {
-        const response = await fetch('/api/workouts/' + params.id);
-        return await response.json();
-    }})
+    const router = useRouter();
+    const { getWorkoutById, deleteWorkoutById } = useWorkoutAPI();
+    const { data, isLoading, isFetching } = getWorkoutById(params.id);
+    const { mutate } = deleteWorkoutById(params.id);
 
-    console.log('isFetching', isFetching);
-    console.log('isLoading', isLoading);
+    async function deleteWorkout() {
+        mutate(void 0, {
+            onSuccess: () => {
+                router.push('/dashboard/workouts');
+            }
+        });
+    }
 
     return (
         <div>
@@ -27,13 +34,16 @@ export default function WorkoutPage({
                 <span>Loading...</span>
             )}
 
-            {data?.data ? (
+            {!isLoading && !isFetching && data?.data ? (
                 <>
                     <Text component="h1" variant="h4">{data.data.name}</Text>
                     <Text className="text-sm">
                         <TimeAgo date={data.data.created_at} title={(new Date(data.data.created_at)).toUTCString()}/>
                     </Text>
                     <Text>{data.data.content}</Text>
+                    <div>
+                        <Button onClick={deleteWorkout}>Delete</Button>
+                    </div>
                 </>
             ) : null}
         </div>

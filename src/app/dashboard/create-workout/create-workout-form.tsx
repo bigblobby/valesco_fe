@@ -2,31 +2,17 @@
 
 import Text from '@/app/components/ui/text';
 import Input from '@/app/components/forms/input';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Button from '@/app/components/ui/button';
+import { useWorkoutAPI } from '@/app/hooks/api/useWorkoutApi';
 
 export default function CreateWorkoutForm() {
-    const queryClient = useQueryClient();
-    const { mutate, data, isPending } = useMutation({
-        mutationFn: async (formData: any) => {
-            const res = await fetch('/api/workouts', {
-                method: 'POST',
-                body: formData
-            });
-
-            return await res.json();
-        },
-
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['workouts'] });
-        }
-    })
+    const { createWorkout } = useWorkoutAPI();
+    const { mutate, data, isPending } = createWorkout();
 
     function handleSubmit(e: any) {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-
         const plainFormData = Object.fromEntries(formData.entries());
         const formDataJsonString = JSON.stringify(plainFormData);
 

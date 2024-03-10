@@ -37,9 +37,27 @@ export async function GET(request: Request, { params }: GETProps) {
 }
 
 export async function DELETE(request: Request, { params }: GETProps) {
-    console.log(params);
+    const cookiesStore = cookies();
+    const supabase = createClient(cookiesStore);
 
-    return Response.json({});
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+    if (userError) {
+        return Response.json({ error: userError.message });
+    }
+
+    const { error } = await supabase
+        .from('workouts')
+        .delete()
+        .eq('user_id', user?.id)
+        .eq('id', params.id);
+
+    if (error) {
+        //@ts-ignore
+        return Response.json({ error: error.message });
+    }
+
+    return Response.json({ message: 'Successfully deleted workout', error: '', data: null });
 }
 
 export async function PUT(request: Request, { params }: GETProps) {

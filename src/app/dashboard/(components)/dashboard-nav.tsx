@@ -1,14 +1,15 @@
 'use client';
 
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useOutsideClick } from '@/app/hooks/useOutsideClick';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-import { UserContext } from '@/app/providers/user-provider';
 import Link from 'next/link';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function DashboardNav({userProfile, user}: any) {
     const supabase = createClient();
+    const queryClient = useQueryClient();
     const router = useRouter();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const profileRef = useRef(null);
@@ -18,6 +19,7 @@ export default function DashboardNav({userProfile, user}: any) {
     });
 
     const handleSignOut = async () => {
+        queryClient.removeQueries();
         await supabase.auth.signOut();
         router.push('/login');
     };
