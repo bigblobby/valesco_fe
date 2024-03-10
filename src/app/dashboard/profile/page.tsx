@@ -1,8 +1,8 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/lib/utils/supabase/server';
 import { cookies } from 'next/headers';
 import ProfileForm from '@/app/dashboard/profile/profile-form';
 import { Suspense } from 'react';
-import PageSpinner from '@/app/components/ui/page-spinner';
+import PageSpinner from '@/lib/components/ui/page-spinner';
 
 export default async function Page(){
     const cookiesStore = cookies();

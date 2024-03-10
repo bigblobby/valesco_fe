@@ -1,6 +1,6 @@
 import { useFormStatus } from 'react-dom';
-import SpinnerIcon from '@/app/components/icons/spinner-icon';
-import Button from '@/app/components/ui/button';
+import SpinnerIcon from '@/lib/components/icons/spinner-icon';
+import Button from '@/lib/components/ui/button';
 
 interface SubmitWithStatusProps {
     fullWidth?: boolean;

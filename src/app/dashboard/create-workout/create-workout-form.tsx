@@ -1,9 +1,9 @@
 'use client';
 
-import Text from '@/app/components/ui/text';
-import Input from '@/app/components/forms/input';
-import Button from '@/app/components/ui/button';
-import { useWorkoutAPI } from '@/app/hooks/api/useWorkoutApi';
+import Text from '@/lib/components/ui/text';
+import Input from '@/lib/components/forms/input';
+import Button from '@/lib/components/ui/button';
+import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 
 export default function CreateWorkoutForm() {
     const { createWorkout } = useWorkoutAPI();

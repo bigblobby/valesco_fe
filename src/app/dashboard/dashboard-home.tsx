@@ -1,10 +1,10 @@
 'use client';
 
-import { UserContext } from '@/app/providers/user-provider';
-import Text from '@/app/components/ui/text';
-import DumbbellIcon from '@/app/components/icons/dumbbell-icon';
+import { UserContext } from '@/lib/providers/user-provider';
+import Text from '@/lib/components/ui/text';
+import DumbbellIcon from '@/lib/components/icons/dumbbell-icon';
 import { PlusIcon } from '@heroicons/react/24/solid';
-import Link from '@/app/components/ui/link';
+import Link from '@/lib/components/ui/link';
 
 interface DashboardHomeProps {
     user: any;

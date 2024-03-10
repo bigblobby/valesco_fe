@@ -2,12 +2,12 @@
 
 import { loginAction } from '@/app/(auth)/login/actions';
 import { useFormState } from 'react-dom';
-import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
-import Input from '@/app/components/forms/input';
-import Text from '@/app/components/ui/text';
-import { Alert } from '@/app/components/ui/alert';
-import Link from '@/app/components/ui/link';
-import Card from '@/app/components/ui/card';
+import { SubmitWithStatus } from '@/lib/components/forms/submit-with-status';
+import Input from '@/lib/components/forms/input';
+import Text from '@/lib/components/ui/text';
+import { Alert } from '@/lib/components/ui/alert';
+import Link from '@/lib/components/ui/link';
+import Card from '@/lib/components/ui/card';
 
 export default function LoginPage() {
     const [state, formAction] = useFormState(loginAction, null);

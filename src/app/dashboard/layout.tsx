@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import Link from '@/app/components/ui/link';
+import Link from '@/lib/components/ui/link';
 import { default as NavLink } from 'next/link';
 import DashboardNav from '@/app/dashboard/(components)/dashboard-nav';
 import { HomeIcon, ListBulletIcon } from '@heroicons/react/24/outline';

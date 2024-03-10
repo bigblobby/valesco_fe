@@ -1,0 +1,1 @@
+export const WORKOUT_QUERY_KEY = 'workouts';

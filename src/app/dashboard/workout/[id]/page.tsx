@@ -1,10 +1,10 @@
 'use client';
 
-import Text from '@/app/components/ui/text';
-import Button from '@/app/components/ui/button';
-import { useWorkoutAPI } from '@/app/hooks/api/useWorkoutApi';
+import Text from '@/lib/components/ui/text';
+import Button from '@/lib/components/ui/button';
+import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 import { useRouter } from 'next/navigation';
-import Timestamp from '@/app/components/ui/timestamp';
+import Timestamp from '@/lib/components/ui/timestamp';
 
 interface WorkoutPageProps {
     params: {

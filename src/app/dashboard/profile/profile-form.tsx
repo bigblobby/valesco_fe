@@ -2,11 +2,11 @@
 
 import { upsertProfile } from '@/app/dashboard/profile/actions';
 import { useFormState } from 'react-dom';
-import Text from '@/app/components/ui/text';
-import Input from '@/app/components/forms/input';
-import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
-import { AlertWithDismiss } from '@/app/components/ui/alert';
-import Card from '@/app/components/ui/card';
+import Text from '@/lib/components/ui/text';
+import Input from '@/lib/components/forms/input';
+import { SubmitWithStatus } from '@/lib/components/forms/submit-with-status';
+import { AlertWithDismiss } from '@/lib/components/ui/alert';
+import Card from '@/lib/components/ui/card';
 
 interface ProfileFormProps {
     user: any;

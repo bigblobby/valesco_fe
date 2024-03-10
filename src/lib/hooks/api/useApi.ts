@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
-import useAxios from '@/app/hooks/api/useAxios';
+import useAxios from '@/lib/hooks/api/useAxios';
 
 export default function useAPI(passedInstance?: AxiosInstance) {
     const { axiosInstance } = useAxios();
@@ -26,6 +26,5 @@ export default function useAPI(passedInstance?: AxiosInstance) {
         POST,
         PUT,
         DELETE,
-    }
-
+    };
 }

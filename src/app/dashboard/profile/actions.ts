@@ -1,7 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/lib/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 
 export async function upsertProfile(currentState: any, formData: FormData) {

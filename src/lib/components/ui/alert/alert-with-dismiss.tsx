@@ -1,7 +1,7 @@
-import { Alert } from '@/app/components/ui/alert/index';
+import { Alert } from '@/lib/components/ui/alert/index';
 import { useEffect, useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { AlertWithDismissProps } from '@/app/components/ui/alert/alert.interfaces';
+import { AlertWithDismissProps } from '@/lib/components/ui/alert/alert.interfaces';
 
 /**
  * YOU MUST PROVIDE A KEY WHEN USING THIS COMPONENT

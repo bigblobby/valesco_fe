@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { useOutsideClick } from '@/app/hooks/useOutsideClick';
-import { createClient } from '@/utils/supabase/client';
+import { useOutsideClick } from '@/lib/hooks/useOutsideClick';
+import { createClient } from '@/lib/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useQueryClient } from '@tanstack/react-query';

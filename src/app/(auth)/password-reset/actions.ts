@@ -1,7 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/lib/utils/supabase/server';
 
 export async function resetPasswordAction(currentState: any, formData: FormData) {
     const cookiesStore = cookies();

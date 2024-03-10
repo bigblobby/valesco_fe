@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import SpinnerIcon from '@/app/components/icons/spinner-icon';
+import SpinnerIcon from '@/lib/components/icons/spinner-icon';
 
 interface ButtonProps {
     disabled?: boolean;

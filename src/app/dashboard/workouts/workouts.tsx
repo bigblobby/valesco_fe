@@ -1,14 +1,14 @@
 'use client';
 
-import Card from '@/app/components/ui/card';
-import Link from '@/app/components/ui/link';
-import Text from '@/app/components/ui/text';
-import { useWorkoutAPI } from '@/app/hooks/api/useWorkoutApi';
-import Timestamp from '@/app/components/ui/timestamp';
+import Card from '@/lib/components/ui/card';
+import Link from '@/lib/components/ui/link';
+import Text from '@/lib/components/ui/text';
+import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
+import Timestamp from '@/lib/components/ui/timestamp';
 
 export default function Workouts() {
     const { getAllWorkouts } = useWorkoutAPI();
-    const { data, isLoading, isFetching,  } = getAllWorkouts();
+    const { data, isLoading, isFetching } = getAllWorkouts();
 
     return (
         <div>
@@ -24,7 +24,7 @@ export default function Workouts() {
                                 <Card>
                                     <Text>{workout.name}</Text>
                                     <Text className="text-sm">
-                                        <Timestamp date={workout.created_at} />
+                                        <Timestamp date={workout.created_at}/>
                                     </Text>
                                 </Card>
                             </Link>
@@ -33,5 +33,5 @@ export default function Workouts() {
                 </ul>
             ) : null}
         </div>
-    )
+    );
 }

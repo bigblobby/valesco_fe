@@ -1,11 +1,9 @@
-import useAPI from '@/app/hooks/api/useApi';
+import useAPI from '@/lib/hooks/api/useApi';
 import { UseMutationResult, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Tables } from '../../../../types/supabase';
-import { ApiResponse } from '@/app/api/api.interfaces';
-
-export const WORKOUT_QUERY_KEY = 'workouts';
-export type TWorkout = Tables<'workouts'>;
+import { ApiResponse } from '@/lib/types/api.types';
+import { TWorkout } from '@/lib/types/table.types';
+import { WORKOUT_QUERY_KEY } from '@/lib/constants/query-key.constants';
 
 export function useWorkoutAPI() {
     const { GET, POST, PUT, DELETE } = useAPI();
@@ -15,7 +13,6 @@ export function useWorkoutAPI() {
         return useMutation({
             mutationFn: async (formData: any) => {
                 const response = await POST<ApiResponse<TWorkout>>('/workouts', formData);
-                response.data
                 return response.data;
             },
 
@@ -42,7 +39,7 @@ export function useWorkoutAPI() {
                 const response = await GET<ApiResponse<TWorkout>>(`/workouts/${id}`);
                 return response.data;
             }
-        })
+        });
     }
 
     function deleteWorkoutById(id: string) {
@@ -56,7 +53,7 @@ export function useWorkoutAPI() {
                 queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY] });
                 queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY, id] });
             }
-        })
+        });
     }
 
 
@@ -65,5 +62,5 @@ export function useWorkoutAPI() {
         getAllWorkouts,
         getWorkoutById,
         deleteWorkoutById,
-    }
+    };
 }

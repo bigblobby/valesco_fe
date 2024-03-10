@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/lib/utils/supabase/server';
 import { cookies } from 'next/headers';
 import ChangePassword from '@/app/(auth)/change-password/change-password';
 

@@ -1,12 +1,12 @@
 'use client';
 
-import Link from '@/app/components/ui/link';
+import Link from '@/lib/components/ui/link';
 import { useFormState } from 'react-dom';
 import { registerAction } from '@/app/(auth)/register/actions';
-import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
-import Input from '@/app/components/forms/input';
-import Text from '@/app/components/ui/text';
-import Card from '@/app/components/ui/card';
+import { SubmitWithStatus } from '@/lib/components/forms/submit-with-status';
+import Input from '@/lib/components/forms/input';
+import Text from '@/lib/components/ui/text';
+import Card from '@/lib/components/ui/card';
 
 export default function RegisterPage() {
     const [state, formAction] = useFormState(registerAction, null);

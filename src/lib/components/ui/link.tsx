@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { default as NavLink } from 'next/link';
-import { ButtonStyles } from '@/app/components/ui/button';
+import { ButtonStyles } from '@/lib/components/ui/button';
 
 interface LinkProps {
     className?: string;
