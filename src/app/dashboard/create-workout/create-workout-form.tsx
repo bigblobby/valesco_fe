@@ -1,13 +1,13 @@
 'use client';
 
-import { SubmitWithStatus } from '@/app/components/forms/submit-with-status';
 import Text from '@/app/components/ui/text';
 import Input from '@/app/components/forms/input';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Button from '@/app/components/ui/button';
 
 export default function CreateWorkoutForm() {
     const queryClient = useQueryClient();
-    const mutation = useMutation({
+    const { mutate, data, isPending } = useMutation({
         mutationFn: async (formData: any) => {
             const res = await fetch('/api/workouts', {
                 method: 'POST',
@@ -18,7 +18,7 @@ export default function CreateWorkoutForm() {
         },
 
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['workouts'] })
+            queryClient.invalidateQueries({ queryKey: ['workouts'] });
         }
     })
 
@@ -30,7 +30,7 @@ export default function CreateWorkoutForm() {
         const plainFormData = Object.fromEntries(formData.entries());
         const formDataJsonString = JSON.stringify(plainFormData);
 
-        mutation.mutate(formDataJsonString);
+        mutate(formDataJsonString);
     }
 
     return (
@@ -44,9 +44,11 @@ export default function CreateWorkoutForm() {
                         inputName="name"
                     />
                 </div>
-                <SubmitWithStatus>Generate workout</SubmitWithStatus>
-                {/*<Text>{state.message}</Text>*/}
-                {/*<Text className="text-red-500 text-sm dark:text-red-500">{state.error}</Text>*/}
+                <Button type="submit" disabled={isPending} spinnerOnDisabled>
+                    Generate workout
+                </Button>
+                <Text>{data?.message}</Text>
+                <Text className="text-red-500 text-sm dark:text-red-500">{data?.error}</Text>
             </form>
         </div>
     )

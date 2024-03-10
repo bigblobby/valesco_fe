@@ -1,7 +1,9 @@
 import { twMerge } from 'tailwind-merge';
+import SpinnerIcon from '@/app/components/icons/spinner-icon';
 
 interface ButtonProps {
     disabled?: boolean;
+    spinnerOnDisabled?: boolean;
     className?: string;
     type?: ButtonType;
     fullWidth?: boolean;
@@ -20,6 +22,7 @@ export const ButtonStyles = twMerge(
 
 export default function Button({
     disabled = false,
+    spinnerOnDisabled = true,
     className,
     type = 'button',
     fullWidth = false,
@@ -42,7 +45,9 @@ export default function Button({
             className={generateClassName()}
             onClick={onClick}
         >
-            {children}
+            {spinnerOnDisabled ? (
+                disabled ? <SpinnerIcon /> : children
+            ) : children}
         </button>
     )
 }
