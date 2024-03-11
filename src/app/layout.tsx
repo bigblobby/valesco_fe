@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import ThemeProvider from '@/lib/providers/theme-provider';
 import QueryClientProvider from '@/lib/providers/query-client-provider';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,11 +20,16 @@ export default function RootLayout({
     return (
         <html suppressHydrationWarning lang="en">
             <body className={inter.className}>
-            <QueryClientProvider>
+                <QueryClientProvider>
                     <ThemeProvider>
+                        <Toaster position="top-center" toastOptions={{
+                            style: {
+                                borderRadius: '2px',
+                            }
+                        }}  />
                         {children}
                     </ThemeProvider>
-            </QueryClientProvider>
+                </QueryClientProvider>
             </body>
         </html>
     );

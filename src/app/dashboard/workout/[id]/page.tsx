@@ -5,6 +5,7 @@ import { Button } from '@/lib/components/ui/button';
 import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 import { useRouter } from 'next/navigation';
 import Timestamp from '@/lib/components/ui/timestamp';
+import { toast } from 'react-hot-toast';
 
 interface WorkoutPageProps {
     params: {
@@ -21,10 +22,25 @@ export default function WorkoutPage({
     const { mutate, error, isError } = deleteWorkoutById(params.id);
 
     async function deleteWorkout() {
-        mutate(void 0, {
-            onSuccess: () => {
-                router.push('/dashboard/workouts');
-            }
+        return new Promise((resolve, reject) => {
+            mutate(void 0, {
+                onSuccess: () => {
+                    router.push('/dashboard/workouts');
+                    resolve(void 0);
+                },
+
+                onError: () => {
+                    reject();
+                }
+            });
+        })
+    }
+
+    function handleDelete() {
+        toast.promise(deleteWorkout(), {
+            loading: 'Deleting...',
+            error: 'There was a problem deleting this workout',
+            success: 'Successfully deleted'
         });
     }
 
@@ -42,7 +58,7 @@ export default function WorkoutPage({
                     </Text>
                     <Text>{data.data.content}</Text>
                     <div>
-                        <Button onClick={deleteWorkout}>Delete</Button>
+                        <Button onClick={handleDelete}>Delete</Button>
                     </div>
                 </>
             ) : null}

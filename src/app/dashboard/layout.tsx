@@ -2,11 +2,8 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import Link from '@/lib/components/ui/link';
-import { default as NavLink } from 'next/link';
 import DashboardNav from '@/app/dashboard/(components)/dashboard-nav';
-import { HomeIcon, ListBulletIcon } from '@heroicons/react/24/outline';
-import { PlusIcon } from '@heroicons/react/24/solid';
+import DashboardSidebar from '@/app/dashboard/(components)/dashboard-sidebar';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -17,70 +14,40 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
     const cookieStore = cookies();
     const supabase = createClient(cookieStore);
 
-    const navItems = [
-        {
-            title: 'Dashboard',
-            link: '/dashboard',
-            icon: <HomeIcon width={24} height={24} />,
-        },
-        {
-            title: 'Workouts',
-            link: '/dashboard/workouts',
-            icon: <ListBulletIcon width={24} height={24} />,
-        },
-    ]
-
     const {
         data: { session },
+        error: sessionError
     } = await supabase.auth.getSession();
 
-    const { data: profile, error } = await supabase.from('profiles').select('*').eq('id', session?.user?.id);
-
-    if (error || !session?.user) {
+    if (sessionError || !session) {
         redirect('/login');
     }
 
-    return (
-        <section className="bg-gray-50 dark:bg-gray-900">
-            <div className="min-h-screen">
-                <div className="text-gray-900 dark:text-white">
-                    <div className="relative">
-                        <aside className="w-52 h-full absolute top-0 left-0 border-r border-gray-200 dark:border-slate-50/[0.26]">
-                            <div className="p-4 border-b border-gray-200 dark:border-slate-50/[0.26]">
-                                <h1 className="text-2xl text-center font-semibold text-gray-900 dark:text-white">Valesco</h1>
-                            </div>
+    if (session) {
+        const { data: profile, error } = await supabase.from('profiles').select('*').eq('id', session.user?.id);
 
-                            <div>
-                                <div className="flex justify-center border-b border-gray-200 dark:border-slate-50/[0.26] mx-4">
-                                    <Link className="my-4" href="/dashboard/create-workout" variant="button">
-                                        <PlusIcon width={20} height={20} />
-                                        <span className="ml-2">New Workout</span>
-                                    </Link>
+        if (error || !session?.user) {
+            redirect('/login');
+        }
+
+        return (
+            <section className="bg-gray-50 dark:bg-gray-900">
+                <div className="min-h-screen">
+                    <div className="text-gray-900 dark:text-white">
+                        <div className="relative">
+                            <DashboardSidebar />
+                            <main className="pl-52">
+                                <DashboardNav user={session.user} userProfile={profile[0]} />
+                                <div className="p-4 h-[calc(100vh-65px)]">
+                                    {children}
                                 </div>
-                            </div>
-
-                            <div>
-                                <ul className="mt-4">
-                                    {navItems.map((navItem, index) => (
-                                        <li key={index} className="mx-2 my-1">
-                                            <NavLink className="flex items-center px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href={navItem.link}>
-                                                {navItem.icon}
-                                                <span className="ml-2">{navItem.title}</span>
-                                            </NavLink>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </aside>
-                        <main className="pl-52">
-                            <DashboardNav user={session.user} userProfile={profile?.[0]} />
-                            <div className="p-4 h-[calc(100vh-65px)]">
-                                {children}
-                            </div>
-                        </main>
+                            </main>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    );
+            </section>
+        );
+    }
+
+    return null;
 }
