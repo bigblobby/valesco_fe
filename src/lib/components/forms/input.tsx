@@ -1,32 +1,24 @@
 import { twMerge } from 'tailwind-merge';
+import React from 'react';
 
-interface InputProps {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     withLabel?: boolean;
-    id: string;
-    labelClassName?: string;
     labelText?: string;
-    inputClassName?: string;
-    inputName: string;
-    inputType?: string;
-    inputPlaceholder?: string;
-    inputDefaultValue?: any;
-    isRequired?: boolean;
-    onChange?: (e: any) => any;
+    labelClassName?: string;
 }
 
-export default function Input({
-    withLabel = true,
-    id,
-    labelText,
-    labelClassName,
-    inputClassName,
-    inputName,
-    inputType = 'text',
-    inputPlaceholder,
-    inputDefaultValue,
-    isRequired = false,
-    onChange = () => {}
-}: InputProps) {
+export default React.forwardRef<HTMLInputElement, InputProps>((
+    {
+        withLabel = true,
+        labelText,
+        labelClassName,
+        id,
+        className,
+        type = 'text',
+        ...props
+    },
+    ref
+) => {
 
     function generateInputClassNames(){
         return twMerge(
@@ -34,7 +26,7 @@ export default function Input({
             'sm:text-sm',
             'focus:ring-primary-600 focus:border-primary-600',
             'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
-            inputClassName
+            className
         );
     }
 
@@ -58,15 +50,12 @@ export default function Input({
             )}
 
             <input
-                type={inputType}
-                name={inputName}
+                ref={ref}
+                type={type}
                 id={id}
                 className={generateInputClassNames()}
-                placeholder={inputPlaceholder}
-                required={isRequired}
-                defaultValue={inputDefaultValue}
-                onChange={onChange}
+                {...props}
             />
         </>
     )
-}
+});

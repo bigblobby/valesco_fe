@@ -27,8 +27,8 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                             withLabel
                             labelText="Username"
                             id="username"
-                            inputName="username"
-                            inputDefaultValue={profile.username}
+                            name="username"
+                            defaultValue={profile.username}
                         />
                     </div>
                     <div>
@@ -36,8 +36,8 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                             withLabel
                             labelText="First name"
                             id="first_name"
-                            inputName="first_name"
-                            inputDefaultValue={profile.first_name}
+                            name="first_name"
+                            defaultValue={profile.first_name}
                         />
                     </div>
                     <div>
@@ -45,8 +45,8 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                             withLabel
                             labelText="Last name"
                             id="last_name"
-                            inputName="last_name"
-                            inputDefaultValue={profile.last_name}
+                            name="last_name"
+                            defaultValue={profile.last_name}
                         />
                     </div>
 

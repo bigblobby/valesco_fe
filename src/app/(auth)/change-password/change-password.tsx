@@ -31,11 +31,11 @@ export default function ChangePassword({ session }: any) {
                     <div>
                         <Input
                             withLabel
-                            isRequired
-                            id="password"
-                            inputName="password"
-                            inputType="password"
                             labelText="Your new password"
+                            required
+                            id="password"
+                            name="password"
+                            type="password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>

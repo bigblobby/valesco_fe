@@ -38,7 +38,7 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
                             <DashboardSidebar />
                             <main className="pl-52">
                                 <DashboardNav user={session.user} userProfile={profile[0]} />
-                                <div className="p-4 h-[calc(100vh-65px)]">
+                                <div className="p-4 h-[calc(100vh-65px)] overflow-scroll">
                                     {children}
                                 </div>
                             </main>

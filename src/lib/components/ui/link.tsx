@@ -8,6 +8,7 @@ interface LinkProps {
     variant?: LinkVariant,
     asWrapper?: boolean;
     children: any;
+    [key: string]: any;
 }
 
 type LinkVariant = 'link' | 'button';
@@ -18,6 +19,7 @@ export default function Link({
     variant = 'link',
     asWrapper = false,
     children,
+    props
 }: LinkProps) {
     function generateClassName() {
 
@@ -46,6 +48,7 @@ export default function Link({
         <NavLink
             href={href}
             className={generateClassName()}
+            {...props}
         >
             {children}
         </NavLink>

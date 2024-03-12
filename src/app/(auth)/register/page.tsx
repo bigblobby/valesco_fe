@@ -22,22 +22,23 @@ export default function RegisterPage() {
                     <div>
                         <Input
                             withLabel
-                            isRequired
-                            id="email"
-                            inputName="email"
-                            inputPlaceholder="name@company.com"
                             labelText="Your email"
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="name@company.com"
+                            required
                         />
                     </div>
                     <div>
                         <Input
                             withLabel
-                            isRequired
-                            id="password"
-                            inputName="password"
-                            inputPlaceholder="••••••••"
-                            inputType="password"
                             labelText="Password"
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="••••••••"
+                            required
                         />
                     </div>
                     {state?.error && (

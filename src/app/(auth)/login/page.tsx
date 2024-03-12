@@ -22,23 +22,24 @@ export default function LoginPage() {
                 <form action={formAction} className="space-y-4 md:space-y-6">
                     <div>
                         <Input
-                            id="email"
-                            inputName="email"
-                            inputPlaceholder="name@company.com"
-                            isRequired={true}
-                            withLabel={true}
+                            withLabel
                             labelText="Your email"
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="name@company.com"
+                            required
                         />
                     </div>
                     <div>
                         <Input
-                            id="password"
-                            inputName="password"
-                            inputPlaceholder="••••••••"
-                            inputType="password"
-                            isRequired={true}
                             withLabel={true}
                             labelText="Password"
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="••••••••"
+                            required
                         />
                     </div>
                     {state?.error && (
