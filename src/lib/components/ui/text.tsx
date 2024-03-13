@@ -49,7 +49,7 @@ export default function Text({
         }
 
         if (variation === 'p') {
-           classes += 'text-gray-500 dark:text-gray-400';
+           classes += 'text-gray-600 dark:text-gray-400';
         }
 
         return twMerge(classes, className);

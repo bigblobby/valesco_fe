@@ -36,3 +36,21 @@ body {
         transform: rotate(360deg)
     }
 }
+
+.markdown h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.markdown p {
+    margin-bottom: 0.5rem;
+}
+
+.markdown strong {
+    font-weight: 500;
+}
+
+.markdown ul,
+.markdown ol {
+    margin-bottom: 2rem;
+}
