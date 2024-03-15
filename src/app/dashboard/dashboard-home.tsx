@@ -11,7 +11,6 @@ interface DashboardHomeProps {
     userProfile: any;
 }
 
-
 export default function DashboardHome({user, userProfile}: DashboardHomeProps) {
     return (
         <UserContext.Provider value={{user: user, userProfile: userProfile}}>

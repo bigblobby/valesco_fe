@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Double Unders",
+    "type": "Cardio",
+    "reps": "1 minute",
+    "muscle_groups": ["Legs", "Shoulders", "Cardiovascular"],
+    "equipment": "Jump Rope",
+    "description": "A high-intensity cardio exercise using a jump rope, involving two passes of the rope under the feet for each jump. Improves coordination, agility, and cardiovascular endurance."
+  },
+  {
+    "name": "Shoulder Pass-Throughs",
+    "type": "Upper Body",
+    "reps": "10 reps",
+    "muscle_groups": ["Shoulders"],
+    "equipment": "PVC Pipe or Resistance Band",
+    "description": "Dynamic shoulder warm-up exercise involving passing a PVC pipe or resistance band overhead and behind the back. Enhances shoulder mobility and flexibility, preparing for overhead movements."
+  },
+  {
+    "name": "Toes-to-Bar",
+    "type": "Core",
+    "reps": "10 reps",
+    "muscle_groups": ["Core"],
+    "equipment": "Pull-Up Bar",
+    "description": "Core exercise performed hanging from a pull-up bar, involving bringing the toes to touch the bar. Targets the abdominal muscles and improves grip strength and coordination."
+  },
+  {
+    "name": "Box Jumps",
+    "type": "Lower Body",
+    "reps": "10 reps",
+    "muscle_groups": ["Quadriceps", "Glutes", "Calves"],
+    "equipment": "Plyo Box",
+    "description": "Explosive lower body exercise involving jumping onto a plyo box or elevated surface from a standing position. Develops lower body power, explosiveness, and coordination."
+  },
+  {
+    "name": "Ring Rows",
+    "type": "Upper Body",
+    "reps": "10 reps",
+    "muscle_groups": ["Back", "Biceps"],
+    "equipment": "Suspension Rings",
+    "description": "Upper body exercise using suspension rings, involving pulling the body up while maintaining a horizontal position. Targets the back and biceps, improving upper body strength and stability."
+  },
+  {
+    "name": "Wall Balls",
+    "type": "Full Body",
+    "reps": "10 reps",
+    "muscle_groups": ["Legs", "Shoulders", "Core"],
+    "equipment": "Medicine Ball, Wall",
+    "description": "Full-body exercise combining a squat with a overhead medicine ball throw against a wall. Engages the legs, shoulders, and core, promoting strength, power, and coordination."
+  },
+  {
+    "name": "Kettlebell Swings",
+    "type": "Full Body",
+    "reps": "15 reps",
+    "muscle_groups": ["Hamstrings", "Glutes", "Core"],
+    "equipment": "Kettlebell",
+    "description": "Dynamic full-body exercise involving swinging a kettlebell between the legs and up to shoulder level. Targets the hamstrings, glutes, and core, enhancing posterior chain strength and power."
+  },
+  {
+    "name": "Handstand Hold",
+    "type": "Upper Body",
+    "reps": "30 seconds",
+    "muscle_groups": ["Shoulders", "Core"],
+    "equipment": "Wall",
+    "description": "Upper body exercise involving holding a handstand position against a wall. Develops shoulder stability, core strength, and overall body control."
+  },
+  {
+    "name": "Dumbbell Thrusters",
+    "type": "Full Body",
+    "reps": "10 reps",
+    "muscle_groups": ["Legs", "Shoulders", "Core"],
+    "equipment": "Dumbbells",
+    "description": "Compound exercise combining a squat with an overhead press using dumbbells. Targets the legs, shoulders, and core, providing a full-body strength and conditioning workout."
+  },
+  {
+    "name": "Burpee Box Jumps",
+    "type": "Full Body",
+    "reps": "10 reps",
+    "muscle_groups": ["Legs", "Shoulders", "Cardiovascular"],
+    "equipment": "Plyo Box",
+    "description": "High-intensity full-body exercise combining a burpee with a box jump. Engages the legs, shoulders, and cardiovascular system, improving strength, endurance, and explosiveness."
+  }
+]
