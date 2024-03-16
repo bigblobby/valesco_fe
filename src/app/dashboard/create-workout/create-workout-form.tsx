@@ -66,8 +66,6 @@ export default function CreateWorkoutForm() {
         });
     }
 
-    console.log('errors', errors);
-
     return (
         <Card className="sm:max-w-md shadow-none">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">

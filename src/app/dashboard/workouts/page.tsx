@@ -1,6 +1,4 @@
 import Workouts from '@/app/dashboard/workouts/workouts';
-import { Suspense } from 'react';
-import PageSpinner from '@/lib/components/ui/page-spinner';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,8 +8,6 @@ export const metadata: Metadata = {
 
 export default function DashboardWorkoutsPage() {
     return (
-        <Suspense fallback={<PageSpinner />}>
-            <Workouts />
-        </Suspense>
+        <Workouts />
     )
 }

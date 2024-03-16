@@ -19,11 +19,12 @@ export async function upsertProfile(currentState: any, formData: FormData) {
     const website = formData.get('website');
 
     const { data, error } = await supabase.from('profiles').upsert({
+        // @ts-ignore Fuck knows why it's not recognising id
         id: user?.id,
         username: username,
         first_name: firstName,
         last_name: lastName,
-        website: website,
+        website: website
     });
 
     if (error) {

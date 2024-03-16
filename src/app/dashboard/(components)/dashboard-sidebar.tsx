@@ -1,9 +1,14 @@
+'use client';
+
 import Link from '@/lib/components/ui/link';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import { default as NavLink } from 'next/link';
 import { HomeIcon, ListBulletIcon } from '@heroicons/react/24/outline';
+import { usePathname } from 'next/navigation';
 
 export default function DashboardSidebar() {
+    const pathname = usePathname()
+
     const navItems = [
         {
             title: 'Dashboard',
@@ -36,7 +41,7 @@ export default function DashboardSidebar() {
                 <ul className="mt-4">
                     {navItems.map((navItem, index) => (
                         <li key={index} className="mx-2 my-1">
-                            <NavLink className="flex items-center px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href={navItem.link}>
+                            <NavLink className={`flex items-center px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 ${pathname === navItem.link ? 'text-orange-500' : ''}`} href={navItem.link}>
                                 {navItem.icon}
                                 <span className="ml-2">{navItem.title}</span>
                             </NavLink>

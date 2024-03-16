@@ -4,6 +4,7 @@ import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import DashboardNav from '@/app/dashboard/(components)/dashboard-nav';
 import DashboardSidebar from '@/app/dashboard/(components)/dashboard-sidebar';
+import SessionProvider from '@/lib/providers/session-provider';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -31,21 +32,23 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
         }
 
         return (
-            <section className="bg-gray-50 dark:bg-gray-900">
-                <div className="min-h-screen">
-                    <div className="text-gray-900 dark:text-white">
-                        <div className="relative">
-                            <DashboardSidebar />
-                            <main className="pl-52">
-                                <DashboardNav user={session.user} userProfile={profile[0]} />
-                                <div className="p-4 h-[calc(100vh-65px)] overflow-scroll">
-                                    {children}
-                                </div>
-                            </main>
+            <SessionProvider session={session}>
+                <section className="bg-gray-50 dark:bg-gray-900">
+                    <div className="min-h-screen">
+                        <div className="text-gray-900 dark:text-white">
+                            <div className="relative">
+                                <DashboardSidebar />
+                                <main className="pl-52">
+                                    <DashboardNav user={session.user} userProfile={profile[0]} />
+                                    <div className="p-4 h-[calc(100vh-65px)] overflow-scroll">
+                                        {children}
+                                    </div>
+                                </main>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </SessionProvider>
         );
     }
 

@@ -1,1 +1,1 @@
-export const DEFAULT_ROUTE_ENDPOINT = 'http://localhost:3000/api';
+export const DEFAULT_ROUTE_ENDPOINT = 'http://localhost:3001/api/v1';
