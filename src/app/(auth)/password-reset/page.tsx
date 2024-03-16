@@ -20,10 +20,10 @@ export default function PasswordResetPage() {
                         <Input
                             withLabel
                             id="email"
-                            inputName="email"
+                            name="email"
                             labelText="Your email"
-                            isRequired
-                            inputPlaceholder="name@company.com"
+                            required
+                            placeholder="name@company.com"
                         />
                     </div>
                     <SubmitWithStatus fullWidth>Send link</SubmitWithStatus>

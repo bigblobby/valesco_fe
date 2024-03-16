@@ -7,7 +7,7 @@ import Input from '@/lib/components/forms/input';
 import { Button } from '@/lib/components/ui/button';
 import Card from '@/lib/components/ui/card';
 
-export default function ChangePassword({ session }: any) {
+export default function ChangePassword() {
     const [password, setPassword] = useState<string>();
     const supabase = createClient();
 

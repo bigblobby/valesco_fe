@@ -4,7 +4,6 @@ import { cookies } from 'next/headers';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from 'next/navigation';
 
-
 export async function loginAction(currentState: any, formData: FormData) {
     const cookiesStore = cookies();
     const supabase = createClient(cookiesStore);

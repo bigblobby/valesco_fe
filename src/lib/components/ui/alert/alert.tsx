@@ -8,7 +8,7 @@ export default function Alert({
     children,
 }: AlertProps) {
 
-    function generateClasses() {
+    function generateClassName() {
         let classes = '';
 
         if (type === 'success') {
@@ -49,7 +49,7 @@ export default function Alert({
     }
 
     return (
-        <div className={generateClasses()}>
+        <div className={generateClassName()}>
             <span className="mr-2">
                 {getIcon(type)}
             </span>
