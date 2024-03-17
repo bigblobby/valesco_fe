@@ -1,11 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useOutsideClick } from '@/lib/hooks/useOutsideClick';
 import { createClient } from '@/lib/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useQueryClient } from '@tanstack/react-query';
+import { Bars3Icon } from '@heroicons/react/24/outline';
+import { SidebarContext } from '@/lib/providers/sidebar-provider';
 
 export default function DashboardNav({userProfile, user}: any) {
     const supabase = createClient();
@@ -13,6 +15,7 @@ export default function DashboardNav({userProfile, user}: any) {
     const router = useRouter();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
     const profileRef = useRef(null);
+    const sidebarContext = useContext(SidebarContext);
 
     useOutsideClick(profileRef, () => {
         setMenuOpen(false);
@@ -26,7 +29,10 @@ export default function DashboardNav({userProfile, user}: any) {
 
     return (
         <nav className="p-4 border-b border-gray-200 dark:border-slate-50/[0.26]">
-            <div className="flex flex-wrap items-center justify-end mx-auto">
+            <div className="flex flex-wrap items-center justify-between md:justify-end mx-auto">
+                <div className="block md:hidden cursor-pointer" onClick={() => sidebarContext.setActive(!sidebarContext.active)}>
+                    <Bars3Icon width={24} height={24} />
+                </div>
                 <div ref={profileRef} className="relative flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button onClick={() => setMenuOpen(!menuOpen)} type="button" className="flex text-sm rounded-full items-center md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <span className="sr-only">Open user menu</span>

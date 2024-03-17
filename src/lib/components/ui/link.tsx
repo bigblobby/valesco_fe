@@ -19,7 +19,7 @@ export default function Link({
     variant = 'link',
     asWrapper = false,
     children,
-    props
+    ...props
 }: LinkProps) {
     function generateClassName() {
 
