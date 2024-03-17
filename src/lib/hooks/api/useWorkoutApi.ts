@@ -42,6 +42,16 @@ export function useWorkoutAPI() {
         });
     }
 
+    function getWorkoutCount() {
+        return useQuery({
+            queryKey: [WORKOUT_QUERY_KEY, 'count'],
+            queryFn: async () => {
+                const response = await GET<ApiResponse<number>>('/workouts/count');
+                return response.data;
+            }
+        })
+    }
+
     function deleteWorkoutById(id: string) {
         return useMutation({
             mutationFn: async (workoutId?: string) => {
@@ -61,6 +71,7 @@ export function useWorkoutAPI() {
         createWorkout,
         getAllWorkouts,
         getWorkoutById,
+        getWorkoutCount,
         deleteWorkoutById,
     };
 }
