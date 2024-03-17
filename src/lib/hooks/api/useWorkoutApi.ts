@@ -22,11 +22,13 @@ export function useWorkoutAPI() {
         });
     }
 
-    function getAllWorkouts(): UseQueryResult<ApiResponse<TWorkout[]>> {
+    function getAllWorkouts(page: number): UseQueryResult<ApiResponse<{workouts: TWorkout[], count: number}>> {
         return useQuery({
-            queryKey: [WORKOUT_QUERY_KEY],
+            queryKey: [WORKOUT_QUERY_KEY, page],
             queryFn: async () => {
-                const res = await GET<ApiResponse<TWorkout[]>>('/workouts');
+                const res = await GET<ApiResponse<TWorkout[]>>('/workouts', {
+                    params: { page: page }
+                });
                 return res.data;
             }
         });
@@ -65,7 +67,6 @@ export function useWorkoutAPI() {
             }
         });
     }
-
 
     return {
         createWorkout,
