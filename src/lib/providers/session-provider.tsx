@@ -18,6 +18,7 @@ export default function SessionProvider({
             (event, session) => {
                 console.log('Event:', event);
                 console.log('Session:', session);
+                // supabase.auth.setSession(session);
             })
 
         return () => {

@@ -8,15 +8,21 @@ export async function middleware(request: NextRequest) {
         },
     });
 
+    console.log('middleware runs ', new Date())
+
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         {
             cookies: {
                 get(name: string) {
+                    console.log('middleware get:' ,name);
                     return request.cookies.get(name)?.value;
                 },
                 set(name: string, value: string, options: CookieOptions) {
+                    console.log('middleware set:' ,name);
+                    console.log('middleware set:' ,value)
+                    console.log('middleware set:' ,options)
                     request.cookies.set({
                         name,
                         value,
@@ -34,6 +40,8 @@ export async function middleware(request: NextRequest) {
                     });
                 },
                 remove(name: string, options: CookieOptions) {
+                    console.log('middleware remove:' ,name);
+                    console.log('middleware remove:' ,options)
                     request.cookies.set({
                         name,
                         value: '',

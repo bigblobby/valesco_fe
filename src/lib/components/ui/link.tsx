@@ -1,4 +1,5 @@
-import { twMerge } from 'tailwind-merge';
+import React from 'react';
+import { cn } from '@/lib/utils/classname.util';
 import { default as NavLink } from 'next/link';
 import { ButtonStyles } from '@/lib/components/ui/button/button';
 
@@ -13,30 +14,30 @@ interface LinkProps {
 
 type LinkVariant = 'link' | 'button';
 
-export default function Link({
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(({
     className,
     href,
     variant = 'link',
     asWrapper = false,
     children,
     ...props
-}: LinkProps) {
+}, ref) => {
     function generateClassName() {
 
         if (asWrapper) {
-            return twMerge(
+            return cn(
                 className,
             );
         }
 
         if (variant === 'button') {
-            return twMerge(
+            return cn(
                 ButtonStyles,
                 className
             )
         }
 
-        return twMerge(
+        return cn(
             'inline-flex justify-center font-medium text-gray-500',
             'hover:underline',
             'dark:text-gray-400',
@@ -46,6 +47,7 @@ export default function Link({
 
     return (
         <NavLink
+            ref={ref}
             href={href}
             className={generateClassName()}
             {...props}
@@ -53,4 +55,6 @@ export default function Link({
             {children}
         </NavLink>
     )
-}
+});
+
+export default Link;

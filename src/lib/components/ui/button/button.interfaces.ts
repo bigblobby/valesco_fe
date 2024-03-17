@@ -1,4 +1,7 @@
-export interface ButtonProps {
+import React from 'react';
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    asChild?: boolean;
     disabled?: boolean;
     showSpinnerOnDisabled?: boolean;
     className?: string;

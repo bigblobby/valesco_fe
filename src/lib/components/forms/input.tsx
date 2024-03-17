@@ -1,5 +1,5 @@
-import { twMerge } from 'tailwind-merge';
 import React from 'react';
+import { cn } from '@/lib/utils/classname.util';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     withLabel?: boolean;
@@ -21,7 +21,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((
 ) => {
 
     function generateInputClassNames(){
-        return twMerge(
+        return cn(
             'block w-full text-gray-900 bg-gray-50 rounded-sm p-2.5',
             'sm:text-sm',
             'focus:ring-primary-600 focus:border-primary-600',
@@ -31,7 +31,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((
     }
 
     function generateLabelClassNames() {
-        return twMerge(
+        return cn(
             'block mb-2 text-sm font-medium text-gray-800',
             'dark:text-white',
             labelClassName

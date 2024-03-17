@@ -20,7 +20,7 @@ export default function Workouts() {
                 <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {data.data.map((workout: any, i: number) => (
                         <li key={i}>
-                            <Link href={`/dashboard/workout/${workout.id}`} asWrapper>
+                            <Link asWrapper href={`/dashboard/workout/${workout.id}`}>
                                 <Card>
                                     <Text>{workout.name}</Text>
                                     <Text className="text-sm">

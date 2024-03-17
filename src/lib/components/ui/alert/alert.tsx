@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils/classname.util';
 import { CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon, InformationCircleIcon } from '@heroicons/react/24/solid';
 import { AlertProps, AlertType } from '@/lib/components/ui/alert/alert.interfaces';
 
@@ -27,7 +27,7 @@ export default function Alert({
             classes += 'text-red-600 bg-red-50 dark:text-red-900 dark:bg-red-400';
         }
 
-        return twMerge(
+        return cn(
             'flex align-center w-full rounded-sm p-2.5',
             'sm:text-sm',
             classes,
