@@ -5,7 +5,7 @@ import DumbbellIcon from '@/lib/components/icons/dumbbell-icon';
 import Link from '@/lib/components/ui/link';
 import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 import Card from '@/lib/components/ui/card';
-import CreateNewWorkoutForm from '@/lib/components/create-new-workout-form';
+import CreateNewWorkoutForm from '@/lib/components/forms/create-new-workout-form';
 
 export default function DashboardHome() {
     const { getWorkoutCount } = useWorkoutAPI();

@@ -2,7 +2,7 @@
 
 import { Button } from '@/lib/components/ui/button';
 import { PlusIcon } from '@heroicons/react/24/solid';
-import Input from '@/lib/components/forms/input';
+import Input from '@/lib/components/ui/form/input';
 import Text from '@/lib/components/ui/text';
 import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 import { useForm } from 'react-hook-form';

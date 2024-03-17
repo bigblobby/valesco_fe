@@ -7,7 +7,7 @@ import { useContext, useRef } from 'react';
 import { SidebarContext } from '@/lib/providers/sidebar-provider';
 import { cn } from '@/lib/utils/classname.util';
 import { useOutsideClick } from '@/lib/hooks/useOutsideClick';
-import CreateNewWorkoutForm from '@/lib/components/create-new-workout-form';
+import CreateNewWorkoutForm from '@/lib/components/forms/create-new-workout-form';
 
 export default function DashboardSidebar() {
     const pathname = usePathname();

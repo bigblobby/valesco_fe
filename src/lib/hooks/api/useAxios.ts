@@ -1,9 +1,10 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { DEFAULT_ROUTE_ENDPOINT } from '@/lib/constants/app.constants';
 import { useSession } from '@/lib/hooks/useSession';
+import AppConfig from '@/lib/config/app';
 
 const axiosInstance = axios.create({
-    baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL ?? DEFAULT_ROUTE_ENDPOINT}`,
+    baseURL: `${AppConfig.BACKEND_URL ?? DEFAULT_ROUTE_ENDPOINT}`,
 });
 
 export default function useAxios() {

@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/utils/supabase/server';
 import { cookies } from 'next/headers';
-import ProfileForm from '@/app/dashboard/profile/profile-form';
+import ProfileForm from '@/lib/components/forms/profile-form';
 
 export default async function Page(){
     const cookiesStore = cookies();

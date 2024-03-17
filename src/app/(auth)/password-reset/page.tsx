@@ -1,10 +1,10 @@
 'use client';
 
-import { SubmitWithStatus } from '@/lib/components/forms/submit-with-status';
+import { SubmitWithStatus } from '@/lib/components/ui/form/submit-with-status';
 import { useFormState } from 'react-dom';
 import { resetPasswordAction } from '@/app/(auth)/password-reset/actions';
 import Text from '@/lib/components/ui/text';
-import Input from '@/lib/components/forms/input';
+import Input from '@/lib/components/ui/form/input';
 import Card from '@/lib/components/ui/card';
 
 export default function PasswordResetPage() {

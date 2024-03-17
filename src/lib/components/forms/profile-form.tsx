@@ -3,8 +3,8 @@
 import { upsertProfile } from '@/app/dashboard/profile/actions';
 import { useFormState } from 'react-dom';
 import Text from '@/lib/components/ui/text';
-import Input from '@/lib/components/forms/input';
-import { SubmitWithStatus } from '@/lib/components/forms/submit-with-status';
+import Input from '@/lib/components/ui/form/input';
+import { SubmitWithStatus } from '@/lib/components/ui/form/submit-with-status';
 import { AlertWithDismiss } from '@/lib/components/ui/alert';
 import Card from '@/lib/components/ui/card';
 

@@ -3,8 +3,8 @@
 import Link from '@/lib/components/ui/link';
 import { useFormState } from 'react-dom';
 import { registerAction } from '@/app/(auth)/register/actions';
-import { SubmitWithStatus } from '@/lib/components/forms/submit-with-status';
-import Input from '@/lib/components/forms/input';
+import { SubmitWithStatus } from '@/lib/components/ui/form/submit-with-status';
+import Input from '@/lib/components/ui/form/input';
 import Text from '@/lib/components/ui/text';
 import Card from '@/lib/components/ui/card';
 

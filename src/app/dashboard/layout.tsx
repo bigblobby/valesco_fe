@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import DashboardNav from '@/app/dashboard/(components)/dashboard-nav';
-import DashboardSidebar from '@/app/dashboard/(components)/dashboard-sidebar';
+import DashboardNav from '@/lib/components/dashboard/dashboard-nav';
+import DashboardSidebar from '@/lib/components/dashboard/dashboard-sidebar';
 import SessionProvider from '@/lib/providers/session-provider';
 import SidebarProvider from '@/lib/providers/sidebar-provider';
 
