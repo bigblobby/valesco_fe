@@ -3,8 +3,9 @@
 import { createContext, useEffect } from 'react';
 import { createClient } from '@/lib/utils/supabase/client';
 
-export const SessionContext = createContext<{session: any}>({
+export const SessionContext = createContext<{session: any, supabase: any}>({
     session: null,
+    supabase: null
 });
 
 export default function SessionProvider({
@@ -18,7 +19,6 @@ export default function SessionProvider({
             (event, session) => {
                 console.log('Event:', event);
                 console.log('Session:', session);
-                // supabase.auth.setSession(session);
             })
 
         return () => {
@@ -27,7 +27,7 @@ export default function SessionProvider({
     }, [])
 
     return (
-        <SessionContext.Provider value={{session: session}}>
+        <SessionContext.Provider value={{session: session, supabase: supabase}}>
             {children}
         </SessionContext.Provider>
     )

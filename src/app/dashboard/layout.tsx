@@ -21,18 +21,12 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
         error: sessionError
     } = await supabase.auth.getSession();
 
-    console.log('layout session:', session);
-    console.log('layout session error:', sessionError);
-
     if (sessionError || !session) {
         redirect('/login');
     }
 
     if (session) {
         const { data: profile, error } = await supabase.from('profiles').select('*').eq('id', session.user?.id);
-
-        console.log('layout profile:', profile);
-        console.log('layout profile error:', error);
 
         if (error || !session?.user) {
             redirect('/login');

@@ -80,34 +80,31 @@ export default function CreateNewWorkoutForm() {
                     <span className="ml-2">New Workout</span>
                 </Button>
             </DialogTrigger>
-            <DialogPortal>
-                <DialogOverlay />
-                <DialogContent>
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
-                        <div>
-                            <Input
-                                {...register('name')}
-                                withLabel={true}
-                                labelText="Name"
-                                id="name"
-                                required
-                            />
-                        </div>
-                        <Button type="submit" disabled={isPending} showSpinnerOnDisabled>
-                            Generate workout
-                        </Button>
-                        {data?.error && (
-                            <Text className="text-red-500 text-sm dark:text-red-500">{data?.error}</Text>
-                        )}
-                    </form>
-                    <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-                        <Text>
-                            <XMarkIcon width={20} height={20} />
-                            <span className="sr-only">Close</span>
-                        </Text>
-                    </DialogClose>
-                </DialogContent>
-            </DialogPortal>
+            <DialogContent>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
+                    <div>
+                        <Input
+                            {...register('name')}
+                            withLabel={true}
+                            labelText="Name"
+                            id="name"
+                            required
+                        />
+                    </div>
+                    <Button type="submit" disabled={isPending} showSpinnerOnDisabled>
+                        Generate workout
+                    </Button>
+                    {data?.error && (
+                        <Text className="text-red-500 text-sm dark:text-red-500">{data?.error}</Text>
+                    )}
+                </form>
+                <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                    <Text>
+                        <XMarkIcon width={20} height={20} />
+                        <span className="sr-only">Close</span>
+                    </Text>
+                </DialogClose>
+            </DialogContent>
         </Dialog>
     )
 }

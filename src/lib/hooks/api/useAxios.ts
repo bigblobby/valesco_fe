@@ -8,14 +8,25 @@ const axiosInstance = axios.create({
 });
 
 export default function useAxios() {
-    const { session } = useSession();
+    let { session, } = useSession();
+    const { supabase } = useSession();
 
     axiosInstance.interceptors.request.clear();
     axiosInstance.interceptors.request.use(
         async (value: InternalAxiosRequestConfig) => {
+            console.log(session);
+            if (session?.expires_at && session.expires_at * 1000 < Date.now()) {
+                // If the session is not valid, refresh it
+                const { data, error } = await supabase.auth.refreshSession();
+                if (error) {
+                    throw error;
+                }
+                console.log('axios refresh token: ', data.session);
+                session = data.session;
+            }
+
             // Check if the session is valid
             value.headers["Authorization"] = `Bearer ${session?.access_token ?? ""}`;
-            value.headers["Refreshtoken"] = `${session?.refresh_token ?? ""}`;
 
             return value;
         },
