@@ -7,6 +7,7 @@ import { SubmitWithStatus } from '@/lib/components/ui/form/submit-with-status';
 import Input from '@/lib/components/ui/form/input';
 import Text from '@/lib/components/ui/text';
 import Card from '@/lib/components/ui/card';
+import Heading from '@/lib/components/ui/heading';
 
 export default function RegisterPage() {
     const [state, formAction] = useFormState(registerAction, null);
@@ -17,7 +18,7 @@ export default function RegisterPage() {
                 Valesco
             </a>
             <Card className="space-y-4 md:space-y-6 sm:max-w-md">
-                <Text component="h1" variant="h4">Sign up for an account</Text>
+                <Heading as="h1" variant="h4">Sign up for an account</Heading>
                 <form action={formAction} className="space-y-4 md:space-y-6">
                     <div>
                         <Input

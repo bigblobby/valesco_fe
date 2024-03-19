@@ -7,6 +7,7 @@ import Input from '@/lib/components/ui/form/input';
 import { SubmitWithStatus } from '@/lib/components/ui/form/submit-with-status';
 import { AlertWithDismiss } from '@/lib/components/ui/alert';
 import Card from '@/lib/components/ui/card';
+import Heading from '@/lib/components/ui/heading';
 
 interface ProfileFormProps {
     user: any;
@@ -20,7 +21,7 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
         <Card className="sm:max-w-md">
             <form action={formAction}>
                 <div className="space-y-4 md:space-y-6">
-                    <Text component="h1" variant="h4">Profile</Text>
+                    <Heading as="h1" variant="h4">Profile</Heading>
                     <Text className="text-xs">Edit your profile</Text>
                     <div>
                         <Input

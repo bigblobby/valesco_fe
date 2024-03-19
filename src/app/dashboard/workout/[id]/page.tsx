@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import Timestamp from '@/lib/components/ui/timestamp';
 import { toast } from 'react-hot-toast';
 import Markdown from 'react-markdown';
+import Card from '@/lib/components/ui/card';
+import Heading from '@/lib/components/ui/heading';
 
 interface WorkoutPageProps {
     params: {
@@ -52,8 +54,8 @@ export default function WorkoutPage({
             )}
 
             {!isLoading && !isFetching && data?.data ? (
-                <>
-                    <Text component="h1" variant="h4">{data.data.name}</Text>
+                <Card>
+                    <Heading as="h1" variant="h4">{data.data.name}</Heading>
                     <Text className="text-sm mb-4">
                         <Timestamp date={data.data.created_at} />
                     </Text>
@@ -61,7 +63,7 @@ export default function WorkoutPage({
                     <div>
                         <Button onClick={handleDelete}>Delete</Button>
                     </div>
-                </>
+                </Card>
             ) : null}
         </div>
     )

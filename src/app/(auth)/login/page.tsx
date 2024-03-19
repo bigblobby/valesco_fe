@@ -8,6 +8,7 @@ import Text from '@/lib/components/ui/text';
 import { Alert } from '@/lib/components/ui/alert';
 import Link from '@/lib/components/ui/link';
 import Card from '@/lib/components/ui/card';
+import Heading from '@/lib/components/ui/heading';
 
 export default function LoginPage() {
     const [state, formAction] = useFormState(loginAction, null);
@@ -18,7 +19,7 @@ export default function LoginPage() {
                 Valesco
             </a>
             <Card className="space-y-4 md:space-y-6 sm:max-w-md">
-                <Text component="h1" variant="h4">Sign in to your account</Text>
+                <Heading as="h1" variant="h4">Sign in to your account</Heading>
                 <form action={formAction} className="space-y-4 md:space-y-6">
                     <div>
                         <Input

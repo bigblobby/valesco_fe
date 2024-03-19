@@ -3,18 +3,18 @@ import { cn } from '@/lib/utils/classname.util';
 
 interface TextProps {
     children: any,
-    component?: ComponentTypes;
+    as?: ComponentTypes;
     variant?: VariantTypes;
     className?: string;
     props?: any;
 }
 
-type ComponentTypes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+type ComponentTypes = 'p' | 'span' | 'div' | 'label';
 type VariantTypes = ComponentTypes;
 
 export default function Text({
     children,
-    component = 'p',
+    as = 'p',
     variant,
     className = '',
     ...props
@@ -22,33 +22,14 @@ export default function Text({
 
     function generateClassName() {
         let classes = '';
-        const variation = variant || component;
+        const variation = variant || as;
 
-        if (variation === 'h1') {
-            classes += 'text-5xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h2') {
-            classes += 'text-4xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h3') {
-            classes += 'text-3xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h4') {
-            classes += 'text-2xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h5') {
-            classes += 'text-xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h6') {
-            classes += 'text-lg font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'p') {
+        if (
+            variation === 'p' ||
+            variation === 'span' ||
+            variation === 'div' ||
+            variation === 'label'
+        ) {
            classes += 'text-gray-600 dark:text-gray-400';
         }
 
@@ -56,7 +37,7 @@ export default function Text({
     }
 
     return createElement(
-        component,
+        as,
         {
             className: generateClassName(),
             ...props,

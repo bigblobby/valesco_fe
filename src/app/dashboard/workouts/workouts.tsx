@@ -8,6 +8,7 @@ import Timestamp from '@/lib/components/ui/timestamp';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/lib/components/ui/pagination';
+import Heading from '@/lib/components/ui/heading';
 
 export default function Workouts() {
     const router = useRouter();
@@ -39,8 +40,8 @@ export default function Workouts() {
                         <li key={i}>
                             <Link asWrapper href={`/dashboard/workout/${workout.id}`}>
                                 <Card>
-                                    <Text>{workout.name}</Text>
-                                    <Text className="text-sm">
+                                    <Heading as="h4" className="text-2xl mb-1">{workout.name}</Heading>
+                                    <Text className="text-xs">
                                         <Timestamp date={workout.created_at}/>
                                     </Text>
                                 </Card>

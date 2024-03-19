@@ -6,6 +6,7 @@ import Link from '@/lib/components/ui/link';
 import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 import Card from '@/lib/components/ui/card';
 import CreateNewWorkoutForm from '@/lib/components/forms/create-new-workout-form';
+import Heading from '@/lib/components/ui/heading';
 
 export default function DashboardHome() {
     const { getWorkoutCount } = useWorkoutAPI();
@@ -20,7 +21,7 @@ export default function DashboardHome() {
             <div className="flex justify-center items-center h-full">
                 <div className="flex flex-col items-center justify-center text-center">
                     <DumbbellIcon />
-                    <Text component="h1" variant="h6">No workouts</Text>
+                    <Heading as="h1" variant="h6">No workouts</Heading>
                     <Text className="mb-6">Get started by generating a new workout</Text>
                     <CreateNewWorkoutForm />
                 </div>

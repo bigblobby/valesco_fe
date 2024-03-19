@@ -2,10 +2,10 @@
 
 import { createClient } from '@/lib/utils/supabase/client';
 import { useState } from 'react';
-import Text from '@/lib/components/ui/text';
 import Input from '@/lib/components/ui/form/input';
 import { Button } from '@/lib/components/ui/button';
 import Card from '@/lib/components/ui/card';
+import Heading from '@/lib/components/ui/heading';
 
 export default function ChangePassword() {
     const [password, setPassword] = useState<string>();
@@ -26,7 +26,7 @@ export default function ChangePassword() {
     return (
         <Card className="sm:max-w-md">
             <div className="space-y-4 md:space-y-6">
-                <Text component="h1" variant="h4">Change your password</Text>
+                <Heading as="h1" variant="h4">Change your password</Heading>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                     <div>
                         <Input
