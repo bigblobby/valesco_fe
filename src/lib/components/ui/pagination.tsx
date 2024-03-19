@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils/classname.util';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
     <nav
@@ -25,7 +26,7 @@ const PaginationItem = React.forwardRef<
     HTMLLIElement,
     React.ComponentProps<'li'>
 >(({ className, ...props }, ref) => (
-    <li ref={ref} className={cn('', className)} {...props} />
+    <li ref={ref} className={cn('cursor-pointer', className)} {...props} />
 ));
 
 type PaginationLinkProps = {
@@ -40,7 +41,7 @@ const PaginationLink = ({
 }: PaginationLinkProps) => (
     <a
         aria-current={isActive ? 'page' : undefined}
-        className={cn(className)}
+        className={cn(className, 'flex items-center justify-center rounded p-1 min-w-9 aria-[current="page"]:border-2 aria-[current="page"]:border-gray-800 dark:aria-[current="page"]:border-gray-500')}
         {...props}
     />
 );
@@ -51,10 +52,14 @@ const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
     <PaginationLink
         aria-label="Go to previous page"
-        className={cn('gap-1 pl-2.5', className)}
+        className={cn('flex gap-1 pl-2.5', className)}
         {...props}
     >
-        <span>Previous</span>
+        <span className="inline-flex items-center">
+            <span className="inline sm:hidden"><ChevronLeftIcon height={30} width={30} /></span>
+            <span className="hidden sm:inline"><ChevronLeftIcon height={20} width={20} /></span>
+            <span className="hidden sm:inline">Previous</span>
+        </span>
     </PaginationLink>
 );
 
@@ -64,10 +69,14 @@ const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
     <PaginationLink
         aria-label="Go to next page"
-        className={cn('gap-1 pr-2.5', className)}
+        className={cn('flex gap-1 pr-2.5', className)}
         {...props}
     >
-        <span>Next</span>
+        <span className="inline-flex items-center">
+            <span className="hidden sm:inline">Next</span>
+            <span className="hidden sm:inline"><ChevronRightIcon height={20} width={20} /></span>
+            <span className="inline sm:hidden"><ChevronRightIcon height={30} width={30} /></span>
+        </span>
     </PaginationLink>
 );
 

@@ -55,7 +55,7 @@ export default function WorkoutPage({
 
             {!isLoading && !isFetching && data?.data ? (
                 <Card>
-                    <Heading as="h1" variant="h4">{data.data.name}</Heading>
+                    <Heading as="h1" variant="h3">{data.data.name}</Heading>
                     <Text className="text-sm mb-4">
                         <Timestamp date={data.data.created_at} />
                     </Text>

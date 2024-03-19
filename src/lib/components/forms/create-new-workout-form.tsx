@@ -75,7 +75,7 @@ export default function CreateNewWorkoutForm() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="my-4">
+                <Button className="my-4 w-full">
                     <PlusIcon width={20} height={20} />
                     <span className="ml-2">New Workout</span>
                 </Button>
@@ -89,6 +89,8 @@ export default function CreateNewWorkoutForm() {
                             labelText="Name"
                             id="name"
                             required
+                            autocomplete="off"
+                            data-1p-ignore
                         />
                     </div>
                     <Button type="submit" disabled={isPending} showSpinnerOnDisabled>

@@ -5,6 +5,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     withLabel?: boolean;
     labelText?: string;
     labelClassName?: string;
+    [key: string]: any;
 }
 
 export default React.forwardRef<HTMLInputElement, InputProps>((

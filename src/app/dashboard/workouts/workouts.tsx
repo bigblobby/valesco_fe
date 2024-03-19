@@ -51,7 +51,7 @@ export default function Workouts() {
                     ))}
                 </ul>
 
-                <div>
+                <div className="mt-8 mb-3">
                     <Pagination>
                         <PaginationContent>
                             {page !== 1 && (
@@ -60,7 +60,7 @@ export default function Workouts() {
                                 </PaginationItem>
                             )}
                             <PaginationItem>
-                                <PaginationLink onClick={() => setPage(1)}>1</PaginationLink>
+                                <PaginationLink isActive={page === 1} onClick={() => setPage(1)}>1</PaginationLink>
                             </PaginationItem>
                             <PaginationItem>
                                 <PaginationEllipsis />
@@ -68,7 +68,7 @@ export default function Workouts() {
                             {page !== maxPage && page !== 1 && (
                                 <>
                                     <PaginationItem>
-                                        <PaginationLink>{page}</PaginationLink>
+                                        <PaginationLink isActive>{page}</PaginationLink>
                                     </PaginationItem>
                                     <PaginationItem>
                                         <PaginationEllipsis />
@@ -76,7 +76,7 @@ export default function Workouts() {
                                 </>
                             )}
                             <PaginationItem>
-                                <PaginationLink onClick={() => setPage(maxPage)}>{maxPage}</PaginationLink>
+                                <PaginationLink  isActive={page === maxPage} onClick={() => setPage(maxPage)}>{maxPage}</PaginationLink>
                             </PaginationItem>
                             {page !== maxPage && (
                                 <PaginationItem>
