@@ -51,7 +51,7 @@ export default function DashboardSidebar() {
             <div>
                 <ul className="mt-4">
                     {navItems.map((navItem, index) => (
-                        <li key={index} className="mx-2 my-1">
+                        <li key={index} className="mx-4 my-2">
                             <NavLink onClick={closeSidebar} className={`flex items-center text-gray-300 px-3 py-2 rounded hover:bg-gray-600 transition-colors ${pathname === navItem.link ? 'bg-gray-700' : ''}`} href={navItem.link}>
                                 {navItem.icon}
                                 <span className="ml-2">{navItem.title}</span>

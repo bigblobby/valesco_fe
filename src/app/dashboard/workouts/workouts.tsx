@@ -9,6 +9,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/lib/components/ui/pagination';
 import Heading from '@/lib/components/ui/heading';
+import Badge from '@/lib/components/ui/badge';
 
 export default function Workouts() {
     const router = useRouter();
@@ -35,11 +36,11 @@ export default function Workouts() {
 
         return (
             <div>
-                <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <ul className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {data.data.workouts.map((workout: any, i: number) => (
                         <li key={i}>
-                            <Link asWrapper href={`/dashboard/workout/${workout.id}`}>
-                                <Card>
+                            <Link className="h-full block" asWrapper href={`/dashboard/workout/${workout.id}`}>
+                                <Card className="h-full">
                                     <Heading as="h4" className="text-2xl mb-1">{workout.name}</Heading>
                                     <Text className="text-xs">
                                         <Timestamp date={workout.created_at}/>

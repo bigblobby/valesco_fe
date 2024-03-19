@@ -35,14 +35,14 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
         return (
             <SessionProvider session={session}>
                 <section className="bg-gray-50 dark:bg-gray-900">
-                    <div className="min-h-screen">
+                    <div className="min-h-screen overflow-hidden">
                         <div className="text-gray-900 dark:text-white">
                             <SidebarProvider>
                                 <div className="relative">
                                     <DashboardSidebar />
                                     <main className="md:pl-72">
                                         <DashboardNav user={session.user} userProfile={profile[0]} />
-                                        <div className="p-4 h-[calc(100vh-65px)] overflow-auto">
+                                        <div className="p-5 h-[calc(100vh-65px)] overflow-auto">
                                             {children}
                                         </div>
                                     </main>
