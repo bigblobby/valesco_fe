@@ -89,7 +89,7 @@ export default function CreateNewWorkoutForm() {
                             labelText="Name"
                             id="name"
                             required
-                            autocomplete="off"
+                            autoComplete="off"
                             data-1p-ignore
                         />
                     </div>

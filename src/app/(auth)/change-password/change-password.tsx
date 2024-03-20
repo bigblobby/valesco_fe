@@ -1,7 +1,7 @@
 'use client';
 
 import { createClient } from '@/lib/utils/supabase/client';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Input from '@/lib/components/ui/form/input';
 import { Button } from '@/lib/components/ui/button';
 import Card from '@/lib/components/ui/card';
@@ -36,7 +36,7 @@ export default function ChangePassword() {
                             id="password"
                             name="password"
                             type="password"
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                         />
                     </div>
                     <Button type="submit" fullWidth>Reset</Button>

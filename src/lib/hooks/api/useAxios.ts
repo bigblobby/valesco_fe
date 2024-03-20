@@ -17,12 +17,17 @@ export default function useAxios() {
             console.log(session);
             if (session?.expires_at && session.expires_at * 1000 < Date.now()) {
                 // If the session is not valid, refresh it
-                const { data, error } = await supabase.auth.refreshSession();
-                if (error) {
-                    throw error;
+                if (supabase) {
+                    const { data, error } = await supabase.auth.refreshSession();
+                    if (error) {
+                        throw error;
+                    }
+                    console.log('axios refresh token: ', data.session);
+
+                    if (data.session) {
+                        session = data.session;
+                    }
                 }
-                console.log('axios refresh token: ', data.session);
-                session = data.session;
             }
 
             // Check if the session is valid

@@ -2,10 +2,17 @@
 
 import { createContext, useEffect } from 'react';
 import { createClient } from '@/lib/utils/supabase/client';
+import { SupabaseClient } from '@supabase/supabase-js';
+import { Session } from '@supabase/gotrue-js/src/lib/types';
 
-export const SessionContext = createContext<{session: any, supabase: any}>({
-    session: null,
-    supabase: null
+export interface ISessionContextState {
+    session?: Session,
+    supabase?: SupabaseClient;
+}
+
+export const SessionContext = createContext<ISessionContextState>({
+    session: undefined,
+    supabase: undefined,
 });
 
 export default function SessionProvider({
@@ -17,6 +24,7 @@ export default function SessionProvider({
     useEffect(() => {
         const { data: { subscription} } = supabase.auth.onAuthStateChange(
             (event, session) => {
+                console.log(new Date())
                 console.log('Event:', event);
                 console.log('Session:', session);
             })
