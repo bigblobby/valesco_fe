@@ -6,6 +6,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     showSpinnerOnDisabled?: boolean;
     className?: string;
     type?: ButtonType;
+    variant?: 'button' | 'link';
     fullWidth?: boolean;
     onClick?: () => any;
     children: any;

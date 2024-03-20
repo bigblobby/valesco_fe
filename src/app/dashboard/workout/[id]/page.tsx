@@ -9,6 +9,7 @@ import { toast } from 'react-hot-toast';
 import Markdown from 'react-markdown';
 import Card from '@/lib/components/ui/card';
 import Heading from '@/lib/components/ui/heading';
+import { ArrowLeftIcon } from '@heroicons/react/20/solid';
 
 interface WorkoutPageProps {
     params: {
@@ -54,16 +55,22 @@ export default function WorkoutPage({
             )}
 
             {!isLoading && !isFetching && data?.data ? (
-                <Card>
-                    <Heading as="h1" variant="h3">{data.data.name}</Heading>
-                    <Text className="text-sm mb-4">
-                        <Timestamp date={data.data.created_at} />
-                    </Text>
-                    <Markdown className="markdown text-gray-600 dark:text-gray-400">{data.data.content}</Markdown>
-                    <div>
-                        <Button onClick={handleDelete}>Delete</Button>
-                    </div>
-                </Card>
+                <>
+                    <Button className="inline-flex items-center" variant="link" onClick={() => router.back()}>
+                        <ArrowLeftIcon className="mr-2" width={16} height={16} />
+                        <Text className="text-xs" variant="span">Back</Text>
+                    </Button>
+                    <Card className="mt-4">
+                        <Heading as="h1" variant="h3">{data.data.name}</Heading>
+                        <Text className="text-sm mb-4">
+                            <Timestamp date={data.data.created_at} />
+                        </Text>
+                        <Markdown className="markdown text-gray-600 dark:text-gray-400">{data.data.content}</Markdown>
+                        <div>
+                            <Button onClick={handleDelete}>Delete</Button>
+                        </div>
+                    </Card>
+                </>
             ) : null}
         </div>
     )

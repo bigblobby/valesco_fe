@@ -17,12 +17,23 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
     showSpinnerOnDisabled = true,
     className,
     type = 'button',
+    variant = 'button',
     fullWidth = false,
     onClick = () => {},
     children,
     ...props
 }, ref) => {
     function generateClassName() {
+        if (variant === 'link') {
+            return cn(
+                'inline-flex justify-center font-medium text-gray-500',
+                'hover:underline',
+                'dark:text-gray-400',
+                fullWidth && 'w-full',
+                className
+            );
+        }
+
         return cn(
             ButtonStyles,
             fullWidth && 'w-full',
