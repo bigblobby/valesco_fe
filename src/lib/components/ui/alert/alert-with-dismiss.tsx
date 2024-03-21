@@ -12,7 +12,7 @@ import { AlertWithDismissProps } from '@/lib/components/ui/alert/alert.interface
  * USE Date.now() AS THIS WORKS IN MOST CASES.
  */
 export default function AlertWithDismiss({
-    type = 'info',
+    variant = 'info',
     className,
     autoDismiss = false,
     autoDismissTime = 5000,
@@ -38,7 +38,7 @@ export default function AlertWithDismiss({
         <>
             {visible && (
                 <div className="relative" onClick={removeAlert}>
-                    <Alert className={className} type={type}>{children}</Alert>
+                    <Alert className={className} variant={variant}>{children}</Alert>
 
                     <span className="absolute top-2.5 right-2 inline-block ml-auto text-gray-600 cursor-pointer">
                         <XMarkIcon width={20} height={20} />

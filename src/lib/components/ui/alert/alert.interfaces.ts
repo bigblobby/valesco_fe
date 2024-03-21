@@ -1,8 +1,8 @@
-export interface AlertProps {
-    type?: AlertType;
-    className?: string;
-    children: any;
-}
+import React from 'react';
+import { VariantProps } from 'class-variance-authority';
+import { alertVariants } from '@/lib/components/ui/alert/alert';
+
+export interface AlertProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {}
 
 export interface AlertWithDismissProps extends AlertProps {
     key: any;
@@ -10,4 +10,4 @@ export interface AlertWithDismissProps extends AlertProps {
     autoDismissTime?: number;
 }
 
-export type AlertType = 'success' | 'info' | 'warning' | 'danger';
+export type AlertType = 'default' | 'success' | 'info' | 'warning' | 'danger';

@@ -52,11 +52,11 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                     </div>
 
                     {state?.error && (
-                        <AlertWithDismiss key={Date.now()} type="danger">{state.error}</AlertWithDismiss>
+                        <AlertWithDismiss key={Date.now()} variant="danger">{state.error}</AlertWithDismiss>
                     )}
 
                     {state?.message && (
-                        <AlertWithDismiss key={Date.now()} autoDismiss type="success">{state.message}</AlertWithDismiss>
+                        <AlertWithDismiss key={Date.now()} autoDismiss variant="success">{state.message}</AlertWithDismiss>
                     )}
 
                     <SubmitWithStatus fullWidth>Save</SubmitWithStatus>
