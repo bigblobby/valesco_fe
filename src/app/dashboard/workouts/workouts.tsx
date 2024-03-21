@@ -41,7 +41,7 @@ export default function Workouts() {
                         <li key={i}>
                             <Link className="h-full block" asWrapper href={`/dashboard/workout/${workout.id}`}>
                                 <Card className="h-full">
-                                    <Heading as="h4" className="text-2xl mb-1">{workout.name}</Heading>
+                                    <Heading as="h4" variant="h4" className="mb-1">{workout.name}</Heading>
                                     <Text className="text-xs">
                                         <Timestamp date={workout.created_at}/>
                                     </Text>

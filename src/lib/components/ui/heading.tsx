@@ -1,60 +1,49 @@
-import {createElement} from 'react';
+import React, {createElement} from 'react';
 import { cn } from '@/lib/utils/classname.util';
+import { cva, VariantProps } from 'class-variance-authority';
+import { Slot } from '@radix-ui/react-slot';
 
-interface TextProps {
-    children: any,
-    as?: ComponentTypes;
-    variant?: VariantTypes;
-    className?: string;
-    props?: any;
-}
+const headingVariants = cva(
+    "font-bold text-gray-700 dark:text-gray-300",
+    {
+        variants: {
+            variant: {
+                default: "text-4xl",
+                h1: "text-5xl",
+                h2: "text-4xl",
+                h3: "text-3xl",
+                h4: "text-2xl",
+                h5: "text-xl",
+                h6: "text-lg",
+            }
+        },
+        defaultVariants: {
+            variant: "default",
+        }
+    }
+);
 
 type ComponentTypes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-type VariantTypes = ComponentTypes;
+
+export interface TextProps extends React.HTMLAttributes<any>, VariantProps<typeof headingVariants> {
+    asChild?: boolean;
+    as?: ComponentTypes;
+}
 
 export default function Heading({
-    children,
+    asChild,
     as = 'h2',
-    variant,
+    variant = 'default',
     className = '',
+    children,
     ...props
 }: TextProps) {
-
-    function generateClassName() {
-        let classes = '';
-        const variation = variant || as;
-
-        if (variation === 'h1') {
-            classes += 'text-5xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h2') {
-            classes += 'text-4xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h3') {
-            classes += 'text-3xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h4') {
-            classes += 'text-2xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h5') {
-            classes += 'text-xl font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        if (variation === 'h6') {
-            classes += 'text-lg font-bold text-gray-700 dark:text-gray-300';
-        }
-
-        return cn(classes, className);
-    }
+    const Comp = asChild ? Slot : as;
 
     return createElement(
-        as,
+        Comp,
         {
-            className: generateClassName(),
+            className: cn(headingVariants({ variant, className })),
             ...props,
         },
         children

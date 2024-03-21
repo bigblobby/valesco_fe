@@ -1,45 +1,43 @@
-import {createElement} from 'react';
+import React, {createElement} from 'react';
 import { cn } from '@/lib/utils/classname.util';
+import { Slot } from '@radix-ui/react-slot';
+import { cva, VariantProps } from 'class-variance-authority';
 
-interface TextProps {
-    children: any,
-    as?: ComponentTypes;
-    variant?: VariantTypes;
-    className?: string;
-    props?: any;
-}
+const textVariants = cva(
+    "text-gray-600 dark:text-gray-400",
+    {
+        variants: {
+            variant: {
+                default: ""
+            }
+        },
+        defaultVariants: {
+            variant: "default",
+        }
+    }
+);
 
 type ComponentTypes = 'p' | 'span' | 'div' | 'label';
-type VariantTypes = ComponentTypes;
+
+export interface TextProps extends React.HTMLAttributes<any>, VariantProps<typeof textVariants> {
+    asChild?: boolean;
+    as?: ComponentTypes;
+}
 
 export default function Text({
-    children,
+    asChild,
     as = 'p',
-    variant,
+    variant = 'default',
     className = '',
+    children,
     ...props
 }: TextProps) {
-
-    function generateClassName() {
-        let classes = '';
-        const variation = variant || as;
-
-        if (
-            variation === 'p' ||
-            variation === 'span' ||
-            variation === 'div' ||
-            variation === 'label'
-        ) {
-           classes += 'text-gray-600 dark:text-gray-400';
-        }
-
-        return cn(classes, className);
-    }
+    const Comp = asChild ? Slot : as;
 
     return createElement(
-        as,
+        Comp,
         {
-            className: generateClassName(),
+            className: cn(textVariants({ variant, className })),
             ...props,
         },
         children

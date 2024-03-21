@@ -62,7 +62,7 @@ export default function WorkoutPage({
                 <>
                     <Button className="inline-flex items-center" variant="link" onClick={() => router.back()}>
                         <ArrowLeftIcon className="mr-2" width={16} height={16} />
-                        <Text className="text-xs" variant="span">Back</Text>
+                        <Text className="text-xs" as="span">Back</Text>
                     </Button>
                     <Card className="mt-4">
                         <Heading as="h1" variant="h3">{data.data.name}</Heading>
