@@ -39,7 +39,7 @@ export default function ChangePassword() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                         />
                     </div>
-                    <Button type="submit" fullWidth>Reset</Button>
+                    <Button type="submit" className="w-full">Reset</Button>
                 </form>
             </div>
         </Card>

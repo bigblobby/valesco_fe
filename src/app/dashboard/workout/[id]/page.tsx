@@ -10,9 +10,7 @@ import Markdown from 'react-markdown';
 import Card from '@/lib/components/ui/card';
 import Heading from '@/lib/components/ui/heading';
 import { ArrowLeftIcon } from '@heroicons/react/20/solid';
-import { Dialog, DialogClose, DialogOverlay, DialogPortal, DialogTrigger, DialogContent } from '@/lib/components/ui/dialog';
-import { PlusIcon } from '@heroicons/react/24/solid';
-import Input from '@/lib/components/ui/form/input';
+import { Dialog, DialogClose, DialogTrigger, DialogContent } from '@/lib/components/ui/dialog';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 
@@ -84,7 +82,7 @@ export default function WorkoutPage({
                                     <Text className="text-center mt-3">You won't be able to revert this action.</Text>
 
                                     <div className="flex justify-center gap-4 mt-5">
-                                        <Button className="border-2 border-black bg-transparent text-black" onClick={() => setDeleteModalOpen(false)}>No</Button>
+                                        <Button variant="outline" onClick={() => setDeleteModalOpen(false)}>No</Button>
                                         <Button onClick={handleDelete}>Yes</Button>
                                     </div>
                                 </div>

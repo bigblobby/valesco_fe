@@ -93,7 +93,7 @@ export default function CreateNewWorkoutForm() {
                             data-1p-ignore
                         />
                     </div>
-                    <Button type="submit" disabled={isPending} showSpinnerOnDisabled>
+                    <Button type="submit" disabled={isPending}>
                         Generate workout
                     </Button>
                     {data?.error && (
