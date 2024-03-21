@@ -1,24 +1,24 @@
-import React, {createElement} from 'react';
+import React, { createElement } from 'react';
 import { cn } from '@/lib/utils/classname.util';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Slot } from '@radix-ui/react-slot';
 
 const headingVariants = cva(
-    "font-bold text-gray-700 dark:text-gray-300",
+    'font-bold text-gray-700 dark:text-gray-300',
     {
         variants: {
             variant: {
-                default: "text-4xl",
-                h1: "text-5xl",
-                h2: "text-4xl",
-                h3: "text-3xl",
-                h4: "text-2xl",
-                h5: "text-xl",
-                h6: "text-lg",
+                default: 'text-4xl',
+                h1: 'text-5xl',
+                h2: 'text-4xl',
+                h3: 'text-3xl',
+                h4: 'text-2xl',
+                h5: 'text-xl',
+                h6: 'text-lg',
             }
         },
         defaultVariants: {
-            variant: "default",
+            variant: 'default',
         }
     }
 );

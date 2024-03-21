@@ -1,18 +1,18 @@
-import React, {createElement} from 'react';
+import React, { createElement } from 'react';
 import { cn } from '@/lib/utils/classname.util';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const textVariants = cva(
-    "text-gray-600 dark:text-gray-400",
+    'text-gray-600 dark:text-gray-400',
     {
         variants: {
             variant: {
-                default: ""
+                default: ''
             }
         },
         defaultVariants: {
-            variant: "default",
+            variant: 'default',
         }
     }
 );
