@@ -10,6 +10,11 @@ import Markdown from 'react-markdown';
 import Card from '@/lib/components/ui/card';
 import Heading from '@/lib/components/ui/heading';
 import { ArrowLeftIcon } from '@heroicons/react/20/solid';
+import { Dialog, DialogClose, DialogOverlay, DialogPortal, DialogTrigger, DialogContent } from '@/lib/components/ui/dialog';
+import { PlusIcon } from '@heroicons/react/24/solid';
+import Input from '@/lib/components/ui/form/input';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 
 interface WorkoutPageProps {
     params: {
@@ -24,6 +29,7 @@ export default function WorkoutPage({
     const { getWorkoutById, deleteWorkoutById } = useWorkoutAPI();
     const { data, isLoading, isFetching } = getWorkoutById(params.id);
     const { mutate, error, isError } = deleteWorkoutById(params.id);
+    const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
 
     async function deleteWorkout() {
         return new Promise((resolve, reject) => {
@@ -66,9 +72,31 @@ export default function WorkoutPage({
                             <Timestamp date={data.data.created_at} />
                         </Text>
                         <Markdown className="markdown text-gray-600 dark:text-gray-400">{data.data.content}</Markdown>
-                        <div>
-                            <Button onClick={handleDelete}>Delete</Button>
-                        </div>
+
+                        <Dialog open={deleteModalOpen} onOpenChange={setDeleteModalOpen}>
+                            <DialogTrigger asChild>
+                                <Button>Delete</Button>
+                            </DialogTrigger>
+                            <DialogContent>
+
+                                <div className="max-w-80 mx-auto">
+                                    <Heading as="h5" className="text-center">Are you sure you want to delete this workout?</Heading>
+                                    <Text className="text-center mt-3">You won't be able to revert this action.</Text>
+
+                                    <div className="flex justify-center gap-4 mt-5">
+                                        <Button className="border-2 border-black bg-transparent text-black" onClick={() => setDeleteModalOpen(false)}>No</Button>
+                                        <Button onClick={handleDelete}>Yes</Button>
+                                    </div>
+                                </div>
+                                <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                                    <Text>
+                                        <XMarkIcon width={20} height={20} />
+                                        <span className="sr-only">Close</span>
+                                    </Text>
+                                </DialogClose>
+                            </DialogContent>
+                        </Dialog>
+
                     </Card>
                 </>
             ) : null}
