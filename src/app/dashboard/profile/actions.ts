@@ -16,7 +16,6 @@ export async function upsertProfile(currentState: any, formData: FormData) {
     const username = formData.get('username');
     const firstName = formData.get('first_name');
     const lastName = formData.get('last_name');
-    const website = formData.get('website');
 
     const { data, error } = await supabase.from('profiles').upsert({
         // @ts-ignore Fuck knows why it's not recognising id
@@ -24,7 +23,6 @@ export async function upsertProfile(currentState: any, formData: FormData) {
         username: username,
         first_name: firstName,
         last_name: lastName,
-        website: website
     });
 
     if (error) {
