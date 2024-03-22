@@ -85,7 +85,6 @@ export default function CreateNewWorkoutForm() {
                     <div>
                         <Input
                             {...register('name')}
-                            withLabel={true}
                             labelText="Name"
                             id="name"
                             required

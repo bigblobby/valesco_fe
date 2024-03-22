@@ -1,26 +1,20 @@
 import React from 'react';
 import { cn } from '@/lib/utils/classname.util';
+import { Button } from '@/lib/components/ui/button';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    withLabel?: boolean;
     labelText?: string;
     labelClassName?: string;
-    [key: string]: any;
 }
 
-export default React.forwardRef<HTMLInputElement, InputProps>((
-    {
-        withLabel = true,
-        labelText,
-        labelClassName,
-        id,
-        className,
-        type = 'text',
-        ...props
-    },
-    ref
-) => {
-
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({
+    labelText,
+    labelClassName,
+    id,
+    className,
+    type = 'text',
+    ...props
+}, ref) => {
     function generateInputClassNames(){
         return cn(
             'block w-full text-gray-900 bg-gray-50 rounded-sm p-2.5',
@@ -41,7 +35,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((
 
     return (
         <>
-            {withLabel && (
+            {labelText && (
                 <label
                     htmlFor={id}
                     className={generateLabelClassNames()}
@@ -60,3 +54,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((
         </>
     )
 });
+
+Button.displayName = "Input";
+
+export default Input;

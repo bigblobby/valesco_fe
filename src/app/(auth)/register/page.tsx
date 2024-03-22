@@ -22,7 +22,6 @@ export default function RegisterPage() {
                 <form action={formAction} className="space-y-4 md:space-y-6">
                     <div>
                         <Input
-                            withLabel
                             labelText="Your email"
                             id="email"
                             name="email"
@@ -33,7 +32,6 @@ export default function RegisterPage() {
                     </div>
                     <div>
                         <Input
-                            withLabel
                             labelText="Password"
                             id="password"
                             name="password"

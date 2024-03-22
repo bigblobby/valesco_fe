@@ -23,7 +23,6 @@ export default function LoginPage() {
                 <form action={formAction} className="space-y-4 md:space-y-6">
                     <div>
                         <Input
-                            withLabel
                             labelText="Your email"
                             id="email"
                             name="email"
@@ -34,7 +33,6 @@ export default function LoginPage() {
                     </div>
                     <div>
                         <Input
-                            withLabel={true}
                             labelText="Password"
                             id="password"
                             name="password"
@@ -44,7 +42,7 @@ export default function LoginPage() {
                         />
                     </div>
                     {state?.error && (
-                        <Alert type="danger">
+                        <Alert variant="danger">
                             {state.error}
                         </Alert>
                     )}

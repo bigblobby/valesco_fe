@@ -25,7 +25,6 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                     <Text className="text-xs">Edit your profile</Text>
                     <div>
                         <Input
-                            withLabel
                             labelText="Username"
                             id="username"
                             name="username"
@@ -34,7 +33,6 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                     </div>
                     <div>
                         <Input
-                            withLabel
                             labelText="First name"
                             id="first_name"
                             name="first_name"
@@ -43,7 +41,6 @@ export default function ProfileForm({user, profile}: ProfileFormProps) {
                     </div>
                     <div>
                         <Input
-                            withLabel
                             labelText="Last name"
                             id="last_name"
                             name="last_name"

@@ -30,7 +30,6 @@ export default function ChangePassword() {
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                     <div>
                         <Input
-                            withLabel
                             labelText="Your new password"
                             required
                             id="password"

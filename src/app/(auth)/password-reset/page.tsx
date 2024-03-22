@@ -19,7 +19,6 @@ export default function PasswordResetPage() {
                 <form action={formAction} className="space-y-4 md:space-y-6">
                     <div>
                         <Input
-                            withLabel
                             id="email"
                             name="email"
                             labelText="Your email"

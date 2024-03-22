@@ -9,7 +9,6 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/lib/components/ui/pagination';
 import Heading from '@/lib/components/ui/heading';
-import Badge from '@/lib/components/ui/badge';
 
 export default function Workouts() {
     const router = useRouter();
