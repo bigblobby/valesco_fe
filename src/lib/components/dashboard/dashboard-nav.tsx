@@ -7,12 +7,13 @@ import Link from 'next/link';
 import { useQueryClient } from '@tanstack/react-query';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import { SidebarContext } from '@/lib/providers/sidebar-provider';
-import { ProfileContext } from '@/lib/providers/profile-provider';
 import { useSession } from '@/lib/hooks/useSession';
+import useProfileApi from '@/lib/hooks/api/useProfileApi';
 
 export default function DashboardNav() {
-    const { profile } = useContext(ProfileContext);
     const { session, supabase } = useSession();
+    const { getProfile } = useProfileApi();
+    const { data } = getProfile();
     const queryClient = useQueryClient();
     const router = useRouter();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -48,9 +49,9 @@ export default function DashboardNav() {
                     <div className={"absolute top-6 right-0 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow dark:bg-gray-700 dark:divide-gray-600 " + (menuOpen ? "" : "hidden")} id="user-dropdown">
                         <div className="px-4 py-3">
                             <span className="block text-sm text-gray-900 dark:text-white">
-                                {profile.first_name ? (
+                                {data?.data.first_name ? (
                                     <>
-                                        {profile.first_name} {profile.last_name ?? ''}
+                                        {data?.data.first_name} {data?.data.last_name ?? ''}
                                     </>
                                 ) : "Hi there"}
                             </span>
