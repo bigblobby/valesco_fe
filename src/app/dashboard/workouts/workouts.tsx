@@ -9,6 +9,8 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/lib/components/ui/pagination';
 import Heading from '@/lib/components/ui/heading';
+import CreateNewWorkoutForm from '@/lib/components/forms/create-new-workout-form';
+import DumbbellIcon from '@/lib/components/icons/dumbbell-icon';
 
 export default function Workouts() {
     const router = useRouter();
@@ -84,6 +86,19 @@ export default function Workouts() {
                             )}
                         </PaginationContent>
                     </Pagination>
+                </div>
+            </div>
+        )
+    }
+
+    if (data?.data.workouts.length === 0) {
+        return (
+            <div className="flex justify-center items-center h-full">
+                <div className="flex flex-col items-center justify-center text-center">
+                    <DumbbellIcon />
+                    <Heading as="h1" variant="h6">No workouts</Heading>
+                    <Text className="mb-6">Get started by generating a new workout</Text>
+                    <CreateNewWorkoutForm />
                 </div>
             </div>
         )

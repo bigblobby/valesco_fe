@@ -6,6 +6,8 @@ import DashboardNav from '@/lib/components/dashboard/dashboard-nav';
 import DashboardSidebar from '@/lib/components/dashboard/dashboard-sidebar';
 import SessionProvider from '@/lib/providers/session-provider';
 import SidebarProvider from '@/lib/providers/sidebar-provider';
+import SettingsProvider from '@/lib/providers/settings-provider';
+import ProfileProvider from '@/lib/providers/profile-provider';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -26,7 +28,17 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
     }
 
     if (session) {
-        const { data: profile, error } = await supabase.from('profiles').select('*').eq('id', session.user?.id);
+        const { data: profile, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', session.user?.id)
+            .single();
+
+        const { data: settings, error: settingsError } = await supabase
+            .from('settings')
+            .select('*')
+            .eq('id', session.user?.id)
+            .single();
 
         if (error || !session?.user) {
             redirect('/login');
@@ -34,23 +46,27 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
 
         return (
             <SessionProvider session={session}>
-                <section className="bg-gray-50 dark:bg-gray-900">
-                    <div className="min-h-screen overflow-hidden">
-                        <div className="text-gray-900 dark:text-white">
-                            <SidebarProvider>
-                                <div className="relative">
-                                    <DashboardSidebar />
-                                    <main className="md:pl-72">
-                                        <DashboardNav user={session.user} userProfile={profile[0]} />
-                                        <div className="p-5 h-[calc(100vh-65px)] overflow-auto">
-                                            {children}
+                <ProfileProvider profile={profile}>
+                    <SettingsProvider settings={settings}>
+                        <section className="bg-gray-50 dark:bg-gray-900">
+                            <div className="min-h-screen overflow-hidden">
+                                <div className="text-gray-900 dark:text-white">
+                                    <SidebarProvider>
+                                        <div className="relative">
+                                            <DashboardSidebar />
+                                            <main className="md:pl-72">
+                                                <DashboardNav />
+                                                <div className="p-5 h-[calc(100vh-65px)] overflow-auto">
+                                                    {children}
+                                                </div>
+                                            </main>
                                         </div>
-                                    </main>
+                                    </SidebarProvider>
                                 </div>
-                            </SidebarProvider>
-                        </div>
-                    </div>
-                </section>
+                            </div>
+                        </section>
+                    </SettingsProvider>
+                </ProfileProvider>
             </SessionProvider>
         );
     }

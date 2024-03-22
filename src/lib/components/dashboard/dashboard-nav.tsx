@@ -2,15 +2,17 @@
 
 import { useContext, useRef, useState } from 'react';
 import { useOutsideClick } from '@/lib/hooks/useOutsideClick';
-import { createClient } from '@/lib/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useQueryClient } from '@tanstack/react-query';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import { SidebarContext } from '@/lib/providers/sidebar-provider';
+import { ProfileContext } from '@/lib/providers/profile-provider';
+import { useSession } from '@/lib/hooks/useSession';
 
-export default function DashboardNav({userProfile, user}: any) {
-    const supabase = createClient();
+export default function DashboardNav() {
+    const { profile } = useContext(ProfileContext);
+    const { session, supabase } = useSession();
     const queryClient = useQueryClient();
     const router = useRouter();
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -23,7 +25,7 @@ export default function DashboardNav({userProfile, user}: any) {
 
     const handleSignOut = async () => {
         queryClient.removeQueries();
-        await supabase.auth.signOut();
+        await supabase?.auth.signOut();
         router.push('/login');
     };
 
@@ -46,13 +48,13 @@ export default function DashboardNav({userProfile, user}: any) {
                     <div className={"absolute top-6 right-0 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow dark:bg-gray-700 dark:divide-gray-600 " + (menuOpen ? "" : "hidden")} id="user-dropdown">
                         <div className="px-4 py-3">
                             <span className="block text-sm text-gray-900 dark:text-white">
-                                {userProfile.first_name ? (
+                                {profile.first_name ? (
                                     <>
-                                        {userProfile.first_name} {userProfile.last_name ?? ''}
+                                        {profile.first_name} {profile.last_name ?? ''}
                                     </>
                                 ) : "Hi there"}
                             </span>
-                            <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user.email}</span>
+                            <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{session?.user.email}</span>
                         </div>
                         <ul className="py-2" aria-labelledby="user-menu-button">
                             <li>

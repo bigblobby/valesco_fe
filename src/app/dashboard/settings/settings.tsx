@@ -7,15 +7,20 @@ import { Button } from '@/lib/components/ui/button';
 import { Form, FormField, FormControl, FormItem, FormLabel, FormMessage } from '@/lib/components/ui/form/form';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/lib/components/ui/form/select';
 import Input from '@/lib/components/ui/form/input';
+import { useContext } from 'react';
+import { SettingsContext } from '@/lib/providers/settings-provider';
 
 export default function Settings(){
     const {session} = useSession();
+    const { settings } = useContext(SettingsContext);
     const form = useForm({
         defaultValues: {
-            theme: 'system',
+            theme: settings.theme || 'system',
             test: '',
         }
     });
+
+    console.log(settings);
 
     if (!session) return null;
 
