@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Settings from '@/app/dashboard/settings/settings';
 import { cookies } from 'next/headers';
 import { createClient } from '@/lib/utils/supabase/server';
-import ProfileForm from '@/lib/components/forms/profile-form';
 
 export const metadata: Metadata = {
     title: 'Settings',

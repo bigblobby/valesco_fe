@@ -12,7 +12,7 @@ import Link from '@/lib/components/ui/link';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import * as z from 'zod';
 import { useState } from 'react';
-import { Dialog, DialogClose, DialogOverlay, DialogPortal, DialogTrigger, DialogContent } from '@/lib/components/ui/dialog';
+import { Dialog, DialogClose, DialogTrigger, DialogContent } from '@/lib/components/ui/dialog';
 
 const workoutFormSchema = z.object({
     name: z.string(),
@@ -21,7 +21,7 @@ const workoutFormSchema = z.object({
 type WorkoutFormInputs = z.infer<typeof workoutFormSchema>;
 
 export default function CreateNewWorkoutForm() {
-    const [open, setOpen] = useState<boolean>(false);
+    const [ open, setOpen ] = useState<boolean>(false);
     const { createWorkout } = useWorkoutAPI();
     const { mutate, data, isPending } = createWorkout();
     const {
@@ -64,8 +64,8 @@ export default function CreateNewWorkoutForm() {
         });
     }
 
-    function onSubmit(d: WorkoutFormInputs) {
-        toast.promise(create(d), {
+    function onSubmit(data: WorkoutFormInputs) {
+        toast.promise(create(data), {
             loading: 'Generating workout...',
             error: 'Can\'t generate workout',
             success: 'Workout generated!',

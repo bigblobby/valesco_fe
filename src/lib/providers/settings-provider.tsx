@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 
 interface ISettingsContext {
     settings?: any;
@@ -11,6 +11,10 @@ export const SettingsContext = createContext<ISettingsContext>({
 });
 
 export default function SettingsProvider({ settings, children }: any){
+    useEffect(() => {
+        localStorage.setItem('theme', settings.theme);
+    }, [settings.theme]);
+
     return (
         <SettingsContext.Provider value={{settings: settings}}>
             {children}

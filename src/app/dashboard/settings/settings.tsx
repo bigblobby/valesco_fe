@@ -1,31 +1,58 @@
 'use client';
 
-import { useSession } from '@/lib/hooks/useSession';
 import Card from '@/lib/components/ui/card';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/lib/components/ui/button';
 import { Form, FormField, FormControl, FormItem, FormLabel, FormMessage } from '@/lib/components/ui/form/form';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/lib/components/ui/form/select';
-import Input from '@/lib/components/ui/form/input';
 import { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { SettingsContext } from '@/lib/providers/settings-provider';
+import useSettingsApi from '@/lib/hooks/api/useSettingsApi';
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useTheme } from 'next-themes';
+
+const settingsFormSchema = z.object({
+    theme: z.enum(['system', 'light', 'dark']),
+});
+
+type SettingsFormInputs = z.infer<typeof settingsFormSchema>;
 
 export default function Settings(){
-    const {session} = useSession();
+    const { setTheme } = useTheme();
     const { settings } = useContext(SettingsContext);
+    const { updateSettings } = useSettingsApi();
+    const { mutate, isPending } = updateSettings();
     const form = useForm({
         defaultValues: {
             theme: settings.theme || 'system',
-            test: '',
-        }
+        },
+        resolver: zodResolver(settingsFormSchema),
     });
 
-    console.log(settings);
+    function update(data: any){
+        return new Promise((resolve, reject) => {
+            mutate(data, {
+                onSuccess: () => {
+                    localStorage.setItem('theme', data.theme);
+                    setTheme(data.theme);
+                    resolve(void 0);
+                },
 
-    if (!session) return null;
+                onError: () => {
+                    reject();
+                },
+            });
+        });
+    }
 
-    function onSubmit(data: any){
-        console.log(data);
+    function onSubmit(data: SettingsFormInputs){
+        toast.promise(update(data), {
+            loading: 'Updating settings...',
+            error: 'Can\'t update settings',
+            success: 'Settings updated',
+        });
     }
 
     return (
@@ -56,20 +83,20 @@ export default function Settings(){
                             )}
                         />
 
-                        <FormField
-                            control={form.control}
-                            name="test"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Test</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Test" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <Button type="submit">Save</Button>
+                        {/*<FormField*/}
+                        {/*    control={form.control}*/}
+                        {/*    name="test"*/}
+                        {/*    render={({ field }) => (*/}
+                        {/*        <FormItem>*/}
+                        {/*            <FormLabel>Test</FormLabel>*/}
+                        {/*            <FormControl>*/}
+                        {/*                <Input placeholder="Test" {...field} />*/}
+                        {/*            </FormControl>*/}
+                        {/*            <FormMessage />*/}
+                        {/*        </FormItem>*/}
+                        {/*    )}*/}
+                        {/*/>*/}
+                        <Button type="submit" disabled={isPending}>Save</Button>
                     </form>
                 </Form>
             </Card>
