@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { cookies } from 'next/headers';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import DashboardNav from '@/lib/components/dashboard/dashboard-nav';
@@ -15,8 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Layout({ children, }: Readonly<{ children: React.ReactNode; }>) {
-    const cookieStore = cookies();
-    const supabase = createClient(cookieStore);
+    const supabase = createClient();
 
     const {
         data: { session },

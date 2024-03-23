@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 import type { NextRequest } from 'next/server';
@@ -9,8 +8,7 @@ export async function GET(request: NextRequest) {
     const code = requestUrl.searchParams.get('code') || requestUrl.searchParams.get('token');
 
     if (code) {
-        const cookieStore = cookies();
-        const supabase = createClient(cookieStore);
+        const supabase = createClient();
         await supabase.auth.exchangeCodeForSession(code);
     }
 

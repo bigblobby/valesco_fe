@@ -61,6 +61,7 @@ export default function SettingsForm({ settings }: SettingsFormProps) {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
                 <Heading as="h1" variant="h4">Settings</Heading>
                 <Text className="text-xs">Edit your settings</Text>
+
                 <FormField
                     control={form.control}
                     name="theme"
