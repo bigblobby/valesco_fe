@@ -19,7 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 const workoutFormSchema = z.object({
     name: z.string(),
     length: z.enum(['15', '20', '30', '45', '60', '120']).nullable(),
-    type: z.enum(['gym_class', 'wod']),
+    type: z.enum(['gym_class', 'wod', 'hero']),
 });
 
 type WorkoutFormInputs = z.infer<typeof workoutFormSchema>;
@@ -31,10 +31,13 @@ export default function CreateNewWorkoutForm() {
     const form = useForm<WorkoutFormInputs>({
         resolver: zodResolver(workoutFormSchema),
         defaultValues: {
+            name: '',
             type: 'gym_class',
             length: '60'
         }
     });
+
+    const type = form.watch('type');
 
     function create(formInputs: WorkoutFormInputs) {
         return new Promise((resolve, reject) => {
@@ -117,6 +120,7 @@ export default function CreateNewWorkoutForm() {
                                                 <SelectContent>
                                                     <SelectItem value="gym_class">Gym class</SelectItem>
                                                     <SelectItem value="wod">WOD</SelectItem>
+                                                    <SelectItem value="hero">Hero WOD</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                             <FormMessage />
@@ -126,33 +130,35 @@ export default function CreateNewWorkoutForm() {
                             />
                         </div>
 
-                        <FormField
-                            control={form.control}
-                            name="length"
-                            render={({ field }) => {
-                                return (
-                                    <FormItem>
-                                        <FormLabel>Length</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue="60">
-                                            <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select the workout length" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                <SelectItem value="15">15 mins</SelectItem>
-                                                <SelectItem value="20">20 mins</SelectItem>
-                                                <SelectItem value="30">30 mins</SelectItem>
-                                                <SelectItem value="45">45 mins</SelectItem>
-                                                <SelectItem value="60">1 hour</SelectItem>
-                                                <SelectItem value="120">2 hours</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                        <FormMessage />
-                                    </FormItem>
-                                );
-                            }}
-                        />
+                        {type !== 'hero' && (
+                            <FormField
+                                control={form.control}
+                                name="length"
+                                render={({ field }) => {
+                                    return (
+                                        <FormItem>
+                                            <FormLabel>Length</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue="60">
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select the workout length" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    <SelectItem value="15">15 mins</SelectItem>
+                                                    <SelectItem value="20">20 mins</SelectItem>
+                                                    <SelectItem value="30">30 mins</SelectItem>
+                                                    <SelectItem value="45">45 mins</SelectItem>
+                                                    <SelectItem value="60">1 hour</SelectItem>
+                                                    <SelectItem value="120">2 hours</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage />
+                                        </FormItem>
+                                    );
+                                }}
+                            />
+                        )}
 
                         <Button type="submit" disabled={isPending}>
                             Generate workout

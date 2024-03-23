@@ -52,41 +52,43 @@ export default function Workouts() {
                     ))}
                 </ul>
 
-                <div className="mt-8 mb-3">
-                    <Pagination>
-                        <PaginationContent>
-                            {page !== 1 && (
-                                <PaginationItem>
-                                    <PaginationPrevious onClick={() => setPage((prev) => prev - 1)} />
-                                </PaginationItem>
-                            )}
-                            <PaginationItem>
-                                <PaginationLink isActive={page === 1} onClick={() => setPage(1)}>1</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationEllipsis />
-                            </PaginationItem>
-                            {page !== maxPage && page !== 1 && (
-                                <>
+                {maxPage !== 1 && (
+                    <div className="mt-8 mb-3">
+                        <Pagination>
+                            <PaginationContent>
+                                {page !== 1 && (
                                     <PaginationItem>
-                                        <PaginationLink isActive>{page}</PaginationLink>
+                                        <PaginationPrevious onClick={() => setPage((prev) => prev - 1)} />
                                     </PaginationItem>
-                                    <PaginationItem>
-                                        <PaginationEllipsis />
-                                    </PaginationItem>
-                                </>
-                            )}
-                            <PaginationItem>
-                                <PaginationLink  isActive={page === maxPage} onClick={() => setPage(maxPage)}>{maxPage}</PaginationLink>
-                            </PaginationItem>
-                            {page !== maxPage && (
+                                )}
                                 <PaginationItem>
-                                    <PaginationNext onClick={() => setPage((prev) => prev + 1)} />
+                                    <PaginationLink isActive={page === 1} onClick={() => setPage(1)}>1</PaginationLink>
                                 </PaginationItem>
-                            )}
-                        </PaginationContent>
-                    </Pagination>
-                </div>
+                                <PaginationItem>
+                                    <PaginationEllipsis />
+                                </PaginationItem>
+                                {page !== maxPage && page !== 1 && (
+                                    <>
+                                        <PaginationItem>
+                                            <PaginationLink isActive>{page}</PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationEllipsis />
+                                        </PaginationItem>
+                                    </>
+                                )}
+                                <PaginationItem>
+                                    <PaginationLink  isActive={page === maxPage} onClick={() => setPage(maxPage)}>{maxPage}</PaginationLink>
+                                </PaginationItem>
+                                {page !== maxPage && (
+                                    <PaginationItem>
+                                        <PaginationNext onClick={() => setPage((prev) => prev + 1)} />
+                                    </PaginationItem>
+                                )}
+                            </PaginationContent>
+                        </Pagination>
+                    </div>
+                )}
             </div>
         )
     }
