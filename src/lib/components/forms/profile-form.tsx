@@ -163,7 +163,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
                                 name="weight"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-xs text-muted">Weight (lbs)</FormLabel>
+                                        <FormLabel>Weight (lbs)</FormLabel>
                                         <FormControl>
                                             <Input type="number" {...field} placeholder="175" />
                                         </FormControl>
