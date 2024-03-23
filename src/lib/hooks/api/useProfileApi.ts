@@ -25,8 +25,8 @@ export default function useProfileApi() {
                 return response.data;
             },
 
-            onSuccess: () => {
-                queryClient.invalidateQueries({ queryKey: [PROFILE_QUERY_KEY] });
+            onSuccess: (data) => {
+                queryClient.setQueryData([PROFILE_QUERY_KEY], data)
             }
         });
     }

@@ -25,8 +25,8 @@ export default function useSettingsApi() {
                 return response.data;
             },
 
-            onSuccess: () => {
-                queryClient.invalidateQueries({ queryKey: [SETTINGS_QUERY_KEY] });
+            onSuccess: (data) => {
+                queryClient.setQueryData([SETTINGS_QUERY_KEY], data);
             }
         });
     }

@@ -24,9 +24,9 @@ export default function SessionProvider({
     useEffect(() => {
         const { data: { subscription} } = supabase.auth.onAuthStateChange(
             (event, session) => {
-                console.log(new Date())
-                console.log('Event:', event);
-                console.log('Session:', session);
+                // console.log(new Date())
+                // console.log('Event:', event);
+                // console.log('Session:', session);
             })
 
         return () => {
