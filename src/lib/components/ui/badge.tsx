@@ -39,13 +39,13 @@ export default function Badge({
         }
 
         if (variant === 'solid') {
-            if (color === 'default') classNames += 'border-white bg-black text-white dark:bg-white dark:text-black ';
-            if (color === 'blue') classNames += 'border-blue-500 bg-blue-500 dark:border-blue-600 bg-blue-600 text-white ';
-            if (color === 'green') classNames += 'border-green-600 bg-green-600 dark:border-green-600 bg-green-600 text-white ';
-            if (color === 'red') classNames += 'border-red-600 bg-red-600 dark:border-red-600 bg-red-600 text-white ';
-            if (color === 'yellow') classNames += 'border-yellow-500 bg-yellow-500 dark:border-yellow-500 bg-yellow-500 text-white ';
-            if (color === 'purple') classNames += 'border-purple-500 bg-purple-500 dark:border-purple-500 bg-purple-500 text-white ';
-            if (color === 'orange') classNames += 'border-orange-600 bg-orange-600 dark:border-orange-600 bg-orange-600 text-white ';
+            if (color === 'default') classNames += 'border-black bg-black text-white dark:border-white dark:bg-white dark:text-black ';
+            if (color === 'blue') classNames += 'border-blue-500 bg-blue-500 dark:border-blue-600 dark:bg-blue-600 text-white ';
+            if (color === 'green') classNames += 'border-green-600 bg-green-600 dark:border-green-600 dark:bg-green-600 text-white ';
+            if (color === 'red') classNames += 'border-red-600 bg-red-600 dark:border-red-600 dark:bg-red-600 text-white ';
+            if (color === 'yellow') classNames += 'border-yellow-500 bg-yellow-500 dark:border-yellow-500 dark:bg-yellow-500 text-white ';
+            if (color === 'purple') classNames += 'border-purple-500 bg-purple-500 dark:border-purple-500 dark:bg-purple-500 text-white ';
+            if (color === 'orange') classNames += 'border-orange-600 bg-orange-600 dark:border-orange-600 dark:bg-orange-600 text-white ';
         }
 
         return cn(

@@ -11,6 +11,9 @@ import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, Pagi
 import Heading from '@/lib/components/ui/heading';
 import CreateNewWorkoutForm from '@/lib/components/forms/create-new-workout-form';
 import DumbbellIcon from '@/lib/components/icons/dumbbell-icon';
+import Badge from '@/lib/components/ui/badge';
+import { TWorkout } from '@/lib/types/table.types';
+import WorkoutUtils from '@/lib/utils/workout.utils';
 
 export default function Workouts() {
     const router = useRouter();
@@ -36,16 +39,24 @@ export default function Workouts() {
         const maxPage = Math.ceil(data.data.count / 12);
 
         return (
-            <div>
-                <ul className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {data.data.workouts.map((workout: any, i: number) => (
-                        <li key={i}>
-                            <Link className="h-full block" asWrapper href={`/dashboard/workout/${workout.id}`}>
-                                <Card className="h-full">
+            <div className="xl:h-[calc(100vh-185px)]">
+                <ul className="grid gap-5 grid-cols-1 lg:grid-rows-4 xl:grid-rows-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:h-full">
+                    {data.data.workouts.map((workout: TWorkout) => (
+                        <li key={workout.id}>
+                            <Link className="block h-full" asWrapper href={`/dashboard/workout/${workout.id}`}>
+                                <Card className="h-full sm:p-4 md:p-8">
                                     <Heading as="h4" variant="h4" className="mb-1">{workout.name}</Heading>
                                     <Text className="text-xs">
                                         <Timestamp date={workout.created_at}/>
                                     </Text>
+                                    <div className="mt-3 inline-flex items-center flex-wrap gap-3">
+                                        {workout.length && workout.type !== 'hero' && (
+                                            <Badge variant="solid" size="extra-small" color="orange">{WorkoutUtils.getTimeLength(workout.length)}</Badge>
+                                        )}
+                                        {workout.type && (
+                                            <Badge variant="solid" size="extra-small" color="blue">{WorkoutUtils.getTypeName(workout.type)}</Badge>
+                                        )}
+                                    </div>
                                 </Card>
                             </Link>
                         </li>

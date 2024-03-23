@@ -17,14 +17,15 @@ export function useWorkoutAPI() {
             },
 
             onSuccess: () => {
-                queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY] });
+                void queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY, 'page'] });
+                void queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY, 'count'] });
             }
         });
     }
 
     function getAllWorkouts(page: number): UseQueryResult<ApiResponse<{workouts: TWorkout[], count: number}>> {
         return useQuery({
-            queryKey: [WORKOUT_QUERY_KEY, page],
+            queryKey: [WORKOUT_QUERY_KEY, 'page', page],
             queryFn: async () => {
                 const res = await GET<ApiResponse<TWorkout[]>>('/workouts', {
                     params: { page: page }
@@ -62,8 +63,8 @@ export function useWorkoutAPI() {
             },
 
             onSuccess: () => {
-                queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY] });
-                queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY, id] });
+                void queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY, 'page'] });
+                void queryClient.invalidateQueries({ queryKey: [WORKOUT_QUERY_KEY, 'count'] });
             }
         });
     }

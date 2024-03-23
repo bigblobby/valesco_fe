@@ -90,7 +90,9 @@ export type Database = {
           content: string
           created_at: string
           id: number
+          length: number | null
           name: string
+          type: Database["public"]["Enums"]["workout type"] | null
           updated_at: string | null
           user_id: string
         }
@@ -98,7 +100,9 @@ export type Database = {
           content: string
           created_at?: string
           id?: number
+          length?: number | null
           name: string
+          type?: Database["public"]["Enums"]["workout type"] | null
           updated_at?: string | null
           user_id?: string
         }
@@ -106,7 +110,9 @@ export type Database = {
           content?: string
           created_at?: string
           id?: number
+          length?: number | null
           name?: string
+          type?: Database["public"]["Enums"]["workout type"] | null
           updated_at?: string | null
           user_id?: string
         }
@@ -136,6 +142,7 @@ export type Database = {
         | "heavy"
         | "athlete"
       theme: "light" | "dark" | "system"
+      "workout type": "gym_class" | "wod" | "hero"
     }
     CompositeTypes: {
       [_ in never]: never
