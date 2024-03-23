@@ -7,14 +7,14 @@ import { Button } from '@/lib/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Form, FormField, FormControl, FormItem, FormLabel, FormMessage } from '@/lib/components/ui/form/form';
+import { Form, FormField, FormControl, FormItem, FormLabel, FormMessage, FormDescription } from '@/lib/components/ui/form/form';
 import { toast } from 'react-hot-toast';
 import useProfileApi from '@/lib/hooks/api/useProfileApi';
 import { TProfile } from '@/lib/types/table.types';
 
 const profileFormSchema = z.object({
     username: z.string(),
-    first_name: z.string(),
+    first_name: z.string().min(1),
     last_name: z.string(),
 });
 
@@ -63,6 +63,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
                 <Heading as="h1" variant="h4">Profile</Heading>
                 <Text className="text-xs">Edit your profile</Text>
+
                 <div>
                     <FormField
                         control={form.control}
@@ -73,6 +74,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
                                 <FormControl>
                                     <Input {...field} />
                                 </FormControl>
+                                <FormDescription>This is your public display name.</FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -88,6 +90,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
                                 <FormControl>
                                     <Input {...field} />
                                 </FormControl>
+                                <FormDescription>Your first name is private.</FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -103,6 +106,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
                                 <FormControl>
                                     <Input {...field} />
                                 </FormControl>
+                                <FormDescription>Your last name is private.</FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
