@@ -8,6 +8,7 @@ import Input from '@/lib/components/ui/form/input';
 import Text from '@/lib/components/ui/text';
 import Card from '@/lib/components/ui/card';
 import Heading from '@/lib/components/ui/heading';
+import { AlertWithDismiss } from '@/lib/components/ui/alert';
 
 export default function RegisterPage() {
     const [state, formAction] = useFormState(registerAction, null);
@@ -41,9 +42,9 @@ export default function RegisterPage() {
                         />
                     </div>
                     {state?.error && (
-                        <Text className="text-red-500 text-sm">
+                        <AlertWithDismiss key={Date.now()} variant="danger">
                             {state.error}
-                        </Text>
+                        </AlertWithDismiss>
                     )}
                     <SubmitWithStatus fullWidth>Sign up</SubmitWithStatus>
                     <Text className="text-sm font-light">

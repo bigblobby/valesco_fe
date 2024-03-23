@@ -32,10 +32,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
+    asChild = false,
     className,
     variant,
     size,
-    asChild = false,
     showSpinnerOnDisabled = true,
     disabled,
     children,

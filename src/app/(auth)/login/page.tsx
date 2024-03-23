@@ -5,7 +5,7 @@ import { useFormState } from 'react-dom';
 import { SubmitWithStatus } from '@/lib/components/ui/form/submit-with-status';
 import Input from '@/lib/components/ui/form/input';
 import Text from '@/lib/components/ui/text';
-import { Alert } from '@/lib/components/ui/alert';
+import { AlertWithDismiss } from '@/lib/components/ui/alert';
 import Link from '@/lib/components/ui/link';
 import Card from '@/lib/components/ui/card';
 import Heading from '@/lib/components/ui/heading';
@@ -42,9 +42,9 @@ export default function LoginPage() {
                         />
                     </div>
                     {state?.error && (
-                        <Alert variant="danger">
+                        <AlertWithDismiss key={Date.now()} variant="danger">
                             {state.error}
-                        </Alert>
+                        </AlertWithDismiss>
                     )}
                     <div>
                         <Link className="text-sm" href="/password-reset">Forgot password?</Link>

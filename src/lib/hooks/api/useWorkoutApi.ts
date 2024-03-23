@@ -6,7 +6,7 @@ import { TWorkout } from '@/lib/types/table.types';
 import { WORKOUT_QUERY_KEY } from '@/lib/constants/query-key.constants';
 
 export function useWorkoutAPI() {
-    const { GET, POST, PUT, DELETE } = useAPI();
+    const { GET, POST, DELETE } = useAPI();
     const queryClient = useQueryClient();
 
     function createWorkout(): UseMutationResult<ApiResponse<TWorkout>> {

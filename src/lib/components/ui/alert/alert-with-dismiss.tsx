@@ -7,6 +7,7 @@ import { AlertWithDismissProps } from '@/lib/components/ui/alert/alert.interface
  * YOU MUST PROVIDE A KEY WHEN USING THIS COMPONENT
  * THIS WILL FORCE THE COMPONENT TO RERENDER WHICH
  * NEEDS TO HAPPEN TO RESET THE VISIBLE PROPERTY.
+ * (Allowing for the alert to display again once it has been dismissed)
  *
  * CHANGING THE KEY WILL FORCE A RERENDER, WE CAN
  * USE Date.now() AS THIS WORKS IN MOST CASES.

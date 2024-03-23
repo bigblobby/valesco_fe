@@ -8,6 +8,7 @@ import { SidebarContext } from '@/lib/providers/sidebar-provider';
 import { cn } from '@/lib/utils/classname.util';
 import { useOutsideClick } from '@/lib/hooks/useOutsideClick';
 import CreateNewWorkoutForm from '@/lib/components/forms/create-new-workout-form';
+import Heading from '@/lib/components/ui/heading';
 
 export default function DashboardSidebar() {
     const pathname = usePathname();
@@ -38,7 +39,7 @@ export default function DashboardSidebar() {
     return (
         <aside ref={sidebarRef} className={cn(`w-72 h-full absolute z-50 top-0 left-0 border-r bg-gray-800 border-slate-50/[0.26] transition-transform -translate-x-full md:translate-x-0 ${sidebarContext.active ? 'translate-x-0' : ''}`)}>
             <div className="relative p-4 border-b border-slate-50/[0.26]">
-                <h1 className="text-2xl text-center font-semibold text-white">Valesco</h1>
+                <Heading as="h1" variant="h4" className="text-center text-white font-semibold">Valesco</Heading>
                 <div className="block md:hidden absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-white" onClick={closeSidebar}>
                     <XMarkIcon width={24} height={24} />
                 </div>

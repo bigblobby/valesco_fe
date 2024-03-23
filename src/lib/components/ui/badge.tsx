@@ -48,7 +48,6 @@ export default function Badge({
             if (color === 'orange') classNames += 'border-orange-600 bg-orange-600 dark:border-orange-600 bg-orange-600 text-white ';
         }
 
-
         return cn(
             classNames,
             className,
