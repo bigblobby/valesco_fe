@@ -9,14 +9,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import Heading from '@/lib/components/ui/heading';
 import Text from '@/lib/components/ui/text';
+import { TSettings } from '@/lib/types/table.types';
 
 const settingsFormSchema = z.object({
-    theme: z.enum(["system", "light", 'dark'])
+    theme: z.enum(['system', 'light', 'dark'])
 });
 
 type SettingsFormInputs = z.infer<typeof settingsFormSchema>;
 
-export default function SettingsForm({settings}: any){
+interface SettingsFormProps {
+    settings: TSettings;
+}
+
+export default function SettingsForm({ settings }: SettingsFormProps) {
     const { setTheme } = useTheme();
     const { updateSettings } = useSettingsApi();
     const { mutate, isPending } = updateSettings();
@@ -27,7 +32,7 @@ export default function SettingsForm({settings}: any){
         }
     });
 
-    function update(data: any){
+    function update(data: any) {
         return new Promise((resolve, reject) => {
             mutate(data, {
                 onSuccess: () => {
@@ -43,7 +48,7 @@ export default function SettingsForm({settings}: any){
         });
     }
 
-    function onSubmit(data: SettingsFormInputs){
+    function onSubmit(data: SettingsFormInputs) {
         toast.promise(update(data), {
             loading: 'Updating settings...',
             error: 'Can\'t update settings',
@@ -77,12 +82,12 @@ export default function SettingsForm({settings}: any){
                                 </Select>
                                 <FormMessage />
                             </FormItem>
-                        )
+                        );
                     }}
                 />
 
                 <Button type="submit" className="w-full" disabled={isPending}>Save</Button>
             </form>
         </Form>
-    )
+    );
 }
