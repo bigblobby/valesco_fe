@@ -11,34 +11,40 @@ export type Database = {
     Tables: {
       profiles: {
         Row: {
-          avatar_url: string | null
+          activity_level: Database["public"]["Enums"]["activity level"] | null
           created_at: string
           first_name: string | null
+          height_feet: number | null
+          height_inches: number | null
           id: string
           last_name: string | null
           updated_at: string | null
           username: string | null
-          website: string | null
+          weight: number | null
         }
         Insert: {
-          avatar_url?: string | null
+          activity_level?: Database["public"]["Enums"]["activity level"] | null
           created_at?: string
           first_name?: string | null
+          height_feet?: number | null
+          height_inches?: number | null
           id: string
           last_name?: string | null
           updated_at?: string | null
           username?: string | null
-          website?: string | null
+          weight?: number | null
         }
         Update: {
-          avatar_url?: string | null
+          activity_level?: Database["public"]["Enums"]["activity level"] | null
           created_at?: string
           first_name?: string | null
+          height_feet?: number | null
+          height_inches?: number | null
           id?: string
           last_name?: string | null
           updated_at?: string | null
           username?: string | null
-          website?: string | null
+          weight?: number | null
         }
         Relationships: [
           {
@@ -122,6 +128,13 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      "activity level":
+        | "none"
+        | "light"
+        | "moderate"
+        | "daily"
+        | "heavy"
+        | "athlete"
       theme: "light" | "dark" | "system"
     }
     CompositeTypes: {
