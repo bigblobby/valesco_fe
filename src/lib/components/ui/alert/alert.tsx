@@ -4,7 +4,7 @@ import { CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon, Inform
 import { AlertProps, AlertType } from '@/lib/components/ui/alert/alert.interfaces';
 
 export const alertVariants = cva(
-    'flex align-center w-full rounded-sm p-2.5 sm:text-sm',
+    'flex align-center w-full rounded-lg p-2.5 sm:text-sm',
     {
         variants: {
             variant: {

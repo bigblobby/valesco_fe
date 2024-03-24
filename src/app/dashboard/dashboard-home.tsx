@@ -32,7 +32,7 @@ export default function DashboardHome() {
     if (data?.data) {
         return (
             <div className="flex">
-                <Link asWrapper href="/dashboard/workouts" className="basis-full sm:basis-1/2 md:basis-1/3 border rounded shadow dark:shadow-none dark:border-slate-50/[0.16]">
+                <Link asWrapper href="/dashboard/workouts" className="basis-full sm:basis-1/2 md:basis-1/3 border rounded-lg shadow dark:shadow-none dark:border-slate-50/[0.16]">
                     <Card className="flex flex-col justify-center items-center">
                         <Text className="text-2xl text-gray-800 font-medium">Workouts</Text>
                         <Text className="text-xs">(Total generated)</Text>

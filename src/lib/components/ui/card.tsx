@@ -11,7 +11,7 @@ export default function Card({
 }: CardProps){
     function generateClassName(){
         return cn(
-            'w-full bg-white rounded-sm p-6 sm:p-8 shadow',
+            'w-full bg-white rounded-lg p-6 sm:p-8 shadow',
             'dark:bg-gray-800 dark:border-gray-700',
             className,
         );

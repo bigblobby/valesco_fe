@@ -13,7 +13,7 @@ export default function Profile() {
 
     if (data) {
         return (
-            <Card className="p-5 sm:p-5 max-w-[1200px] mx-auto">
+            <Card className="p-5 max-w-[1200px] mx-auto">
                 <ProfileForm profile={data.data} />
             </Card>
         );

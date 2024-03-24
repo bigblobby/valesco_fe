@@ -17,7 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({
 }, ref) => {
     function generateInputClassNames(){
         return cn(
-            'block w-full text-gray-900 rounded-sm border p-2.5',
+            'block w-full text-gray-900 rounded-lg border p-2.5',
             'sm:text-sm',
             'focus:ring-primary-600 focus:border-primary-600',
             'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
