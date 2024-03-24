@@ -23,10 +23,10 @@ export default function Badge({
     function generateClassName() {
         let classNames = 'font-medium rounded-full border-2 ';
 
-        if (size === 'extra-small') classNames += 'text-xs py-0.5 px-1 ';
-        if (size === 'small') classNames += 'text-xs py-1 px-2 ';
-        if (size === 'default') classNames += 'text-sm py-1 px-2 ';
-        if (size === 'large') classNames += 'py-1 px-2 ';
+        if (size === 'extra-small') classNames += 'text-xs py-0.5 px-1.5 ';
+        if (size === 'small') classNames += 'text-xs py-1 px-2.5 ';
+        if (size === 'default') classNames += 'text-sm py-1 px-2.5 ';
+        if (size === 'large') classNames += 'py-1 px-2.5 ';
 
         if (variant === 'outline') {
             if (color === 'default') classNames += 'border-black dark:border-white ';

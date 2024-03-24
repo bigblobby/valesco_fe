@@ -13,6 +13,8 @@ import { ArrowLeftIcon } from '@heroicons/react/20/solid';
 import { Dialog, DialogClose, DialogTrigger, DialogContent } from '@/lib/components/ui/dialog';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import Badge from '@/lib/components/ui/badge';
+import WorkoutUtils from '@/lib/utils/workout.utils';
 
 interface WorkoutPageProps {
     params: {
@@ -66,9 +68,19 @@ export default function WorkoutPage({
                     </Button>
                     <Card className="mt-4">
                         <Heading as="h1" variant="h3">{data.data.name}</Heading>
-                        <Text className="text-sm mb-4">
+                        <Text className="text-sm mb-3">
                             <Timestamp date={data.data.created_at} />
                         </Text>
+
+                        <div className="mb-10 inline-flex items-center flex-wrap gap-3">
+                            {data.data.length && data.data.type !== 'hero' && (
+                                <Badge variant="solid" color="orange">{WorkoutUtils.getTimeLength(data.data.length)}</Badge>
+                            )}
+                            {data.data.type && (
+                                <Badge variant="solid" color="blue">{WorkoutUtils.getTypeName(data.data.type)}</Badge>
+                            )}
+                        </div>
+
                         <Markdown className="markdown text-gray-600 dark:text-gray-400">{data.data.content}</Markdown>
 
                         <Dialog open={deleteModalOpen} onOpenChange={setDeleteModalOpen}>
@@ -78,7 +90,7 @@ export default function WorkoutPage({
                             <DialogContent>
 
                                 <div className="max-w-80 mx-auto">
-                                    <Heading as="h5" className="text-center">Are you sure you want to delete this workout?</Heading>
+                                    <Heading as="h5" variant="h5" className="text-center">Are you sure you want to delete this workout?</Heading>
                                     <Text className="text-center mt-3">You won't be able to revert this action.</Text>
 
                                     <div className="flex justify-center gap-4 mt-5">
