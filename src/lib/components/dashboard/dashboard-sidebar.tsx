@@ -1,7 +1,7 @@
 'use client';
 
 import { default as NavLink } from 'next/link';
-import { HomeIcon, ListBulletIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, ListBulletIcon, XMarkIcon, FolderIcon, CalendarIcon } from '@heroicons/react/24/outline';
 import { usePathname } from 'next/navigation';
 import { useContext, useRef } from 'react';
 import { SidebarContext } from '@/lib/providers/sidebar-provider';
@@ -29,6 +29,16 @@ export default function DashboardSidebar() {
             title: 'Workouts',
             link: '/dashboard/workouts',
             icon: <ListBulletIcon width={24} height={24} />,
+        },
+        {
+            title: 'Library',
+            link: '/dashboard/library',
+            icon: <FolderIcon width={24} height={24} />,
+        },
+        {
+            title: 'Log',
+            link: '/dashboard/log',
+            icon: <CalendarIcon width={24} height={24} />,
         },
     ]
 

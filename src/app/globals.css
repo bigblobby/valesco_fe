@@ -41,3 +41,7 @@
 .markdown ol {
     margin-bottom: 2rem;
 }
+
+.dangerous-container p {
+    margin-top: 2rem;
+}
