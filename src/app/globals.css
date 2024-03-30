@@ -45,3 +45,7 @@
 .dangerous-container p {
     margin-top: 2rem;
 }
+
+.dangerous-container a {
+    text-decoration: underline;
+}
