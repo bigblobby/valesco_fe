@@ -60,7 +60,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
     }
 
     function onSubmit(data: ProfileFormInputs) {
-        toast.promise(update(data), {
+        void toast.promise(update(data), {
             loading: 'Updating profile...',
             error: 'Can\'t update profile',
             success: 'Profile updated',

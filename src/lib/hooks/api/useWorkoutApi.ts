@@ -23,11 +23,11 @@ export function useWorkoutAPI() {
         });
     }
 
-    function getAllWorkouts(page: number): UseQueryResult<ApiResponse<{workouts: TWorkout[], count: number}>> {
+    function getAllWorkouts(page: number): UseQueryResult<ApiResponse<{ workouts: TWorkout[], count: number }>> {
         return useQuery({
             queryKey: [WORKOUT_QUERY_KEY, 'page', page],
             queryFn: async () => {
-                const res = await GET<ApiResponse<{workouts: TWorkout[], count: number}>>('/workouts', {
+                const res = await GET<ApiResponse<{ workouts: TWorkout[], count: number }>>('/workouts', {
                     params: { page: page }
                 });
                 return res.data;
@@ -52,7 +52,7 @@ export function useWorkoutAPI() {
                 const response = await GET<ApiResponse<number>>('/workouts/count');
                 return response.data;
             }
-        })
+        });
     }
 
     function deleteWorkoutById(id: string) {

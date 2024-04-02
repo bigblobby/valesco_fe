@@ -49,7 +49,7 @@ export default function SettingsForm({ settings }: SettingsFormProps) {
     }
 
     function onSubmit(data: SettingsFormInputs) {
-        toast.promise(update(data), {
+        void toast.promise(update(data), {
             loading: 'Updating settings...',
             error: 'Can\'t update settings',
             success: 'Settings updated',

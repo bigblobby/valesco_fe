@@ -48,7 +48,7 @@ export default function WorkoutPage({
     }
 
     function handleDelete() {
-        toast.promise(deleteWorkout(), {
+        void toast.promise(deleteWorkout(), {
             loading: 'Deleting...',
             error: 'There was a problem deleting this workout',
             success: 'Successfully deleted'

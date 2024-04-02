@@ -5,18 +5,13 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { workoutPreMadeFormSchema } from '@/lib/validation/schemas/workout-pre-made.schema';
 import * as z from 'zod';
+import { useContext } from 'react';
+import { LibraryContext } from '@/lib/providers/library-provider';
 
 export type WorkoutPreMadeFormInputs = z.infer<typeof workoutPreMadeFormSchema>;
 
-interface LibrarySearchProps {
-    collection: WorkoutPreMadeFormInputs["collection"];
-    setCollection: (collection: WorkoutPreMadeFormInputs["collection"]) => void
-}
-
-export default function LibrarySearch({
-    collection,
-    setCollection
-}: LibrarySearchProps){
+export default function LibrarySearch(){
+    const { collection, setCollection } = useContext(LibraryContext);
     const form = useForm<WorkoutPreMadeFormInputs>({
         resolver: zodResolver(workoutPreMadeFormSchema),
         defaultValues: {

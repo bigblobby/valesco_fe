@@ -13,7 +13,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import * as z from 'zod';
 import { useState } from 'react';
 import { Dialog, DialogClose, DialogTrigger, DialogContent } from '@/lib/components/ui/dialog';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/lib/components/ui/form/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/lib/components/ui/form/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/lib/components/ui/form/select';
 
 const workoutFormSchema = z.object({
@@ -71,7 +71,7 @@ export default function CreateNewWorkoutForm() {
     }
 
     function onSubmit(data: WorkoutFormInputs) {
-        toast.promise(create(data), {
+        void toast.promise(create(data), {
             loading: 'Generating workout...',
             error: 'Can\'t generate workout',
             success: 'Workout generated!',
