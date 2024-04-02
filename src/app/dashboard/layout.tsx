@@ -48,19 +48,15 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
                     <SettingsProvider settings={settings}>
                         <section className="bg-gray-50 dark:bg-gray-900">
                             <div className="min-h-screen overflow-hidden">
-                                <div className="text-gray-900 dark:text-white">
-                                    <SidebarProvider>
-                                        <div className="relative">
-                                            <DashboardSidebar />
-                                            <main className="md:pl-72">
-                                                <DashboardNav />
-                                                <div className="p-5 h-[calc(100vh-65px)] overflow-auto">
-                                                    {children}
-                                                </div>
-                                            </main>
-                                        </div>
-                                    </SidebarProvider>
-                                </div>
+                                <SidebarProvider>
+                                    <div className="relative">
+                                        <DashboardSidebar />
+                                        <main className="md:pl-72">
+                                            <DashboardNav />
+                                            <div className="p-5 h-[calc(100vh-65px)] overflow-auto">{children}</div>
+                                        </main>
+                                    </div>
+                                </SidebarProvider>
                             </div>
                         </section>
                     </SettingsProvider>

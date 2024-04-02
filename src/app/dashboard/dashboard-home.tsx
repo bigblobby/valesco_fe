@@ -7,13 +7,14 @@ import { useWorkoutAPI } from '@/lib/hooks/api/useWorkoutApi';
 import Card from '@/lib/components/ui/card';
 import CreateNewWorkoutForm from '@/lib/components/forms/create-new-workout-form';
 import Heading from '@/lib/components/ui/heading';
+import PageSpinner from '@/lib/components/ui/page-spinner';
 
 export default function DashboardHome() {
     const { getWorkoutCount } = useWorkoutAPI();
     const { isLoading, isFetching, data } = getWorkoutCount();
 
-    if(isLoading || isFetching) {
-        return <span>Loading...</span>
+    if (isLoading || isFetching) {
+        return <PageSpinner />
     }
 
     if(!data?.data) {

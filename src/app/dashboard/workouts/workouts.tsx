@@ -14,6 +14,7 @@ import DumbbellIcon from '@/lib/components/icons/dumbbell-icon';
 import Badge from '@/lib/components/ui/badge';
 import { TWorkout } from '@/lib/types/table.types';
 import WorkoutUtils from '@/lib/utils/workout.utils';
+import PageSpinner from '@/lib/components/ui/page-spinner';
 
 export default function Workouts() {
     const router = useRouter();
@@ -28,11 +29,7 @@ export default function Workouts() {
     }, [searchParamPage, page]);
 
     if (isLoading || isFetching) {
-        return (
-            <div>
-                <span>Loading...</span>
-            </div>
-        )
+        return <PageSpinner />
     }
 
     if (!isLoading && !isFetching && data && data.data.workouts.length > 0) {

@@ -15,6 +15,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import Badge from '@/lib/components/ui/badge';
 import WorkoutUtils from '@/lib/utils/workout.utils';
+import PageSpinner from '@/lib/components/ui/page-spinner';
 
 interface WorkoutPageProps {
     params: {
@@ -54,12 +55,12 @@ export default function WorkoutPage({
         });
     }
 
+    if (isLoading || isFetching) {
+        return <PageSpinner />;
+    }
+
     return (
         <div>
-            {(isLoading || isFetching) && (
-                <span>Loading...</span>
-            )}
-
             {!isLoading && !isFetching && data?.data ? (
                 <>
                     <Button className="inline-flex items-center" variant="link" onClick={() => router.back()}>
