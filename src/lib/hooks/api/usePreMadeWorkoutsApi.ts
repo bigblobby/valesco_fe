@@ -2,11 +2,7 @@ import useAPI from '@/lib/hooks/api/useApi';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { ApiResponse } from '@/lib/types/api.types';
 import { WORKOUT_PRE_MADE_QUERY_KEY } from '@/lib/constants/query-key.constants';
-
-interface Workout {
-    title: string;
-    content: string;
-}
+import { ICrossfitMainDailyWorkout } from '@/lib/types/pre-made-workout.types';
 
 export function usePreMadeWorkoutsAPI() {
     const { GET } = useAPI();
@@ -22,10 +18,10 @@ export function usePreMadeWorkoutsAPI() {
                 });
 
                 res.data.data.workouts = res.data.data.workouts
-                    .filter((workout: Workout) => {
+                    .filter((workout: ICrossfitMainDailyWorkout) => {
                         return !workout.content.includes('Rest Day');
                     })
-                    .map((workout: Workout) => {
+                    .map((workout: ICrossfitMainDailyWorkout) => {
                         const segments = workout.content.split('\n');
                         const resSegments = segments.filter(seg => {
                             const postPattern = /Post (?:time|load|total|reps|number|rounds|score|your|round|Tabata|best|them).*?/g;

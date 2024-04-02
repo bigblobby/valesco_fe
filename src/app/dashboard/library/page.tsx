@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
     return (
-        <div className="min-h-full">
+        <div className="h-full">
             <Library />
         </div>
     );
