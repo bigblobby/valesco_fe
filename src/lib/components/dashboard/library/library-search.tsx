@@ -10,7 +10,7 @@ import { LibraryContext } from '@/lib/providers/library-provider';
 
 export type WorkoutPreMadeFormInputs = z.infer<typeof workoutPreMadeFormSchema>;
 
-export default function LibrarySearch(){
+export default function LibrarySearch() {
     const { collection, setCollection } = useContext(LibraryContext);
     const form = useForm<WorkoutPreMadeFormInputs>({
         resolver: zodResolver(workoutPreMadeFormSchema),
@@ -37,7 +37,7 @@ export default function LibrarySearch(){
                                     <Select onValueChange={field.onChange} defaultValue={collection}>
                                         <FormControl>
                                             <SelectTrigger>
-                                                <SelectValue placeholder="Select a collection" />
+                                                <SelectValue placeholder="Select a collection"/>
                                             </SelectTrigger>
                                         </FormControl>
                                         <SelectContent>
@@ -72,7 +72,7 @@ export default function LibrarySearch(){
                                             <SelectItem value="push-herk-wods">Push Jerk WODs</SelectItem>
                                         </SelectContent>
                                     </Select>
-                                    <FormMessage />
+                                    <FormMessage/>
                                 </FormItem>
                             );
                         }}
@@ -84,5 +84,5 @@ export default function LibrarySearch(){
                 </Button>
             </form>
         </Form>
-    )
+    );
 }

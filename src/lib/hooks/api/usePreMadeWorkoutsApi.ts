@@ -7,11 +7,11 @@ import { ICrossfitMainDailyWorkout } from '@/lib/types/pre-made-workout.types';
 export function usePreMadeWorkoutsAPI() {
     const { GET } = useAPI();
 
-    function getAllWorkouts(collection: string): UseQueryResult<ApiResponse<{workouts: any[], count: number}>> {
+    function getAllWorkouts(collection: string): UseQueryResult<ApiResponse<{ workouts: any[], count: number }>> {
         return useQuery({
             queryKey: [WORKOUT_PRE_MADE_QUERY_KEY, 'collection', collection],
             queryFn: async () => {
-                const res = await GET<ApiResponse<{workouts: any[], count: number}>>('/workouts-pre-made', {
+                const res = await GET<ApiResponse<{ workouts: any[], count: number }>>('/workouts-pre-made', {
                     params: {
                         collection: collection,
                     }

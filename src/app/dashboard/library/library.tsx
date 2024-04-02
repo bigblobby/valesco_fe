@@ -21,8 +21,8 @@ export default function Library() {
                     </ul>
                 </div>
 
-                <LibrarySearch />
-                <LibraryList />
+                <LibrarySearch/>
+                <LibraryList/>
             </div>
         </LibraryProvider>
     );

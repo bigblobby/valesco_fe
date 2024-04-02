@@ -26,11 +26,11 @@ export default function LibraryList() {
                                 <Heading>{workout.title}</Heading>
                                 <ParseContent content={workout.content}/>
                             </li>
-                        )
+                        );
                     })}
                 </ul>
             </>
-        )
+        );
     }
 
     return null;
