@@ -27,7 +27,7 @@ export function useWorkoutAPI() {
         return useQuery({
             queryKey: [WORKOUT_QUERY_KEY, 'page', page],
             queryFn: async () => {
-                const res = await GET<ApiResponse<TWorkout[]>>('/workouts', {
+                const res = await GET<ApiResponse<{workouts: TWorkout[], count: number}>>('/workouts', {
                     params: { page: page }
                 });
                 return res.data;
