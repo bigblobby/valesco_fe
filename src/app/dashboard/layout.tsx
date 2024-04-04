@@ -53,7 +53,7 @@ export default async function Layout({ children, }: Readonly<{ children: React.R
                                         <DashboardSidebar />
                                         <main className="md:pl-72">
                                             <DashboardNav />
-                                            <div className="p-5 h-[calc(100vh-65px)] overflow-auto">{children}</div>
+                                            <div className="p-5 h-[calc(100svh-65px)] overflow-auto">{children}</div>
                                         </main>
                                     </div>
                                 </SidebarProvider>
