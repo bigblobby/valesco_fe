@@ -15,6 +15,7 @@ const headingVariants = cva(
                 h4: 'text-2xl',
                 h5: 'text-xl',
                 h6: 'text-lg',
+                span: 'text-base'
             }
         },
         defaultVariants: {
@@ -23,7 +24,7 @@ const headingVariants = cva(
     }
 );
 
-type ComponentTypes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type ComponentTypes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
 
 export interface TextProps extends React.HTMLAttributes<any>, VariantProps<typeof headingVariants> {
     asChild?: boolean;

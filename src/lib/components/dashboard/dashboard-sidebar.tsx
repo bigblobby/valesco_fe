@@ -55,9 +55,11 @@ export default function DashboardSidebar() {
                 </div>
             </div>
 
-            <div className="flex justify-center border-b border-slate-50/[0.26] mx-4">
+            <div className="flex justify-center m-4">
                 <CreateNewWorkoutForm />
             </div>
+
+            <div className="border-b border-slate-50/[0.26] mx-4"></div>
 
             <div>
                 <ul className="mt-4">

@@ -81,7 +81,7 @@ export default function CreateNewWorkoutForm() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="my-4 w-full">
+                <Button className="w-full">
                     <PlusIcon width={20} height={20} />
                     <span className="ml-2">New Workout</span>
                 </Button>
