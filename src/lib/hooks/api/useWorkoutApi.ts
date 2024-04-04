@@ -8,11 +8,12 @@ import { WORKOUT_QUERY_KEY } from '@/lib/constants/query-key.constants';
 export function useWorkoutAPI() {
     const { GET, POST, DELETE } = useAPI();
     const queryClient = useQueryClient();
+    const URL = '/workouts';
 
     function createWorkout(): UseMutationResult<ApiResponse<TWorkout>> {
         return useMutation({
             mutationFn: async (formData: any) => {
-                const response = await POST<ApiResponse<TWorkout>>('/workouts', formData);
+                const response = await POST<ApiResponse<TWorkout>>(URL, formData);
                 return response.data;
             },
 
@@ -27,10 +28,10 @@ export function useWorkoutAPI() {
         return useQuery({
             queryKey: [WORKOUT_QUERY_KEY, 'page', page],
             queryFn: async () => {
-                const res = await GET<ApiResponse<{ workouts: TWorkout[], count: number }>>('/workouts', {
+                const response = await GET<ApiResponse<{ workouts: TWorkout[], count: number }>>(URL, {
                     params: { page: page }
                 });
-                return res.data;
+                return response.data;
             }
         });
     }
@@ -39,17 +40,17 @@ export function useWorkoutAPI() {
         return useQuery({
             queryKey: [WORKOUT_QUERY_KEY, id],
             queryFn: async () => {
-                const response = await GET<ApiResponse<TWorkout>>(`/workouts/${id}`);
+                const response = await GET<ApiResponse<TWorkout>>(`${URL}/${id}`);
                 return response.data;
             }
         });
     }
 
-    function getWorkoutCount() {
+    function getWorkoutCount(): UseQueryResult<ApiResponse<number>> {
         return useQuery({
             queryKey: [WORKOUT_QUERY_KEY, 'count'],
             queryFn: async () => {
-                const response = await GET<ApiResponse<number>>('/workouts/count');
+                const response = await GET<ApiResponse<number>>(`${URL}/count`);
                 return response.data;
             }
         });
@@ -58,7 +59,7 @@ export function useWorkoutAPI() {
     function deleteWorkoutById(id: string) {
         return useMutation({
             mutationFn: async (workoutId?: string) => {
-                const response = await DELETE(`/workouts/${workoutId ?? id}`);
+                const response = await DELETE(`${URL}/${workoutId ?? id}`);
                 return response.data;
             },
 

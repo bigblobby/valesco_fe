@@ -14,7 +14,6 @@ export default function useAxios() {
     axiosInstance.interceptors.request.clear();
     axiosInstance.interceptors.request.use(
         async (value: InternalAxiosRequestConfig) => {
-            // console.log(session);
             if (session?.expires_at && session.expires_at * 1000 < Date.now()) {
                 // If the session is not valid, refresh it
                 if (supabase) {
@@ -22,7 +21,6 @@ export default function useAxios() {
                     if (error) {
                         throw error;
                     }
-                    // console.log('axios refresh token: ', data.session);
 
                     if (data.session) {
                         session = data.session;
@@ -30,14 +28,11 @@ export default function useAxios() {
                 }
             }
 
-            // Check if the session is valid
             value.headers["Authorization"] = `Bearer ${session?.access_token ?? ""}`;
-
             return value;
         },
         (error: AxiosError) => {
             console.error({ error });
-
             return Promise.reject(error);
         }
     );
