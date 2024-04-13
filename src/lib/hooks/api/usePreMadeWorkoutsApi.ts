@@ -18,25 +18,28 @@ export function usePreMadeWorkoutsAPI() {
                     }
                 });
 
-                res.data.data.workouts = res.data.data.workouts
-                    .filter((workout: ICrossfitMainDailyWorkout) => {
-                        return !workout.content.includes('Rest Day');
-                    })
-                    .map((workout: ICrossfitMainDailyWorkout) => {
-                        const segments = workout.content.split('\n');
-                        const resSegments = segments.filter(seg => {
-                            const postPattern = /Post (?:time|load|total|reps|number|rounds|score|your|round|Tabata|best|them).*?/g;
-                            const comparePattern = /Compare to/g;
-                            const postMatches = seg.match(postPattern);
-                            const compareMatches = seg.match(comparePattern);
-                            return !((postMatches?.length ?? 0) + (compareMatches?.length ?? 0));
-                        });
+                // TODO clean this up, it feels pretty horrible
+                if (collection.includes('crossfit-main-daily') || collection.includes('crossfit-linchpin-daily')){
+                    res.data.data.workouts = res.data.data.workouts
+                        .filter((workout: ICrossfitMainDailyWorkout) => {
+                            return !workout.content.includes('Rest Day') && !workout.content.includes('REST DAY');
+                        })
+                        .map((workout: ICrossfitMainDailyWorkout) => {
+                            const segments = workout.content.split('\n');
+                            const resSegments = segments.filter(seg => {
+                                const postPattern = /Post (?:time|load|total|reps|number|rounds|score|your|round|Tabata|best|them).*?/g;
+                                const comparePattern = /Compare to/g;
+                                const postMatches = seg.match(postPattern);
+                                const compareMatches = seg.match(comparePattern);
+                                return !((postMatches?.length ?? 0) + (compareMatches?.length ?? 0));
+                            });
 
-                        return {
-                            ...workout,
-                            content: resSegments.join('\n'),
-                        };
-                    });
+                            return {
+                                ...workout,
+                                content: resSegments.join('\n'),
+                            };
+                        });
+                }
 
                 return res.data;
             }

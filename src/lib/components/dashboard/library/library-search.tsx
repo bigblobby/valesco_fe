@@ -69,7 +69,7 @@ export default function LibrarySearch() {
                                             <SelectItem value="crossfit-linchpin-daily-wods">Crossfit Linchpin daily WODs</SelectItem>
                                             <SelectItem value="crossfit-linchpin-monster-mash-wods">Crossfit Linchpin monster mash WODs</SelectItem>
                                             <SelectItem value="crossfit-mayhem-daily-wods">Crossfit Mayhem daily WODs</SelectItem>
-                                            <SelectItem value="push-herk-wods">Push Jerk WODs</SelectItem>
+                                            <SelectItem value="push-jerk-wods">Push Jerk WODs</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <FormMessage/>
